@@ -1,0 +1,3 @@
+-Use LSTM
+-Use spectrograms or sliding window fft (same thing?)
+-Train the network for unknown words and silence
