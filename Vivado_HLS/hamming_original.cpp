@@ -1,77 +1,66 @@
 #include <iostream>
-#include <math.h>
+#include <complex>
+
+#define PI 3.1415926535
+#define NUM_SAMPLES 8
 
 using namespace std;
 
-double pi = 4*atan((double)1);
+void separate(complex<double>* input_data, int num_samples);
+void FFT(complex<double>* input_data, int num_samples);
 
-void SWAP(float* data1, float* data2){
-  float temp = *data1;
-  *data1 = *data2;
-  *data2 = temp;
-}
-
-int main(){
+int main()
+{
+  complex<double> test_data[NUM_SAMPLES];
+  for(int i = 0; i < NUM_SAMPLES; i++)
+  {
+    test_data[i] = i;
+    cout << test_data[i] << endl;
+  }
+  FFT(test_data, NUM_SAMPLES);
+  cout << "Result:" << endl;
+  for(int i = 0; i < NUM_SAMPLES; i++)
+    cout << test_data[i] << endl;
   return(0);
 }
 
-//data -> float array that represents the array of complex samples
-//num_complex_samples -> number of samples (N^2 order number)
-//isign -> 1 to calculate FFT and -1 to calculate Reverse FFT
-float* FFT (float data[], unsigned long num_complex_samples, int isign){
-  unsigned long n, mmax, m, j, istep, i;
-  double wtemp, wr, wpr, wpi, wi, theta, tempr, tempi;
 
-  //The complex array is real+complex so the array as a size
-  //n = 2*number of complex samples. Real part is data[index] and
-  //complex is data[index+1]
-  n = num_complex_samples * 2;
-  //binary inversion
-  j = 1;
-  for(i = 1; i < n;i+=2){
-    //swap the real part
-    SWAP(&data[j], &data[i]);
-    //swap the complex part
-    SWAP(&data[j+1], &data[i+1]);
-    if((j/2)<(n/4)){
-      //swap the real part
-      SWAP(&data[(n-(i+2))], &data[(n-(j+2))]);
-      //swap the complex part
-      SWAP(&data[(n-(i+2))+1], &data[(n-(j+2))+1]);
+void separate (complex<double>* input_data, int num_samples)
+{
+  complex<double>* temp_buffer = new complex<double>[num_samples/2];
+  //Copy all odd elements to temp buffer
+  for(int i = 0; i < num_samples/2; i++)
+    temp_buffer[i] = input_data[i*2+1];
+  //Copy all even elements to lower half of input_data
+  for(int i = 0; i < num_samples/2; i++)
+    input_data[i] = input_data[i*2];
+  //Copy all odd elements from buffer to upper half of input_data
+  for(int i = 0; i < num_samples/2; i++)
+    input_data[i+num_samples/2] = temp_buffer[i];
+  //Delete the allocated temp buffer
+  delete[] temp_buffer;
+}
+
+void FFT(complex<double>* input_data, int num_samples)
+{
+  if(num_samples < 2)
+    asm("NOP");
+  else
+  {
+    // Separate all even numbers to lower half, odd to upper half
+    separate(input_data, num_samples);
+    //Recurse even items
+    FFT(input_data, num_samples/2);
+    //Recurse odd times
+    FFT(input_data + num_samples/2, num_samples/2);
+    for(int i = 0; i < num_samples/2; i++)
+    {
+      complex<double> even = input_data[i];
+      complex<double> odd = input_data[i+num_samples/2];
+      complex<double> twiddle_factor = exp(complex<double>(0, -2 * PI * i/num_samples));
+      input_data[i] = even + twiddle_factor * odd;
+      input_data[i + num_samples/2] = even - twiddle_factor * odd;
     }
   }
-  m = n/2;
-  while (m >= 2 && j > m){
-    j -= m;
-    m = m/2;
-  }
-  j += m;
-  //Danielson-Lanzcos routine
-  mmax = 2;
-  while(n > mmax){
-    istep = mmax << 1;
-    theta = isign*(2*pi/mmax);
-    wtemp = sin(0.5*theta);
-    wpr = -2.0*wtemp*wtemp;
-    wpi=sin(theta);
-    wr=1.0;
-    wi=0.0;
-    //internal loops
-    for (m = 1; m < mmax; m+=2){
-      for(i = m; i <= n; i+=istep){
-        j = i + mmax;
-        tempr=wr*data[j-1]-wi*data[j];
-        tempi=wr*data[j]+wi*data[j-1];
-        data[j-1]=data[i-1]-tempr;
-        data[j]=data[i]-tempi;
-        data[i-1] += tempr;
-        data[i] += tempi;
-      }
-      wr=(wtemp=wr)*wpr-wi*wpi+wr;
-      wi=wi*wpr+wtemp*wpi+wi;
-    }
-    mmax=istep;
-  }
-  return data;
 }
 
