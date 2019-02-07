@@ -1,26 +1,43 @@
 #include <iostream>
 #include <complex>
+#include <cstdint>
 
 #define PI 3.1415926535
-#define NUM_SAMPLES 8
+#define NUM_SAMPLES 49152
+#define NUM_SAMPLES_PER_FFT 2048
 
 using namespace std;
 
+typedef struct WAV_HEADER{
+    unsigned char riff_header[4];
+    uint32_t chunkSize;
+    unsigned char wave_header[4];
+    unsigned char fmt_header[4];
+    uint32_t subchunk1Size;
+    uint16_t audioFormat;
+    uint16_t numChannels;
+    uint32_t sampleRate;
+    uint32_t byteRate;
+    uint16_t blockAlign;
+    uint16_t bitsPerSample;
+    unsigned char subchunk2Id[4];
+    uint32_t subchunk2Size;
+    unsigned char * data;
+} wav_hdr;
+
 void separate(complex<double>* input_data, int num_samples);
 void FFT(complex<double>* input_data, int num_samples);
+int read_wav(complex<double>* data, const char* filename);
 
 int main()
 {
   complex<double> test_data[NUM_SAMPLES];
-  for(int i = 0; i < NUM_SAMPLES; i++)
-  {
-    test_data[i] = i;
-    cout << test_data[i] << endl;
-  }
-  FFT(test_data, NUM_SAMPLES);
-  cout << "Result:" << endl;
-  for(int i = 0; i < NUM_SAMPLES; i++)
-    cout << test_data[i] << endl;
+  int length = read_wav(test_data, "voice_rec_live.wav");
+  cout << "First data: " << test_data[0].real() << endl;
+  int padding_needed = NUM_SAMPLES - length;
+
+
+                                             
   return(0);
 }
 
@@ -63,4 +80,38 @@ void FFT(complex<double>* input_data, int num_samples)
     }
   }
 }
-
+int read_wav(complex<double>* data, const char* filename)
+{
+  wav_hdr wavHeader;
+  int headerSize = sizeof(wav_hdr);
+  FILE* wavFile = fopen(filename, "r");
+  if(wavFile == nullptr)
+  {
+    cout << "Invalid filename" << endl;
+    return(0);
+  }
+  else
+  {
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+    cout << ".wav-header has a size of " << bytesRead << endl;
+    if(bytesRead > 0)
+    {
+      cout << "Sampling rate: " << wavHeader.sampleRate << endl;
+      cout << "Data size: " << wavHeader.subchunk2Size << endl;
+      cout << "Bits per sample: " << wavHeader.bitsPerSample << endl;
+      long bytes = wavHeader.bitsPerSample/8;
+      long buffsize= wavHeader.subchunk2Size/bytes;
+      int16_t* audiobuf = new int16_t[buffsize];
+      fread(audiobuf,bytes,buffsize,wavFile);
+      cout << "Buffsize: " << buffsize << endl
+      for(int i = 0; i < buffsize; i++){
+        data[i] = audiobuf[i];
+      }
+      cout << "Num samples: " << buffsize << endl;
+      cout << "Done reading .wav-file" << endl;
+      return(buffsize);
+    }
+    else
+      return(0);
+  }
+}
