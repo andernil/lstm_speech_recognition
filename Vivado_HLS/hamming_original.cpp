@@ -35,9 +35,6 @@ int main()
   int length = read_wav(test_data, "voice_rec_live.wav");
   cout << "First data: " << test_data[0].real() << endl;
   int padding_needed = NUM_SAMPLES - length;
-
-
-                                             
   return(0);
 }
 
