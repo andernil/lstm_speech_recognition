@@ -28,14 +28,18 @@ typedef struct WAV_HEADER{
 void separate(complex<double>* input_data, int num_samples);
 void FFT(complex<double>* input_data, int num_samples);
 int read_wav(complex<double>* data_array, const char* filename);
-complex<double>* window_FFT(complex<double>* input_data, int frame_size, int frame_step);
+double* window_FFT(complex<double>* input_data, int frame_size, int frame_step);
 
 int main()
 {
   complex<double> wav_data[NUM_SAMPLES];
   int wav_data_length = read_wav(wav_data, "1k_test.wav");
-  //TODO: Split wav_data array into 25ms windows with 10ms frame steps (sample 1 from 0 to 400, sample 2 from 160 to 560 etc)
-  
+  //TODO: Split wav_data array into 25ms windows with 10ms frame steps (sample 1 from 0 to 1024, sample 2 from 512 to 1536 etc)
+  double* power_data = window_FFT(wav_data, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME);
+  cout << "Done FFT'ing" << endl;
+  //for(int i = 0; i < NUM_SAMPLES * 2; i++)
+  //  cout << power_data[i] << ", ";
+  delete[] power_data; 
   return(0);
 }
 
@@ -101,7 +105,6 @@ int read_wav(complex<double>* data_array, const char* filename)
       long buffsize= wavHeader.subchunk2Size/bytes;
       if(wavHeader.bitsPerSample == 32)
       {
-        cout << "Allocating 32-bit values" << endl;
         int32_t* audiobuf = new int32_t[buffsize];
         fread(audiobuf,bytes,buffsize,wavFile);
         for(int i = 0; i < buffsize; i++)
@@ -111,7 +114,6 @@ int read_wav(complex<double>* data_array, const char* filename)
       }
       else
       {
-        cout << "Allocating 16-bit values" << endl;
         int16_t* audiobuf = new int16_t[buffsize];
         fread(audiobuf,bytes,buffsize,wavFile);
         for(int i = 0; i < buffsize; i++)
@@ -119,8 +121,6 @@ int read_wav(complex<double>* data_array, const char* filename)
         delete[] audiobuf;
         audiobuf = nullptr;
       }
-      cout << "Buffsize: " << buffsize << endl;
-      cout << "Num samples: " << buffsize << endl;
       cout << "Done reading .wav-file" << endl;
       fclose(wavFile);
       return(buffsize);
@@ -129,19 +129,28 @@ int read_wav(complex<double>* data_array, const char* filename)
       return(0);
   }
 }
-complex<double>* window_FFT(complex<double>* input_data, int frame_size, int frame_step)
+double* window_FFT(complex<double>* input_data, int frame_size, int frame_step)
 {
+  cout << "Started window FFT" << endl;
   complex<double>* data_frame = new complex<double>[frame_size];
-  // Slide the frame along the array of samples
-  for(int frame = 0; frame < NUM_SAMPLES; frame += frame_step)
+  double* FFT_ABS = new double[NUM_SAMPLES];
+  cout << "Allocated memory" << endl;
+  // Slide the frame along the array of samples, frame=1024, frame_step = 512
+  for(int frame = 0; frame < (NUM_SAMPLES - NUM_SAMPLES_PER_FFT_FRAME); frame += frame_step)
   {
+    cout << "Calculating FFT from frame " << frame << " to " << (frame + 1024) << endl;
     // Fill the window array with windowed FFT samples
     for(int i = 0; i < frame_size; i++)
     {
-      // Perform Hamming-windowing while copying sample
+      // Perform Hamming-windowing while copying sample. Voice-data is only real, so ignore the imaginary part
       data_frame[i] = 0.54 - 0.46 * cos(2*PI*input_data[i + frame].real()/(frame_size-1));
     }
     FFT(data_frame, frame_size);
-
+    // Calculate the periodogram-based power spectral estimate of the first half of the signal
+    for(int j = 0; j < frame_size/2; j++){
+      FFT_ABS[j + frame] = data_frame[j].real() * data_frame[j].imag() / frame_size;
+    }
   }
+  delete[] data_frame;
+  return(FFT_ABS);
 }
