@@ -1,6 +1,7 @@
 #include <iostream>
 #include <complex>
 #include <cstdint>
+#include <cmath>
 
 #define PI 3.1415926535
 #define NUM_SAMPLES 48128
@@ -29,17 +30,28 @@ void separate(complex<double>* input_data, int num_samples);
 void FFT(complex<double>* input_data, int num_samples);
 int read_wav(complex<double>* data_array, const char* filename);
 double* window_FFT(complex<double>* input_data, int frame_size, int frame_step);
+double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate);
+double freq_to_mel(double freq);
+double mel_to_freq(double mel);
+void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size);
 
 int main()
 {
-  complex<double> wav_data[NUM_SAMPLES];
-  int wav_data_length = read_wav(wav_data, "1k_test.wav");
+  //complex<double> wav_data[NUM_SAMPLES];
+  //int wav_data_length = read_wav(wav_data, "1k_test.wav");
   //TODO: Split wav_data array into 25ms windows with 10ms frame steps (sample 1 from 0 to 1024, sample 2 from 512 to 1536 etc)
-  double* power_data = window_FFT(wav_data, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME);
-  cout << "Done FFT'ing" << endl;
-  //for(int i = 0; i < NUM_SAMPLES * 2; i++)
-  //  cout << power_data[i] << ", ";
-  delete[] power_data; 
+  //double* power_data = window_FFT(wav_data, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME);
+  double** filters = init_mel(300, 8000, 10, 1024, 48000);
+  //delete[] power_data;
+  for(int i = 0; i < 10; i++){
+    cout << "Filter: " << i << endl;
+    for(int j = 0; j < 256; j++)
+      cout << filters[i][j] << ", ";
+    cout << endl;
+    delete[] filters[i];
+  }
+  delete[] filters;
+  cout << "Program exited normally" << endl;
   return(0);
 }
 
@@ -148,9 +160,63 @@ double* window_FFT(complex<double>* input_data, int frame_size, int frame_step)
     FFT(data_frame, frame_size);
     // Calculate the periodogram-based power spectral estimate of the first half of the signal
     for(int j = 0; j < frame_size/2; j++){
-      FFT_ABS[j + frame] = data_frame[j].real() * data_frame[j].imag() / frame_size;
+      FFT_ABS[j + frame] = pow((data_frame[j].real() * data_frame[j].imag()),2) / frame_size;
     }
   }
   delete[] data_frame;
   return(FFT_ABS);
+}
+
+double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate){
+  double min_mel = freq_to_mel(min_frequency);
+  double max_mel = freq_to_mel(max_frequency);
+  double filterbank_step = (max_mel - min_mel) / (num_filterbanks + 1);
+  // The number of filterbanks is always n+2
+  double* filterbanks = new double[num_filterbanks + 2];
+  double** filterbank_filters = new double*[num_filterbanks];
+  for(int i = 0; i < num_filterbanks; i++)
+    filterbank_filters[i] = new double[FFT_size/2];
+  for(int i = 0; i < num_filterbanks + 2; i++){
+    filterbanks[i] = min_mel + filterbank_step * i;
+    cout << "Mel: " << filterbanks[i] << ", ";
+    // Convert back to frequency
+    filterbanks[i] = mel_to_freq(filterbanks[i]);
+    cout << "Freq: " << filterbanks[i] << ", ";
+    // Round frequencies to a precision we have
+    filterbanks[i] = floor((FFT_size + 1) * filterbanks[i] / samplerate);
+    cout << "Rounded: " << filterbanks[i] << endl;
+    // Create filterbank filters
+    if((i > 1) && (i < (num_filterbanks + 2)))
+      generate_filterbank(filterbank_filters[i-2], filterbanks[i-2], filterbanks[i-1], filterbanks[i], FFT_size);
+  }
+  delete[] filterbanks;
+  return(filterbank_filters);
+
+  cout << "Program exited successfully" << endl;
+}
+void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size){
+  int i = 0;
+  int j = 0;
+  double step = 1/(curr_filterbank-prev_filterbank);
+    for(i = 0; i < prev_filterbank; i++)
+      filterbank[i] = 0;
+    for(; i < curr_filterbank; i++){
+      filterbank[i] = step * j;
+      j++;
+    }
+    j = 0;
+    for(; i < next_filterbank; i++){
+      filterbank[i] = 1 - (step * j);
+      j++;
+    }
+    for(; i < FFT_size/2; i++)
+      filterbank[i] = 0;
+}
+
+double freq_to_mel(double freq){
+  return(1125 * log(1 + freq/700));
+
+}
+double mel_to_freq(double mel){
+  return(700 * (exp(mel/1125) - 1));
 }
