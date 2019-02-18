@@ -7,6 +7,10 @@
 #define NUM_SAMPLES 48128
 #define NUM_SAMPLES_PER_FFT 1024
 #define NUM_SAMPLES_PER_FFT_FRAME 512
+#define MEL_LOWEST_FREQUENCY 300
+#define MEL_HIGHEST_FREQUENCY 8000
+#define MEL_NUM_FILTERBANKS 10
+#define SAMPLING_FREQUENCY 48000
 
 using namespace std;
 
@@ -34,20 +38,29 @@ double** init_mel(double min_frequency, double max_frequency, int num_filterbank
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
 void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size);
+double* calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int FFT_size);
 
 int main()
 {
-  //complex<double> wav_data[NUM_SAMPLES];
-  //int wav_data_length = read_wav(wav_data, "1k_test.wav");
-  //TODO: Split wav_data array into 25ms windows with 10ms frame steps (sample 1 from 0 to 1024, sample 2 from 512 to 1536 etc)
-  //double* power_data = window_FFT(wav_data, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME);
-  double** filters = init_mel(300, 8000, 10, 1024, 48000);
-  //delete[] power_data;
-  for(int i = 0; i < 10; i++){
-    cout << "Filter: " << i << endl;
-    for(int j = 0; j < 256; j++)
-      cout << filters[i][j] << ", ";
-    cout << endl;
+  complex<double> wav_data[NUM_SAMPLES];
+  int wav_data_length = read_wav(wav_data, "1k_test.wav");
+  double* power_data = window_FFT(wav_data, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME);
+  double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
+  double* filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT);
+
+  for(int i = 0; i < MEL_NUM_FILTERBANKS; i++)
+  {
+    filterbank_energies[i] = log(filterbank_energies[i]);
+    cout << "Filterbank " << i + 1 << "energy: " << filterbank_energies[i] << endl;
+  }
+
+  delete[] power_data;
+  delete[] filterbank_energies;
+  for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
+    // cout << "Filter: " << i << endl;
+    // for(int j = 0; j < 256; j++)
+    //   cout << filters[i][j] << ", ";
+    // cout << endl;
     delete[] filters[i];
   }
   delete[] filters;
@@ -150,7 +163,6 @@ double* window_FFT(complex<double>* input_data, int frame_size, int frame_step)
   // Slide the frame along the array of samples, frame=1024, frame_step = 512
   for(int frame = 0; frame < (NUM_SAMPLES - NUM_SAMPLES_PER_FFT_FRAME); frame += frame_step)
   {
-    cout << "Calculating FFT from frame " << frame << " to " << (frame + 1024) << endl;
     // Fill the window array with windowed FFT samples
     for(int i = 0; i < frame_size; i++)
     {
@@ -178,6 +190,7 @@ double** init_mel(double min_frequency, double max_frequency, int num_filterbank
     filterbank_filters[i] = new double[FFT_size/2];
   for(int i = 0; i < num_filterbanks + 2; i++){
     filterbanks[i] = min_mel + filterbank_step * i;
+    cout << "Filterbank " << i << ": ";
     cout << "Mel: " << filterbanks[i] << ", ";
     // Convert back to frequency
     filterbanks[i] = mel_to_freq(filterbanks[i]);
@@ -195,6 +208,7 @@ double** init_mel(double min_frequency, double max_frequency, int num_filterbank
   cout << "Program exited successfully" << endl;
 }
 void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size){
+  // Use i to cycle through the arrays, use j to increment the step value
   int i = 0;
   int j = 0;
   double step = 1/(curr_filterbank-prev_filterbank);
@@ -212,6 +226,24 @@ void generate_filterbank(double* filterbank, double prev_filterbank, double curr
     for(; i < FFT_size/2; i++)
       filterbank[i] = 0;
 }
+double* calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int FFT_size)
+{
+  double* filterbank_energies = new double[num_filterbanks];
+  // Run filters over each frame. Frames are 512, as are the filters.Add the result of all frames for each iteration of the filterbank filter
+  for(int filterbank = 0; filterbank < num_filterbanks; filterbank++)
+  {
+    filterbank_energies[filterbank] = 0;
+    for(int FFT_frame = 0; FFT_frame < NUM_SAMPLES; FFT_frame += FFT_size / 2)
+    {
+      for(int i = 0; i < FFT_size / 2; i++)
+      {
+        filterbank_energies[filterbank] += input_data[i] * filters[filterbank][i];
+      }
+    }
+  }
+  return(filterbank_energies);
+}
+
 
 double freq_to_mel(double freq){
   return(1125 * log(1 + freq/700));
