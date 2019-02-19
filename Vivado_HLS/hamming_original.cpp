@@ -9,8 +9,9 @@
 #define NUM_SAMPLES_PER_FFT_FRAME 512
 #define MEL_LOWEST_FREQUENCY 300
 #define MEL_HIGHEST_FREQUENCY 8000
-#define MEL_NUM_FILTERBANKS 10
+#define MEL_NUM_FILTERBANKS 26
 #define SAMPLING_FREQUENCY 48000
+int bits_per_sample = 0;
 
 using namespace std;
 
@@ -33,7 +34,7 @@ typedef struct WAV_HEADER{
 void separate(complex<double>* input_data, int num_samples);
 void FFT(complex<double>* input_data, int num_samples);
 int read_wav(complex<double>* data_array, const char* filename);
-double* window_FFT(complex<double>* input_data, int frame_size, int frame_step);
+double* window_FFT(complex<double>* input_data, int frame_size, int frame_step, int samplerate);
 double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate);
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
@@ -43,15 +44,15 @@ double* calculate_filterbank_energies(double* input_data, double** filters, int 
 int main()
 {
   complex<double> wav_data[NUM_SAMPLES];
-  int wav_data_length = read_wav(wav_data, "1k_test.wav");
-  double* power_data = window_FFT(wav_data, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME);
+  int sampling_frequency = read_wav(wav_data, "2k_test.wav");
+  double* power_data = window_FFT(wav_data, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME, SAMPLING_FREQUENCY);
   double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
   double* filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT);
-
+  
   for(int i = 0; i < MEL_NUM_FILTERBANKS; i++)
   {
     filterbank_energies[i] = log(filterbank_energies[i]);
-    cout << "Filterbank " << i + 1 << "energy: " << filterbank_energies[i] << endl;
+    cout << "Filterbank " << i + 1 << " energy: " << filterbank_energies[i] << endl;
   }
 
   delete[] power_data;
@@ -120,12 +121,13 @@ int read_wav(complex<double>* data_array, const char* filename)
   else
   {
     size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
-    cout << ".wav-header has a size of " << bytesRead << endl;
+    //cout << ".wav-header has a size of " << bytesRead << endl;
     if(bytesRead > 0)
     {
-      cout << "Sampling rate: " << wavHeader.sampleRate << endl;
+      cout << "Sample rate: " << wavHeader.sampleRate << endl;
       cout << "Data size: " << wavHeader.subchunk2Size << endl;
       cout << "Bits per sample: " << wavHeader.bitsPerSample << endl;
+      bits_per_sample = wavHeader.bitsPerSample;
       long bytes = wavHeader.bitsPerSample/8;
       long buffsize= wavHeader.subchunk2Size/bytes;
       if(wavHeader.bitsPerSample == 32)
@@ -141,38 +143,52 @@ int read_wav(complex<double>* data_array, const char* filename)
       {
         int16_t* audiobuf = new int16_t[buffsize];
         fread(audiobuf,bytes,buffsize,wavFile);
-        for(int i = 0; i < buffsize; i++)
+        for(int i = 0; i < buffsize; i++){
           data_array[i] = audiobuf[i];
+        }
         delete[] audiobuf;
         audiobuf = nullptr;
       }
-      cout << "Done reading .wav-file" << endl;
+      //cout << "Done reading .wav-file" << endl;
       fclose(wavFile);
-      return(buffsize);
+      return(wavHeader.sampleRate);
     }
     else
       return(0);
   }
 }
-double* window_FFT(complex<double>* input_data, int frame_size, int frame_step)
+double* window_FFT(complex<double>* input_data, int frame_size, int frame_step, int samplerate)
 {
-  cout << "Started window FFT" << endl;
+  //cout << "Started window FFT" << endl;
   complex<double>* data_frame = new complex<double>[frame_size];
   double* FFT_ABS = new double[NUM_SAMPLES];
-  cout << "Allocated memory" << endl;
+  double hamming_window [frame_size];
   // Slide the frame along the array of samples, frame=1024, frame_step = 512
+  // Calculate Hamming-window coefficients
+  for(int i = 0; i < frame_size; i++){
+    hamming_window[i] = 0.54 - 0.46 * cos(2*PI*i/(frame_size-1));
+  }
   for(int frame = 0; frame < (NUM_SAMPLES - NUM_SAMPLES_PER_FFT_FRAME); frame += frame_step)
   {
     // Fill the window array with windowed FFT samples
     for(int i = 0; i < frame_size; i++)
     {
       // Perform Hamming-windowing while copying sample. Voice-data is only real, so ignore the imaginary part
-      data_frame[i] = 0.54 - 0.46 * cos(2*PI*input_data[i + frame].real()/(frame_size-1));
+      data_frame[i] = input_data[i].real() * hamming_window[i];
+      // TODO: Find Signal-to-noise ratio
+      if(frame == 0)
+        cout << data_frame[i].real() << ", ";
     }
     FFT(data_frame, frame_size);
+    if(frame == 0)
+      cout << endl;
     // Calculate the periodogram-based power spectral estimate of the first half of the signal
     for(int j = 0; j < frame_size/2; j++){
       FFT_ABS[j + frame] = pow((data_frame[j].real() * data_frame[j].imag()),2) / frame_size;
+      //FFT_ABS[j + frame] = floor((frame_size + 1) * FFT_ABS[j + frame] / (samplerate));
+      FFT_ABS[j + frame] = floor(FFT_ABS[j + frame] / (samplerate));
+      if(frame == 0)
+        cout << FFT_ABS[j + frame] << ", ";
     }
   }
   delete[] data_frame;
