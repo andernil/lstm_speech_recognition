@@ -58,13 +58,18 @@ int main()
      cout << filterbank_energies[0][i] << endl;
    }
 
-   delete[] power_data;
    for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
      delete[] filters[i];
      delete[] filterbank_energies[i];
    }
    delete[] filterbank_energies;
    delete[] filters;
+   delete[] power_data;
+
+   filterbank_energies = nullptr;
+   filters = nullptr;
+   power_data = nullptr;
+
   cout << "Program exited normally" << endl;
   return(0);
 }
@@ -84,6 +89,7 @@ void separate (complex<double>* input_data, int num_samples)
     input_data[i+num_samples/2] = temp_buffer[i];
   //Delete the allocated temp buffer
   delete[] temp_buffer;
+  temp_buffer = nullptr;
 }
 
 void FFT(complex<double>* input_data, int num_samples)
@@ -214,6 +220,7 @@ double** init_mel(double min_frequency, double max_frequency, int num_filterbank
     }
   }
   delete[] filterbanks;
+  filterbanks = nullptr;
   return(filterbank_filters);
 
   cout << "Program exited successfully" << endl;
@@ -240,12 +247,15 @@ void generate_filterbank(double* filterbank, double prev_filterbank, double curr
 }
 double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int FFT_size)
 {
-  cout << "Calculating filterbank energies" << endl;
-  int num_DCT_energies = 4 * num_filterbanks;
+  // Allocate memory for the filterbanks
   double** filterbank_energies = new double*[num_frames];
   for(int i = 0; i < num_frames; i++){
     filterbank_energies[i] = new double[num_filterbanks];
+    for(int j = 0; j < num_filterbanks; j++)
+      filterbank_energies[i][j] = 0;
   }
+  // Allocate memory for DCT buffer. Re-use FFT for calculating DCT
+  int num_DCT_energies = 4 * num_filterbanks;
   complex<double>* DCT_energies = new complex<double>[num_DCT_energies];
   for(int i = 0; i < num_DCT_energies; i++)
     DCT_energies[i] = 0;
@@ -278,7 +288,7 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
     current_frame++;
   }
   delete[] DCT_energies;
-  cout << endl;
+  DCT_energies = nullptr;
   return(filterbank_energies);
 }
 
