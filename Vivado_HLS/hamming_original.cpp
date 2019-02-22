@@ -6,14 +6,12 @@
 #define PI 3.1415926535
 #define NUM_SAMPLES 48128
 #define NUM_SAMPLES_PER_FFT 1024
-#define NUM_SAMPLES_PER_FFT_FRAME 512
-#define NUM_FRAMES NUM_SAMPLES/NUM_SAMPLES_PER_FFT_FRAME
+#define NUM_SAMPLES_PER_FFT_FRAME_STEP 512
+#define NUM_FRAMES NUM_SAMPLES/NUM_SAMPLES_PER_FFT_FRAME_STEP
 #define MEL_LOWEST_FREQUENCY 300
 #define MEL_HIGHEST_FREQUENCY 8000
 #define MEL_NUM_FILTERBANKS 16
 #define SAMPLING_FREQUENCY 48000
-
-int bits_per_sample = 0;
 
 using namespace std;
 
@@ -36,39 +34,39 @@ typedef struct WAV_HEADER{
 void separate(complex<double>* input_data, int num_samples);
 void FFT(complex<double>* input_data, int num_samples);
 int read_wav(complex<double>* data_array, const char* filename);
-double* window_FFT(complex<double>* input_data, int frame_size, int frame_step, int samplerate);
+double* window_FFT(complex<double>* input_data, int num_samples, int frame_size, int frame_step, int num_frames);
 double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate);
+void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size);
+double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_size, int FFT_size);
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
-void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size);
-double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int FFT_size);
-void dct(double* energy);
 
 int main()
 {
   complex<double> wav_data[NUM_SAMPLES];
-  int sampling_frequency = read_wav(wav_data, "2k_test.wav");;
-  cout << endl;
-  double* power_data = window_FFT(wav_data, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME, SAMPLING_FREQUENCY);
+  int sampling_frequency = read_wav(wav_data, "2k_test.wav");
+  if(sampling_frequency == 0)
+    cout << "Error reading .wav-file" << endl;
+  double* power_data = window_FFT(wav_data, NUM_SAMPLES, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_FRAMES);
   double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
-  double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT);
-  
-   for(int i = 0; i < MEL_NUM_FILTERBANKS/2; i++)
-   {
-     cout << filterbank_energies[0][i] << endl;
-   }
+  double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_SAMPLES_PER_FFT);
 
-   for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
-     delete[] filters[i];
-     delete[] filterbank_energies[i];
-   }
-   delete[] filterbank_energies;
-   delete[] filters;
-   delete[] power_data;
+  for(int i = 0; i < MEL_NUM_FILTERBANKS/2; i++)
+  {
+    cout << filterbank_energies[0][i] << endl;
+  }
 
-   filterbank_energies = nullptr;
-   filters = nullptr;
-   power_data = nullptr;
+  for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
+    delete[] filters[i];
+    delete[] filterbank_energies[i];
+   }
+  delete[] filterbank_energies;
+  delete[] filters;
+  delete[] power_data;
+
+  filterbank_energies = nullptr;
+  filters = nullptr;
+  power_data = nullptr;
 
   cout << "Program exited normally" << endl;
   return(0);
@@ -127,14 +125,8 @@ int read_wav(complex<double>* data_array, const char* filename)
   else
   {
     size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
-    //cout << ".wav-header has a size of " << bytesRead << endl;
     if(bytesRead > 0)
     {
-      cout << "Sample rate: " << wavHeader.sampleRate << endl;
-      cout << "Data size: " << wavHeader.subchunk2Size << endl;
-      cout << "Bits per sample: " << wavHeader.bitsPerSample << endl;
-      cout << "BlockAlign: " << wavHeader.blockAlign << endl;
-      bits_per_sample = wavHeader.bitsPerSample;
       long bytes = wavHeader.bitsPerSample/8;
       long buffsize= wavHeader.subchunk2Size/bytes;
       if(wavHeader.bitsPerSample == 32)
@@ -161,21 +153,22 @@ int read_wav(complex<double>* data_array, const char* filename)
       return(wavHeader.sampleRate);
     }
     else
+      cout << "Unable to read wav data" << endl;
       return(0);
   }
 }
-double* window_FFT(complex<double>* input_data, int frame_size, int frame_step, int samplerate)
+double* window_FFT(complex<double>* input_data, int num_samples, int frame_size, int frame_step, int num_frames)
 {
-  //cout << "Started window FFT" << endl;
+  int num_samples_post_framing = frame_size * num_frames / 2;
   complex<double>* data_frame = new complex<double>[frame_size];
-  double* FFT_ABS = new double[NUM_SAMPLES];
+  double* FFT_ABS = new double[num_samples_post_framing];
   double hamming_window [frame_size];
   // Slide the frame along the array of samples, frame=1024, frame_step = 512
   // Calculate Hamming-window coefficients
   for(int i = 0; i < frame_size; i++){
     hamming_window[i] = 0.54 - 0.46 * cos(2*PI*i/(frame_size-1));
   }
-  for(int frame = 0; frame < (NUM_SAMPLES - NUM_SAMPLES_PER_FFT_FRAME); frame += frame_step)
+  for(int frame = 0; frame < (num_samples - frame_step); frame += frame_step)
   {
     // Fill the window array with windowed FFT samples
     for(int i = 0; i < frame_size; i++)
@@ -245,47 +238,50 @@ void generate_filterbank(double* filterbank, double prev_filterbank, double curr
     for(; i < FFT_size/2; i++)
       filterbank[i] = 0;
 }
-double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int FFT_size)
+double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_size, int FFT_size)
 {
+  int num_samples = num_frames * FFT_size / 2;
   // Allocate memory for the filterbanks
   double** filterbank_energies = new double*[num_frames];
-  for(int i = 0; i < num_frames; i++){
-    filterbank_energies[i] = new double[num_filterbanks];
-    for(int j = 0; j < num_filterbanks; j++)
-      filterbank_energies[i][j] = 0;
+  for(int frame = 0; frame < num_frames; frame++){
+    filterbank_energies[frame] = new double[num_filterbanks];
+    for(int filterbank = 0; filterbank < num_filterbanks; filterbank++)
+      filterbank_energies[frame][filterbank] = 0;
   }
+
   // Allocate memory for DCT buffer. Re-use FFT for calculating DCT
   int num_DCT_energies = 4 * num_filterbanks;
   complex<double>* DCT_energies = new complex<double>[num_DCT_energies];
   for(int i = 0; i < num_DCT_energies; i++)
     DCT_energies[i] = 0;
-  int current_frame = 0;
-  // Run filters over each frame. Frames are 512, as are the filters.Add the result of all frames for each iteration of the filterbank filter
-  for(int FFT_frame = 0; FFT_frame < NUM_SAMPLES; FFT_frame += FFT_size / 2)
+
+  // Run filters over each frame. Frames are 512, as are the filters.
+  for(int FFT_frame = 0; FFT_frame < num_frames; FFT_frame++)
   {
+    // Calculate sum for each filterbank for each frame
     for(int filterbank = 0; filterbank < num_filterbanks; filterbank++)
     {
-      for(int i = 0; i < FFT_size/2; i++)
+      for(int power_data = 0; power_data < frame_size; power_data++)
       {
-        filterbank_energies[current_frame][filterbank] += input_data[i + FFT_frame] * filters[filterbank][i];
+        filterbank_energies[FFT_frame][filterbank] += input_data[power_data + (FFT_frame * frame_size)] * filters[filterbank][power_data];
       }
     }
+    // Create DCT input array
     int j = 0;
     for(int i = 0; i < num_DCT_energies; i++)
       {
         if(i < num_DCT_energies/2)
           {
             if((i % 2 != 0)){
-              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = log(filterbank_energies[current_frame][j]);
+              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = log(filterbank_energies[FFT_frame][j]);
               j++;
             }
           }
       }
-    // Perform DCT
+    // Perform DCT for the current frame and copy the result back to filterbank_energies
     FFT(DCT_energies, num_DCT_energies);
-    for(int i = 0; i < num_filterbanks; i++)
-      filterbank_energies[current_frame][i] = DCT_energies[i].real();
-    current_frame++;
+    for(int MFCC_value = 0; MFCC_value < num_filterbanks; MFCC_value++)
+      filterbank_energies[FFT_frame][MFCC_value] = DCT_energies[MFCC_value].real();
   }
   delete[] DCT_energies;
   DCT_energies = nullptr;
