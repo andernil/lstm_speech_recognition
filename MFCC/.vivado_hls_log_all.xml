@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog>
+        <logs message="ERROR: [HLS 200-70] Synthesizability check failed.&#xA;command 'ap_source' returned error code&#xA;    while executing&#xA;&quot;source /home/anders/master/MFCC/solution1/csynth.tcl&quot;&#xA;    invoked from within&#xA;&quot;hls::main /home/anders/master/MFCC/solution1/csynth.tcl&quot;&#xA;    (&quot;uplevel&quot; body line 1)&#xA;    invoked from within&#xA;&quot;uplevel 1 hls::main {*}$args&quot;&#xA;    (procedure &quot;hls_proc&quot; line 5)&#xA;    invoked from within&#xA;&quot;hls_proc $argv&quot;&#xA;" projectName="MFCC" solutionName="solution1" date="2019-02-22T13:59:07.433+0100"/>
+        <logs message="ERROR: [SYNCHK 200-74] 'FFT(Vivado_HLS/hamming_original.cpp:58) --> 'FFT'(Vivado_HLS/hamming_original.cpp:69:5)" projectName="MFCC" solutionName="solution1" date="2019-02-22T13:59:06.409+0100"/>
+        <logs message="ERROR: [SYNCHK 200-74] Recursive functions are not supported: recursion found in the following functions " projectName="MFCC" solutionName="solution1" date="2019-02-22T13:59:06.143+0100"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

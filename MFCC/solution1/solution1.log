@@ -1,0 +1,397 @@
+==============================================================
+File generated on Fri Feb 22 13:19:15 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Fri Feb 22 13:26:16 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Fri Feb 22 13:28:32 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Fri Feb 22 13:29:36 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'Vivado_HLS/hamming_original.cpp' ... 
+ERROR: [HLS 200-70] Compilation errors found: In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:66:25: error: use of undeclared identifier 'nullptr'
+  filterbank_energies = nullptr;
+                        ^
+Vivado_HLS/hamming_original.cpp:67:13: error: use of undeclared identifier 'nullptr'
+  filters = nullptr;
+            ^
+Vivado_HLS/hamming_original.cpp:68:16: error: use of undeclared identifier 'nullptr'
+  power_data = nullptr;
+               ^
+Vivado_HLS/hamming_original.cpp:89:17: error: use of undeclared identifier 'nullptr'
+  temp_buffer = nullptr;
+                ^
+Vivado_HLS/hamming_original.cpp:118:19: error: use of undeclared identifier 'fopen'
+  FILE* wavFile = fopen(filename, "r");
+                  ^
+Vivado_HLS/hamming_original.cpp:119:17: error: use of undeclared identifier 'nullptr'
+  if(wavFile == nullptr)
+                ^
+Vivado_HLS/hamming_original.cpp:126:24: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+                       ^~~~~
+                       pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:126:30: error: cannot initialize a parameter of type 'int' with an rvalue of type 'wav_hdr *' (aka 'WAV_HEADER *')
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+                             ^~~~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:134:9: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+        fread(audiobuf,bytes,buffsize,wavFile);
+        ^~~~~
+        pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:134:15: error: cannot initialize a parameter of type 'int' with an lvalue of type 'int32_t *' (aka 'int *')
+        fread(audiobuf,bytes,buffsize,wavFile);
+              ^~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:138:20: error: use of undeclared identifier 'nullptr'
+        audiobuf = nullptr;
+                   ^
+Vivado_HLS/hamming_original.cpp:143:9: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+        fread(audiobuf,bytes,buffsize,wavFile);
+        ^~~~~
+        pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:143:15: error: cannot initialize a parameter of type 'int' with an lvalue of type 'int16_t *' (aka 'short *')
+        fread(audiobuf,bytes,buffsize,wavFile);
+              ^~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:148:20: error: use of undeclared identifier 'nullptr'
+        audiobuf = nullptr;
+                   ^
+Vivado_HLS/hamming_original.cpp:151:7: error: use of undeclared identifier 'fclose'; did you mean 'close'?
+      fclose(wavFile);
+      ^~~~~~
+      close
+/usr/include/unistd.h:356:12: note: 'close' declared here
+extern int close (int __fd);
+           ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:151:14: error: cannot initialize a parameter of type 'int' with an lvalue of type 'FILE *' (aka '_IO_FILE *')
+      fclose(wavFile);
+             ^~~~~~~
+/usr/include/unistd.h:356:23: note: passing argument to parameter '__fd' here
+extern int close (int __fd);
+                      ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:215:17: error: use of undeclared identifier 'nullptr'
+  filterbanks = nullptr;
+                ^
+Vivado_HLS/hamming_original.cpp:286:18: error: use of undeclared identifier 'nullptr'
+  DCT_energies = nullptr;
+                 ^
+18 errors generated.
+==============================================================
+File generated on Fri Feb 22 13:30:38 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'Vivado_HLS/hamming_original.cpp' ... 
+ERROR: [HLS 200-70] Compilation errors found: In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:113:19: error: use of undeclared identifier 'fopen'
+  FILE* wavFile = fopen(filename, "r");
+                  ^
+Vivado_HLS/hamming_original.cpp:114:17: error: use of undeclared identifier 'nullptr'
+  if(wavFile == nullptr)
+                ^
+Vivado_HLS/hamming_original.cpp:121:24: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+                       ^~~~~
+                       pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:121:30: error: cannot initialize a parameter of type 'int' with an rvalue of type 'wav_hdr *' (aka 'WAV_HEADER *')
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+                             ^~~~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:129:9: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+        fread(audiobuf,bytes,buffsize,wavFile);
+        ^~~~~
+        pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:129:15: error: cannot initialize a parameter of type 'int' with an lvalue of type 'int32_t *' (aka 'int *')
+        fread(audiobuf,bytes,buffsize,wavFile);
+              ^~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:137:9: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+        fread(audiobuf,bytes,buffsize,wavFile);
+        ^~~~~
+        pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:137:15: error: cannot initialize a parameter of type 'int' with an lvalue of type 'int16_t *' (aka 'short *')
+        fread(audiobuf,bytes,buffsize,wavFile);
+              ^~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:144:7: error: use of undeclared identifier 'fclose'; did you mean 'close'?
+      fclose(wavFile);
+      ^~~~~~
+      close
+/usr/include/unistd.h:356:12: note: 'close' declared here
+extern int close (int __fd);
+           ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:144:14: error: cannot initialize a parameter of type 'int' with an lvalue of type 'FILE *' (aka '_IO_FILE *')
+      fclose(wavFile);
+             ^~~~~~~
+/usr/include/unistd.h:356:23: note: passing argument to parameter '__fd' here
+extern int close (int __fd);
+                      ^
+10 errors generated.
+==============================================================
+File generated on Fri Feb 22 13:32:55 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'Vivado_HLS/hamming_original.cpp' ... 
+ERROR: [HLS 200-70] Compilation errors found: In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:67:25: error: use of undeclared identifier 'nullptr'
+  filterbank_energies = nullptr;
+                        ^
+Vivado_HLS/hamming_original.cpp:68:13: error: use of undeclared identifier 'nullptr'
+  filters = nullptr;
+            ^
+Vivado_HLS/hamming_original.cpp:69:16: error: use of undeclared identifier 'nullptr'
+  power_data = nullptr;
+               ^
+Vivado_HLS/hamming_original.cpp:90:17: error: use of undeclared identifier 'nullptr'
+  temp_buffer = nullptr;
+                ^
+Vivado_HLS/hamming_original.cpp:119:19: error: use of undeclared identifier 'fopen'
+  FILE* wavFile = fopen(filename, "r");
+                  ^
+Vivado_HLS/hamming_original.cpp:120:17: error: use of undeclared identifier 'nullptr'
+  if(wavFile == nullptr)
+                ^
+Vivado_HLS/hamming_original.cpp:127:24: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+                       ^~~~~
+                       pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:127:30: error: cannot initialize a parameter of type 'int' with an rvalue of type 'wav_hdr *' (aka 'WAV_HEADER *')
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+                             ^~~~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:135:9: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+        fread(audiobuf,bytes,buffsize,wavFile);
+        ^~~~~
+        pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:135:15: error: cannot initialize a parameter of type 'int' with an lvalue of type 'int32_t *' (aka 'int *')
+        fread(audiobuf,bytes,buffsize,wavFile);
+              ^~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:139:20: error: use of undeclared identifier 'nullptr'
+        audiobuf = nullptr;
+                   ^
+Vivado_HLS/hamming_original.cpp:144:9: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+        fread(audiobuf,bytes,buffsize,wavFile);
+        ^~~~~
+        pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:144:15: error: cannot initialize a parameter of type 'int' with an lvalue of type 'int16_t *' (aka 'short *')
+        fread(audiobuf,bytes,buffsize,wavFile);
+              ^~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:149:20: error: use of undeclared identifier 'nullptr'
+        audiobuf = nullptr;
+                   ^
+Vivado_HLS/hamming_original.cpp:152:7: error: use of undeclared identifier 'fclose'; did you mean 'close'?
+      fclose(wavFile);
+      ^~~~~~
+      close
+/usr/include/unistd.h:356:12: note: 'close' declared here
+extern int close (int __fd);
+           ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:152:14: error: cannot initialize a parameter of type 'int' with an lvalue of type 'FILE *' (aka '_IO_FILE *')
+      fclose(wavFile);
+             ^~~~~~~
+/usr/include/unistd.h:356:23: note: passing argument to parameter '__fd' here
+extern int close (int __fd);
+                      ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:216:17: error: use of undeclared identifier 'nullptr'
+  filterbanks = nullptr;
+                ^
+Vivado_HLS/hamming_original.cpp:287:18: error: use of undeclared identifier 'nullptr'
+  DCT_energies = nullptr;
+                 ^
+18 errors generated.
+==============================================================
+File generated on Fri Feb 22 13:34:22 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'Vivado_HLS/hamming_original.cpp' ... 
+ERROR: [HLS 200-70] Compilation errors found: In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:114:19: error: use of undeclared identifier 'fopen'
+  FILE* wavFile = fopen(filename, "r");
+                  ^
+Vivado_HLS/hamming_original.cpp:115:17: error: use of undeclared identifier 'nullptr'
+  if(wavFile == nullptr)
+                ^
+Vivado_HLS/hamming_original.cpp:122:24: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+                       ^~~~~
+                       pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:122:30: error: cannot initialize a parameter of type 'int' with an rvalue of type 'wav_hdr *' (aka 'WAV_HEADER *')
+    size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
+                             ^~~~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:130:9: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+        fread(audiobuf,bytes,buffsize,wavFile);
+        ^~~~~
+        pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:130:15: error: cannot initialize a parameter of type 'int' with an lvalue of type 'int32_t *' (aka 'int *')
+        fread(audiobuf,bytes,buffsize,wavFile);
+              ^~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:138:9: error: use of undeclared identifier 'fread'; did you mean 'pread'?
+        fread(audiobuf,bytes,buffsize,wavFile);
+        ^~~~~
+        pread
+/usr/include/unistd.h:379:16: note: 'pread' declared here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+               ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:138:15: error: cannot initialize a parameter of type 'int' with an lvalue of type 'int16_t *' (aka 'short *')
+        fread(audiobuf,bytes,buffsize,wavFile);
+              ^~~~~~~~
+/usr/include/unistd.h:379:27: note: passing argument to parameter '__fd' here
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                          ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:145:7: error: use of undeclared identifier 'fclose'; did you mean 'close'?
+      fclose(wavFile);
+      ^~~~~~
+      close
+/usr/include/unistd.h:356:12: note: 'close' declared here
+extern int close (int __fd);
+           ^
+In file included from Vivado_HLS/hamming_original.cpp:1:
+Vivado_HLS/hamming_original.cpp:145:14: error: cannot initialize a parameter of type 'int' with an lvalue of type 'FILE *' (aka '_IO_FILE *')
+      fclose(wavFile);
+             ^~~~~~~
+/usr/include/unistd.h:356:23: note: passing argument to parameter '__fd' here
+extern int close (int __fd);
+                      ^
+10 errors generated.
+==============================================================
+File generated on Fri Feb 22 13:47:39 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Fri Feb 22 13:57:35 CET 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================

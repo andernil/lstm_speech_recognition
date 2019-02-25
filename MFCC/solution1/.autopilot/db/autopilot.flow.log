@@ -1,0 +1,181 @@
+INFO-FLOW: Workspace /home/anders/master/MFCC/solution1 opened at Fri Feb 22 13:57:35 CET 2019
+Execute     config_clock -quiet -name default -period 10 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+Execute     open_platform DefaultPlatform 
+Execute     import_lib /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/zynquplus/zynquplus 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx.lib 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/xilinx_interface.lib 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/plb46.lib 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/fsl.lib 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/axi4.lib 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/maxi.lib 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/saxilite.lib 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/dsp48.lib 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/ip/dds_compiler.lib 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/ip/xfft.lib 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/ip/xfir.lib 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx_old.lib 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx_vivado.lib 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx.hlp 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/target_info.tcl 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/maxi.hlp 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/dsp48.hlp 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/zynquplus/dsp48e2.hlp 
+Execute       get_default_platform 
+Execute       config_chip_info -quiet -resource  {SLICE 34260} {LUT 274080}   {FF 548160}  {DSP48E 2520}  {BRAM 1824} {URAM 0}  
+Execute       config_chip_info -quiet -speed medium 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx.hlp 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/target_info.tcl 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/maxi.hlp 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/dsp48.hlp 
+Execute     source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/zynquplus/zynquplus.gen 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/virtex.gen 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/fsl.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/saxilite.gen 
+Execute             source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/maxi.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/dsp48.gen 
+Execute     open_platform DefaultPlatform 
+Execute     import_lib /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/zynquplus/zynquplus_fpv7 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx_fpv7.lib 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx_hp.lib 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx_fpv.hlp 
+Execute         source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx.hlp 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/target_info.tcl 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute             source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/maxi.hlp 
+Execute             source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/interface/saxilite.hlp 
+Execute           source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/dsp48.hlp 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/zynquplus/zynquplus_hp.hlp 
+Execute     source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/zynquplus/zynquplus_fpv7.gen 
+Execute       source /tools/Xilinx/Vivado/2018.3/common/technology/xilinx/common/xilinx_fpv6.gen 
+Execute     set_part xczu3eg-sbva484-1-e 
+Execute       add_library xilinx/zynquplus/zynquplus:xczu3eg:-sbva484:-1-e 
+Execute         get_default_platform 
+Execute         license_isbetapart xczu3eg 
+Command         license_isbetapart done; error code: 1; 
+Execute         get_default_platform 
+Execute         config_chip_info -quiet -resource  {SLICE 8820}  {LUT 70560}    {FF 141120}  {DSP48E 360}   {BRAM 432}  {URAM 0}  
+Execute         config_chip_info -quiet -speed slow 
+Execute       add_library xilinx/zynquplus/zynquplus_fpv7 
+Execute         get_default_platform 
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+Execute       get_default_platform 
+Execute     get_default_platform 
+Execute     config_chip_info -quiet -resource  {SLICE 8820}  {LUT 70560}    {FF 141120}  {DSP48E 360}   {BRAM 432}  {URAM 0}  
+Execute     config_chip_info -quiet -speed slow 
+Command   open_solution done; 0.21 sec.
+Execute   set_part xczu3eg-sbva484-1-e -tool vivado 
+Execute     add_library xilinx/zynquplus/zynquplus:xczu3eg:-sbva484:-1-e 
+Execute       get_default_platform 
+Execute       license_isbetapart xczu3eg 
+Command       license_isbetapart done; error code: 1; 
+Execute       get_default_platform 
+Execute       config_chip_info -quiet -resource  {SLICE 8820}  {LUT 70560}    {FF 141120}  {DSP48E 360}   {BRAM 432}  {URAM 0}  
+Execute       config_chip_info -quiet -speed slow 
+Execute     add_library xilinx/zynquplus/zynquplus_fpv7 
+Execute       get_default_platform 
+Execute     get_default_platform 
+Execute   create_clock -period 10 -name default 
+Execute   csynth_design 
+Execute     get_config_compile -effort 
+Execute     get_config_compile -enable_clang39 
+Execute     get_config_compile -g 
+Execute     get_config_compile -lm 
+Execute     get_config_compile -ng 
+Execute     get_config_compile -opt_fp 
+Execute     get_config_compile -skip_cdt 
+Execute     get_config_compile -skip_syncheck 
+Execute     get_config_compile -skip_transform 
+Execute     config_compile -blackbox  
+Execute     get_config_compile -keep_printf 
+Execute     elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -lm=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
+Execute       get_config_schedule -relax_ii_for_timing 
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+Execute       get_config_schedule -suppress_dependence_error_break 
+INFO: [HLS 200-10] Analyzing design file 'Vivado_HLS/hamming_original.cpp' ... 
+INFO-FLOW: Compiling one TU...
+Execute       is_m_axi_addr64 
+INFO-FLOW: Handling Vivado_HLS/hamming_original.cpp as C++
+Execute       get_default_platform 
+Execute       is_encrypted Vivado_HLS/hamming_original.cpp 
+Execute       get_default_platform 
+INFO-FLOW: Running: GCC PP
+INFO-FLOW: Source preprocessing
+Execute       clang  -fno-limit-debug-info -gcc-toolchain "/tools/Xilinx/Vivado/2018.3/lnx64/tools/gcc" -hls  -fno-exceptions  -D__llvm__  -E "Vivado_HLS/hamming_original.cpp"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/tools/Xilinx/Vivado/2018.3/common/technology/autopilot" -I "/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__  -o "/home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp" 
+INFO-FLOW: exec /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain /tools/Xilinx/Vivado/2018.3/lnx64/tools/gcc -hls -fno-exceptions -D__llvm__ -E Vivado_HLS/hamming_original.cpp -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /tools/Xilinx/Vivado/2018.3/common/technology/autopilot -I /tools/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp
+Command       clang done; 1.55 sec.
+Execute       tidy_31 xilinx-xfmat-array-geometry /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp std=gnu++98 
+INFO-FLOW: exec /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-xfmat-array-geometry -quiet -fix /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 3.25 sec.
+INFO-FLOW: Syntax Checking before pre-processing...
+Execute       clang -syntaxcheck -src /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp  -fno-limit-debug-info -gcc-toolchain "/tools/Xilinx/Vivado/2018.3/lnx64/tools/gcc" -hls    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/tools/Xilinx/Vivado/2018.3/common/technology/autopilot" -I "/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__  "/home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp"  -o "/home/anders/master/MFCC/solution1/.autopilot/db/useless.bc"  
+INFO-FLOW: exec /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain /tools/Xilinx/Vivado/2018.3/lnx64/tools/gcc -hls -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /tools/Xilinx/Vivado/2018.3/common/technology/autopilot -I /tools/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp -o /home/anders/master/MFCC/solution1/.autopilot/db/useless.bc
+Command       clang done; 3.38 sec.
+INFO-FLOW: Done: GCC PP time: 8.2 seconds per iteration
+Execute       list_core -type functional_unit 
+Execute       tidy_31 xilinx-systemc-detector /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp std=gnu++98 -directive=/home/anders/master/MFCC/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-systemc-detector -import-directive=/home/anders/master/MFCC/solution1/.autopilot/db/.systemc_flag -quiet -fix-errors /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 2.9 sec.
+INFO-FLOW: Running: tidy-3.1 CDT preprocess
+Execute       tidy_31 xilinx-directive2pragma /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp std=gnu++98 -directive=/home/anders/master/MFCC/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-directive2pragma -import-directive=/home/anders/master/MFCC/solution1/.autopilot/db/all.directive.json -quiet -fix-errors /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 2.65 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=/home/anders/master/MFCC/solution1/.autopilot/db/xilinx-dataflow-lawyer.hamming_original.pp.0.cpp.diag.yml /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp -- -std=gnu++98 -fhls -ferror-limit=0 -fstrict-dataflow > /home/anders/master/MFCC/solution1/.autopilot/db/xilinx-dataflow-lawyer.hamming_original.pp.0.cpp.out.log 2> /home/anders/master/MFCC/solution1/.autopilot/db/xilinx-dataflow-lawyer.hamming_original.pp.0.cpp.err.log 
+Command       ap_eval done; 2.68 sec.
+Execute       tidy_31 -errorcheck xilinx-constantarray-param,xilinx-resource-pragma-transformer,xilinx-xfmat-array-geometry /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp std=gnu++98 
+Execute         ap_eval exec -ignorestderr /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang-3.9-csynth/bin/tidy-3.1 -export-fixes=/home/anders/master/MFCC/solution1/.autopilot/db/tidy-3.1.hamming_original.pp.0.cpp.diag.yml -header-filter=.* -checks=-*,xilinx-constantarray-param,xilinx-resource-pragma-transformer,xilinx-xfmat-array-geometry -quiet -fix-errors /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp -- -std=gnu++98 -fhls -ferror-limit=0 > /home/anders/master/MFCC/solution1/.autopilot/db/tidy-3.1.hamming_original.pp.0.cpp.out.log 2> /home/anders/master/MFCC/solution1/.autopilot/db/tidy-3.1.hamming_original.pp.0.cpp.err.log 
+Command         ap_eval done; 5.81 sec.
+Execute         ap_eval exec -ignorestderr /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang-3.9-csynth/bin/xilinx-legacy-rewriter /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pp.0.cpp -- -std=gnu++98 -fhls -ferror-limit=0 > /home/anders/master/MFCC/solution1/.autopilot/db/xilinx-legacy-rewriter.hamming_original.pp.0.cpp.out.log 2> /home/anders/master/MFCC/solution1/.autopilot/db/xilinx-legacy-rewriter.hamming_original.pp.0.cpp.err.log 
+Command         ap_eval done; 3.87 sec.
+Command       tidy_31 done; 10.03 sec.
+INFO-FLOW: Done: tidy-3.1 CDT preprocess time: 15.4 seconds per iteration
+INFO-FLOW: Pragma Handling...
+Execute       tidy_31 xilinx-ssdm-intrinsics-arguments /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pragma.1.cpp std=gnu++98 
+INFO-FLOW: exec /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-ssdm-intrinsics-arguments -quiet -fix-errors /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pragma.1.cpp -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 4.87 sec.
+Execute       get_default_platform 
+INFO-FLOW: Processing labels
+Execute       clang -src /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pragma.2.cpp  -fno-limit-debug-info -gcc-toolchain /tools/Xilinx/Vivado/2018.3/lnx64/tools/gcc -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "/home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pragma.2.cpp"    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/tools/Xilinx/Vivado/2018.3/common/technology/autopilot" -I "/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o "/home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.bc" 
+INFO-FLOW: exec /tools/Xilinx/Vivado/2018.3/lnx64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain /tools/Xilinx/Vivado/2018.3/lnx64/tools/gcc -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions -D__llvm__ -w /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.pragma.2.cpp -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /tools/Xilinx/Vivado/2018.3/common/technology/autopilot -I /tools/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.bc
+Command       clang done; 3.38 sec.
+INFO-FLOW: Linking Debug ...
+Execute       llvm-ld /home/anders/master/MFCC/solution1/.autopilot/db/hamming_original.g.bc -hls-opt -except-internalize MFCC_main -L/tools/Xilinx/Vivado/2018.3/lnx64/lib -lhlsm -lhlsmc++ -o /home/anders/master/MFCC/solution1/.autopilot/db/a.g 
+Command       llvm-ld done; 5.29 sec.
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 443.496 ; gain = 0.133 ; free physical = 509 ; free virtual = 1364
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 443.496 ; gain = 0.133 ; free physical = 505 ; free virtual = 1363
+Execute       get_config_sdx -target 
+Execute       opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
+Execute         cleanup_all_models 
+INFO: [HLS 200-10] Starting code transformations ...
+Execute         transform -promote-dbg-pointer /home/anders/master/MFCC/solution1/.autopilot/db/a.pp.bc -o /home/anders/master/MFCC/solution1/.autopilot/db/a.pp.0.bc -f 
+Command         transform done; 1.46 sec.
+Execute         llvm-ld /home/anders/master/MFCC/solution1/.autopilot/db/a.pp.0.bc -disable-opt -L/tools/Xilinx/Vivado/2018.3/lnx64/lib -lfloatconversion -o /home/anders/master/MFCC/solution1/.autopilot/db/a.g.0 
+Command         llvm-ld done; 5.24 sec.
+INFO-FLOW: Running Standard Transforms...
+Execute         transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -mem2reg -lower-blackbox -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -prune-eh -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top MFCC_main -deadargelim -mem2reg -instcombine -dce -presyn-prepare -auto-rom-infer -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -func-inst -deadargelim -auto-shift-reg-idiom -promote-dbg-pointer -norm-name /home/anders/master/MFCC/solution1/.autopilot/db/a.g.0.bc -o /home/anders/master/MFCC/solution1/.autopilot/db/a.g.1.bc -f -phase std-opt 
+ERROR: [SYNCHK 200-74] Recursive functions are not supported: recursion found in the following functions 
+ERROR: [SYNCHK 200-74] 'FFT(Vivado_HLS/hamming_original.cpp:58) --> 'FFT'(Vivado_HLS/hamming_original.cpp:69:5)
+INFO: [SYNCHK 200-10] 1 error(s), 0 warning(s).
+Command         transform done; error code: 1; 34 sec.
+ERROR: [HLS 200-70] Synthesizability check failed.
+Command       opt_and_import_c done; error code: 2; 44.86 sec.
+Command     elaborate done; error code: 2; 86.54 sec.
+Command   csynth_design done; error code: 2; 88.04 sec.
+Command ap_source done; error code: 1; 88.36 sec.
+Execute cleanup_all 
+Command cleanup_all done; 0.22 sec.
