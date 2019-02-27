@@ -2,11 +2,8 @@
 <Messages>
 	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_631" tag="SCHEDULE" content="Option &apos;relax_ii_for_timing&apos; is enabled, will increase II to preserve clock frequency constraints."/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1312" tag="" content="Analyzing design file &apos;Vivado_HLS/hamming_original.cpp&apos; ..."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Linking Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 443.496 ; gain = 0.133 ; free physical = 509 ; free virtual = 1364"/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Pragmas Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 443.496 ; gain = 0.133 ; free physical = 505 ; free virtual = 1363"/>
-	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1467" tag="" content="Starting code transformations ..."/>
-	<Message severity="ERROR" prefix="[SYNCHK 200-74]" key="SYNCHK_RECURSIVE_FUNCTION_383" tag="" content="Recursive functions are not supported: recursion found in the following functions"/>
-	<Message severity="ERROR" prefix="[SYNCHK 200-74]" key="SYNCHK_RECURSIVE_FUNCTION_367" tag="" content="&apos;FFT(Vivado_HLS/hamming_original.cpp:58) --&gt; &apos;FFT&apos;(Vivado_HLS/hamming_original.cpp:69:5)"/>
-	<Message severity="INFO" prefix="[SYNCHK 200-10]" key="SYNCHK_SYNCHK_SUMMARY_377" tag="" content="1 error(s), 0 warning(s)."/>
-	<Message severity="ERROR" prefix="[HLS 200-70]" key="HLS_70_1855" tag="" content="Synthesizability check failed."/>
+	<Message severity="WARNING" prefix="[HLS 200-40]" key="HLS_40_1378" tag="" content="Vivado_HLS/hamming_original.cpp:1:10: fatal error: &apos;hamming_original.h&apos; file not found
+#include &quot;hamming_original.h&quot;
+         ^
+1 error generated."/>
 </Messages>

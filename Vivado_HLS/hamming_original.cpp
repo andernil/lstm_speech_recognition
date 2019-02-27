@@ -48,8 +48,8 @@ int main()
   if(sampling_frequency == 0)
     cout << "Error reading .wav-file" << endl;
   double* power_data = window_FFT(wav_data, NUM_SAMPLES, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_FRAMES);
-  for(int i = 0; i < 1024; i++)
-    cout << power_data[i] << ", ";
+  for(int i = 1024; i < 2*1024; i++)
+    cout << wav_data[i] << ", ";
     double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
   double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_SAMPLES_PER_FFT);
 

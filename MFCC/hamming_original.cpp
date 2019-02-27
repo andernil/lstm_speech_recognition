@@ -12,37 +12,34 @@ bool direction = 0;
 
 using namespace std;
 void read_FFT_data(status_t* status_in, bool* ovflo, cmpxDataOut out[FFT_LENGTH], cmpxDataOut from_FFT[FFT_LENGTH]);
-void write_FFT_data(bool direction, config_t* fft_config, cmpxDataIn in[FFT_LENGTH], cmpxDataIn to_FFT[FFT_LENGTH]);
+void write_FFT_data(bool direction, config_t* fft_config, cmpxDataIn in[FFT_LENGTH], cmpxDataIn to_FFT[FFT_LENGTH], bool DCT);
 void FFT(complex<data_in_t> in[FFT_LENGTH], complex<data_out_t> out[FFT_LENGTH], bool direction, bool* ovflo);
 void window_FFT(cmpxDataIn input_data[NUM_SAMPLES], data_out_t output_data[NUM_SAMPLES_POST_FRAMING]);
-double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate);
+void init_mel(double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME], double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate);
 void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size);
-double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_size, int FFT_size);
+void calculate_filterbank_energies(data_in_t input_data[NUM_SAMPLES_POST_FRAMING], double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME], double output_energies[NUM_FRAMES][MEL_NUM_FILTERBANKS], int num_filterbanks, int num_frames, int frame_size, int FFT_size);
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
 
 void MFCC_main(cmpxDataIn wav_data[NUM_SAMPLES], data_out_t output_data[NUM_SAMPLES_POST_FRAMING], int sampling_frequency)
 {
-	cout << "In main" << endl;
+	double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME];
+	double energies[NUM_FRAMES][MEL_NUM_FILTERBANKS];
   window_FFT(wav_data, output_data);
-  /*double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
-  double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_SAMPLES_PER_FFT);
+  init_mel(filters, MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
+  calculate_filterbank_energies(output_data, filters, energies, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_SAMPLES_PER_FFT);
 
-  for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
-    delete[] filters[i];
-   }
-  delete[] filters;
-  delete[] power_data;
-
-  */
 }
 
-void write_FFT_data(bool direction, config_t* fft_config, cmpxDataIn in[FFT_LENGTH], cmpxDataIn to_FFT[FFT_LENGTH])
+void write_FFT_data(bool direction, config_t* fft_config, cmpxDataIn in[FFT_LENGTH], cmpxDataIn to_FFT[FFT_LENGTH], bool DCT)
 {
 	fft_config->setDir(direction);
 	//fft_config->setSch(0x2AB); // For pipelined
 	fft_config->setSch(0x55556); //for Radix2
-	fft_config->setNfft(10);
+	if(DCT)
+		fft_config->setNfft(7);
+	else
+		fft_config->setNfft(10);
 	int i;
 	for(i = 0; i < FFT_LENGTH; i++)
 		to_FFT[i] = in[i];
@@ -56,7 +53,7 @@ void read_FFT_data(status_t* status_in, bool* ovflo, cmpxDataOut out[FFT_LENGTH]
 	*ovflo = status_in->getOvflo() & 0x1;
 }
 
-void FFT(complex<data_in_t> in[FFT_LENGTH], complex<data_out_t> out[FFT_LENGTH], bool direction, bool* ovflo)
+void FFT(complex<data_in_t> in[FFT_LENGTH], complex<data_out_t> out[FFT_LENGTH], bool DCT, bool direction, bool* ovflo)
 {
 #pragma HLS interface ap_hs port=direction
 //#pragma HLS interface ap_fifo port=x_in
@@ -71,7 +68,7 @@ void FFT(complex<data_in_t> in[FFT_LENGTH], complex<data_out_t> out[FFT_LENGTH],
 	complex<data_in_t> x_in[FFT_LENGTH];
 	complex<data_out_t> x_out[FFT_LENGTH];
 
-	write_FFT_data(direction, &FFT_config1, in, x_in);
+	write_FFT_data(direction, &FFT_config1, in, x_in, DCT);
 	hls::fft<FFT_params>(x_in, x_out, &FFT_status1, &FFT_config1);
 	read_FFT_data(&FFT_status1, ovflo, out, x_out);
 }
@@ -81,7 +78,7 @@ void window_FFT(cmpxDataIn input_data[NUM_SAMPLES], data_out_t output_data[NUM_S
 	int frame_size = NUM_SAMPLES_PER_FFT;
 	int frame_step = NUM_SAMPLES_PER_FFT_FRAME_STEP;
 	int num_samples = NUM_SAMPLES;
-	bool* overflow;
+	bool overflow;
   cmpxDataIn data_frame [NUM_SAMPLES_PER_FFT];
   data_in_t hamming_window [NUM_SAMPLES_PER_FFT];
   static cmpxDataIn to_FFT [NUM_SAMPLES_PER_FFT];
@@ -103,7 +100,9 @@ void window_FFT(cmpxDataIn input_data[NUM_SAMPLES], data_out_t output_data[NUM_S
       to_FFT[i] = data_frame[i];
     }
     cout << "Done hamming windowing" << endl;
-    FFT(to_FFT, from_FFT, 1, overflow);
+    FFT(to_FFT, from_FFT, 0, 1, &overflow);
+    if(overflow)
+    	cout << "Overflow during FFT " << frame/frame_size << endl;
     cout << "Done FFT" << endl;
 
     // Calculate the periodogram-based power spectral estimate of the first half of the signal
@@ -115,15 +114,12 @@ void window_FFT(cmpxDataIn input_data[NUM_SAMPLES], data_out_t output_data[NUM_S
   }
 }
 
-double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate){
+void init_mel(double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME], double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate){
   double min_mel = freq_to_mel(min_frequency);
   double max_mel = freq_to_mel(max_frequency);
   double filterbank_step = (max_mel - min_mel) / (num_filterbanks + 1);
   // The number of filterbanks is always n+2
-  double* filterbanks = new double[num_filterbanks + 2];
-  double** filterbank_filters = new double*[num_filterbanks];
-  for(int i = 0; i < num_filterbanks; i++)
-    filterbank_filters[i] = new double[FFT_size/2];
+  double filterbanks [num_filterbanks + 2];
   for(int i = 0; i < num_filterbanks + 2; i++){
     filterbanks[i] = min_mel + filterbank_step * i;
     // Convert back to frequency
@@ -133,12 +129,9 @@ double** init_mel(double min_frequency, double max_frequency, int num_filterbank
     // Create filterbank filters
     if((i > 1) && (i < (num_filterbanks + 2)))
     {
-      generate_filterbank(filterbank_filters[i-2], filterbanks[i-2], filterbanks[i-1], filterbanks[i], FFT_size);
+      generate_filterbank(filters[i-2], filterbanks[i-2], filterbanks[i-1], filterbanks[i], FFT_size);
     }
   }
-  delete[] filterbanks;
-
-  return(filterbank_filters);
 }
 void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size){
   // Use i to cycle through the arrays, use j to increment the step value
@@ -160,23 +153,18 @@ void generate_filterbank(double* filterbank, double prev_filterbank, double curr
     for(; i < FFT_size/2; i++)
       filterbank[i] = 0;
 }
-double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_size, int FFT_size)
+void calculate_filterbank_energies(data_in_t input_data[NUM_SAMPLES_POST_FRAMING],
+	double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME], double output_energies[NUM_FRAMES][MEL_NUM_FILTERBANKS], int num_filterbanks, int num_frames, int frame_size, int FFT_size)
 {
-  int num_samples = num_frames * FFT_size / 2;
-  // Allocate memory for the filterbanks
-  double** filterbank_energies = new double*[num_frames];
-  for(int frame = 0; frame < num_frames; frame++){
-    filterbank_energies[frame] = new double[num_filterbanks];
-    for(int filterbank = 0; filterbank < num_filterbanks; filterbank++)
-      filterbank_energies[frame][filterbank] = 0;
-  }
-
   // Allocate memory for DCT buffer. Re-use FFT for calculating DCT
   int num_DCT_energies = 4 * num_filterbanks;
-  complex<double>* DCT_energies = new complex<double>[NUM_SAMPLES_PER_FFT];
+  cmpxDataIn DCT_energies [DCT_LENGTH];
+  cmpxDataOut MFCC_energies[DCT_LENGTH];
+  bool overflow;
   for(int i = 0; i < NUM_SAMPLES_PER_FFT; i++)
     DCT_energies[i] = 0;
-
+  double temp_power_data = 0;
+  double temp_mfcc = 0;
   // Run filters over each frame. Frames are 512, as are the filters.
   for(int FFT_frame = 0; FFT_frame < num_frames; FFT_frame++)
   {
@@ -185,7 +173,8 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
     {
       for(int power_data = 0; power_data < frame_size; power_data++)
       {
-        filterbank_energies[FFT_frame][filterbank] += input_data[power_data + (FFT_frame * frame_size)] * filters[filterbank][power_data];
+    	temp_power_data = input_data[power_data + (FFT_frame * frame_size)];
+        output_energies[FFT_frame][filterbank] += temp_power_data * filters[filterbank][power_data];
       }
     }
     // Create DCT input array
@@ -195,18 +184,17 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
         if(i < num_DCT_energies/2)
           {
             if((i % 2 != 0)){
-              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = hls::log(filterbank_energies[FFT_frame][j]);
+              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = hls::log(output_energies[FFT_frame][j]);
               j++;
             }
           }
       }
     // Perform DCT for the current frame and copy the result back to filterbank_energies
-    //FFT(DCT_energies, num_DCT_energies, 1);
-    //for(int MFCC_value = 0; MFCC_value < num_filterbanks; MFCC_value++)
-     // filterbank_energies[FFT_frame][MFCC_value] = DCT_energies[MFCC_value].real();
+    FFT(DCT_energies, MFCC_energies, 1, 1, &overflow);
+    if(FFT_frame == 0)
+    	for(int i = 0; i < DCT_LENGTH / 4; i++)
+    	cout << MFCC_energies[i] << ", ";
   }
-  delete[] DCT_energies;
-  return(filterbank_energies);
 }
 
 double freq_to_mel(double freq){
