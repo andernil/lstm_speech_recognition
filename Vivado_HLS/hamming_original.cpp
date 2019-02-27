@@ -37,7 +37,7 @@ int read_wav(complex<double>* data_array, const char* filename);
 double* window_FFT(complex<double>* input_data, int num_samples, int frame_size, int frame_step, int num_frames);
 double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate);
 void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size);
-double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_size, int FFT_size);
+double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_sizefrom, int FFT_size);
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
 
@@ -48,7 +48,9 @@ int main()
   if(sampling_frequency == 0)
     cout << "Error reading .wav-file" << endl;
   double* power_data = window_FFT(wav_data, NUM_SAMPLES, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_FRAMES);
-  double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
+  for(int i = 0; i < 1024; i++)
+    cout << power_data[i] << ", ";
+    double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
   double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_SAMPLES_PER_FFT);
 
   for(int i = 0; i < MEL_NUM_FILTERBANKS/2; i++)
@@ -174,10 +176,17 @@ double* window_FFT(complex<double>* input_data, int num_samples, int frame_size,
     for(int i = 0; i < frame_size; i++)
     {
       // Perform Hamming-windowing while copying sample. Voice-data is only real, so ignore the imaginary part
-      data_frame[i] = input_data[i + frame].real() * hamming_window[i];
+      data_frame[i] = input_data[i + frame].real() * hamming_window[i] / ((2 << 14) - 1);
       // TODO: Find Signal-to-noise ratio
     }
+    // if(frame == 0){
+    //   for(int i = 0; i < frame_size; i++)
+    //     cout << data_frame[i] << ", ";
+    // }
+    // if(frame == 0)
+    //   cout << endl;
     FFT(data_frame, frame_size);
+    
     // Calculate the periodogram-based power spectral estimate of the first half of the signal
     for(int j = 0; j < frame_size/2; j++){
       FFT_ABS[j + frame] = pow(abs(data_frame[j]),2) / frame_size;
