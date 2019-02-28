@@ -7,11 +7,18 @@
       <mgLog/>
       <packageLog/>
       <csimLog>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-02-27T19:47:07.985+0100"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-02-27T19:42:24.115+0100"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-02-27T18:52:56.457+0100"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="MFCC" solutionName="solution1" date="2019-02-27T18:48:25.389+0100"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="MFCC" solutionName="solution1" date="2019-02-27T18:48:25.383+0100"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:39:32.243+0100"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:39:32.180+0100"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:12:33.169+0100"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:12:33.151+0100"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:12:01.705+0100"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:12:01.649+0100"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:11:13.228+0100"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:11:13.212+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:10:02.817+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-02-28T16:25:53.412+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-02-28T16:22:13.612+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:14.239+0100"/>
       </csimLog>
     </logs>
   </errorLogs>
@@ -21,7 +28,189 @@
       <simLog/>
       <mgLog/>
       <packageLog/>
-      <csimLog/>
+      <csimLog>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:06.004+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.994+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.974+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.943+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.920+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.905+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.884+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.858+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.848+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.840+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:13:05.822+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.999+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.987+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.971+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.960+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.952+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.939+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.926+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.919+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.901+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.894+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.887+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.881+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.869+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.856+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:03:22.832+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:00:17.082+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:00:17.072+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:00:17.064+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:00:17.055+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:00:17.045+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:00:17.038+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:00:17.003+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T17:00:16.972+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.473+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.444+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.434+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.427+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.421+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.414+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.403+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.385+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.379+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:57:33.349+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.327+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.321+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.315+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.308+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.301+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.297+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.292+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.287+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.283+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.275+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.271+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.266+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:42:41.255+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.0460743&#xA;0.720636&#xA;0.95846&#xA;1.20777&#xA;1.16618&#xA;0.0863951&#xA;1.49287&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:32.710+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.539839" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:32.698+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.1995&#xA;0.222922&#xA;0.0913877&#xA;0.115214&#xA;0.10163" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:32.693+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.232902&#xA;0.217476" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:32.683+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.89208&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:02.144+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.900809" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:02.137+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.729966&#xA;0.73366&#xA;0.0169194" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:02.124+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.353573" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:02.118+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.128223&#xA;0.336973&#xA;0.323551&#xA;0.922576&#xA;0.623267&#xA;0.362488&#xA;1.01558" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:02.113+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.232902&#xA;0.288761" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:41:02.098+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.59036&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.532+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.922554" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.505+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-2.04082" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.494+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.860855" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.480+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.543822" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.474+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.439711&#xA;0.326971" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.460+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.22577" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.443+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.27029" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.438+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.262598" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:40:23.408+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.0446535&#xA;0.250494&#xA;0.492589&#xA;0.369665&#xA;0.361741&#xA;0.0166924&#xA;0.682134&#xA;0.483867&#xA;1.39382&#xA;1.88559&#xA;2.28336&#xA;0.994578&#xA;2.55128&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:37:58.166+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.19436&#xA;0.261006" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:37:58.143+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.84535&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.349+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.12967" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.191+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.47767" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.175+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.717327" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.168+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.766786" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.149+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.133338&#xA;0.133782" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.140+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.8841" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.127+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.0989615" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.115+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.0892572" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:33:05.101+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.74905&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.313+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.83436" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.223+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.457276" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.209+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.4646" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.202+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.29437" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.180+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.583576" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.172+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.16773" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.147+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.08118" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.129+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.27159" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.114+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.877709" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.099+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.29942" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.094+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.46028" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.073+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.626501" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.044+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.209526" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.038+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.232902" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:31:31.016+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.143649&#xA;0.0921977&#xA;1.26997&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:30:24.674+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.98468&#xA;0.383809&#xA;0.459842&#xA;0.0802728" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:30:24.668+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.45115" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:30:24.660+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.139472" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:30:24.641+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.562615" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:30:24.569+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.165571&#xA;0.277212&#xA;0.2019" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:30:24.562+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.232902&#xA;0.251409" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:30:24.543+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.249979&#xA;0.753329&#xA;0.542597&#xA;1.01923&#xA;0.555585&#xA;0.0182197&#xA;0.306766&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:26:32.073+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.578041" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:26:32.066+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.636904" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:26:32.060+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.0813332" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:26:32.054+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.627262" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:26:32.047+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.763891&#xA;0.412022" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:26:32.037+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.593671&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.107+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.318696" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.100+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.91624" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.093+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.411568" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.086+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.6674&#xA;0.735592&#xA;0.131498" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.078+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.90624" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.070+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.56773" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.063+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.811606" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.049+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.0946" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.033+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.714969&#xA;0.509853" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:20:30.012+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.215336&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.846+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.862646" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.836+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.236936" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.826+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.136238" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.814+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.385688" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.801+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.0795411" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.783+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.03086" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.772+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.22462" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.760+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.684288" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.747+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.684715" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.738+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.547213" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.722+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.0907683" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.712+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.395563" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.695+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.232902&#xA;0.021425" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:17:02.682+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.416701&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:16:16.999+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.21664" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:16:16.977+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.52921&#xA;0.229725&#xA;0.365975&#xA;0.260183&#xA;0.0595019&#xA;1.4835&#xA;1.70194" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:16:16.964+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.984512&#xA;0.287537" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:16:16.956+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.305591" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:16:16.935+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.52982" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:16:16.920+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.112846" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:16:16.891+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.232902" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:16:16.873+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-2.11402&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.747+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.92449" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.582+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.03123" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.575+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.172628" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.549+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.15299" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.535+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.636135" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.519+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.358119&#xA;0.265105" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.512+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.107963&#xA;0.36939&#xA;0.389541&#xA;0.378722&#xA;0.416558" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.494+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.232902&#xA;0.309023" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:12:34.467+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-2.52313&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.130+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.78503" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.122+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.6849" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.116+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.85021" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.107+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.7632" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.099+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.09995" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.090+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.72388" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.080+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.80757" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.074+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.45387" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.067+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.747827" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.058+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-1.35917" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.048+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.983517" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.035+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.66165" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.020+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.253163" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:54.011+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;-0.708523" projectName="MFCC" solutionName="solution1" date="2019-02-28T16:08:53.998+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value&#xA;Done MFCC&#xA;Average miss: 0.0116769%&#xA;Highest error: 99.7823% at 42" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.318+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.306+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.297+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.287+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.280+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.272+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.265+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.259+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.253+0100" type="Warning"/>
+        <logs message="WARNING: assign NaN to fixed point value" projectName="MFCC" solutionName="solution1" date="2019-02-28T15:51:10.223+0100" type="Warning"/>
+      </csimLog>
     </logs>
   </warningLogs>
 </vivadoHLSLog:LogRoot>
