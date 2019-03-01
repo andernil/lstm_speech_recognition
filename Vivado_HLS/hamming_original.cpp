@@ -48,14 +48,14 @@ int main()
   if(sampling_frequency == 0)
     cout << "Error reading .wav-file" << endl;
   double* power_data = window_FFT(wav_data, NUM_SAMPLES, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_FRAMES);
-  for(int i = 1024; i < 2*1024; i++)
-    cout << wav_data[i] << ", ";
-    double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
+  // for(int i = 0; i < 1024; i++)
+  //   cout << power_data[i] << ", ";
+  double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
   double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_SAMPLES_PER_FFT);
 
-  for(int i = 0; i < MEL_NUM_FILTERBANKS/2; i++)
+  for(int i = 1; i < MEL_NUM_FILTERBANKS/2; i++)
   {
-    cout << filterbank_energies[0][i] << endl;
+    cout << "MFCC " << i << ": " << filterbank_energies[0][i] << endl;
   }
 
   for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
@@ -176,7 +176,7 @@ double* window_FFT(complex<double>* input_data, int num_samples, int frame_size,
     for(int i = 0; i < frame_size; i++)
     {
       // Perform Hamming-windowing while copying sample. Voice-data is only real, so ignore the imaginary part
-      data_frame[i] = input_data[i + frame].real() * hamming_window[i] / ((2 << 14) - 1);
+      data_frame[i] = input_data[i + frame].real() * hamming_window[i] / ((1 << 23 ) - 1);
       // TODO: Find Signal-to-noise ratio
     }
     // if(frame == 0){
@@ -190,6 +190,9 @@ double* window_FFT(complex<double>* input_data, int num_samples, int frame_size,
     // Calculate the periodogram-based power spectral estimate of the first half of the signal
     for(int j = 0; j < frame_size/2; j++){
       FFT_ABS[j + frame] = pow(abs(data_frame[j]),2) / frame_size;
+      if(FFT_ABS[j] > 1)
+        cout << "Large number: " << FFT_ABS[j] << ". Real: " << data_frame[j].real() << ". Imag: " << data_frame[j].imag() << endl;
+      //      cout << FFT_ABS[j + frame] << endl;
     }
   }
   delete[] data_frame;
@@ -260,7 +263,7 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
 
   // Allocate memory for DCT buffer. Re-use FFT for calculating DCT
   int num_DCT_energies = 4 * num_filterbanks;
-  complex<double>* DCT_energies = new complex<double>[num_DCT_energies];
+  complex<double>* DCT_energies = new complex<double>[128];
   for(int i = 0; i < num_DCT_energies; i++)
     DCT_energies[i] = 0;
 
@@ -273,6 +276,20 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
       for(int power_data = 0; power_data < frame_size; power_data++)
       {
         filterbank_energies[FFT_frame][filterbank] += input_data[power_data + (FFT_frame * frame_size)] * filters[filterbank][power_data];
+        if(FFT_frame == 0 && filterbank == 7)
+          cout << "Power data " << power_data << ": " << input_data[power_data] << endl;
+        // if(input_data[power_data] > 1 && FFT_frame == 0){
+        // 	cout << "Very large number:" << endl;
+        // 	cout << "Input: " << input_data[power_data] << endl;
+        // 	cout << "Filter value: " << filters[filterbank][power_data] << endl;
+        // 	cout << "Output energy: " << filterbank_energies[0][7] << endl;
+        // }
+      }
+    }
+    if(FFT_frame == 0){
+      for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
+        //cout << filterbank_energies[0][i] << endl;
+        cout << input_data[i] << endl;
       }
     }
     // Create DCT input array
@@ -282,16 +299,24 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
         if(i < num_DCT_energies/2)
           {
             if((i % 2 != 0)){
-              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = log(filterbank_energies[FFT_frame][j]);
+              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = (log(filterbank_energies[FFT_frame][j]) / 2048);
+              if(FFT_frame == 0){
+                //cout << "Energy " << j << " pre-scaling: " << filterbank_energies[0][j] << endl;
+                //cout << "Filterbank energy log" << j << ": " << (log(filterbank_energies[FFT_frame][j])) << endl;
+                cout << "Filterbank log energy " << j << ": " << (log(filterbank_energies[FFT_frame][j]) / 1024) << endl;
+              }
               j++;
             }
           }
       }
+    
     // Perform DCT for the current frame and copy the result back to filterbank_energies
-    FFT(DCT_energies, num_DCT_energies);
-    for(int MFCC_value = 0; MFCC_value < num_filterbanks; MFCC_value++)
-      filterbank_energies[FFT_frame][MFCC_value] = DCT_energies[MFCC_value].real();
+    FFT(DCT_energies, 128);
+    for(int MFCC_value = 0; MFCC_value < num_filterbanks; MFCC_value++){
+      filterbank_energies[FFT_frame][MFCC_value] = DCT_energies[MFCC_value].real() * 2048; //-554, -1.6, 22, -6, -56, -8, -20
+    }
   }
+  cout << "Done performing MFCC" << endl;
   delete[] DCT_energies;
   DCT_energies = nullptr;
   return(filterbank_energies);

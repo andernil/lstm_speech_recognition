@@ -7,6 +7,21 @@
       <mgLog/>
       <packageLog/>
       <csimLog>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T17:30:28.201+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T16:14:18.700+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T15:54:55.301+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T15:54:17.427+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T14:54:14.801+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T14:52:59.491+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T14:32:37.157+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: nonzero return value." projectName="MFCC" solutionName="solution1" date="2019-03-01T14:31:23.871+0100"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '1'." projectName="MFCC" solutionName="solution1" date="2019-03-01T14:31:23.848+0100"/>
+        <logs message="ERROR:hls::fft FFT_OUTPUT_WIDTH = 32 is illegal. It should be the same as input_width." projectName="MFCC" solutionName="solution1" date="2019-03-01T14:31:23.820+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T14:30:22.677+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T14:05:39.848+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T11:05:27.458+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T10:59:52.766+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="MFCC" solutionName="solution1" date="2019-03-01T10:59:16.693+0100"/>
         <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:39:32.243+0100"/>
         <logs message="@E Simulation failed: SIGSEGV." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:39:32.180+0100"/>
         <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="MFCC" solutionName="solution1" date="2019-02-28T17:12:33.169+0100"/>
