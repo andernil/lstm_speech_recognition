@@ -252,6 +252,8 @@ void generate_filterbank(double* filterbank, double prev_filterbank, double curr
 }
 double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_size, int FFT_size)
 {
+  double test_input[16] = {-0.0185573, -0.0183895, -0.0180832, -0.0177421, -0.017284, -0.0164301, -0.00861491, -0.00720071, -0.0160034, -0.0172989, -0.0183525, -0.0199111, 0, 0, 0, 0};
+
   int num_samples = num_frames * FFT_size / 2;
   // Allocate memory for the filterbanks
   double** filterbank_energies = new double*[num_frames];
@@ -263,7 +265,7 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
 
   // Allocate memory for DCT buffer. Re-use FFT for calculating DCT
   int num_DCT_energies = 4 * num_filterbanks;
-  complex<double>* DCT_energies = new complex<double>[128];
+  complex<double>* DCT_energies = new complex<double>[num_DCT_energies];
   for(int i = 0; i < num_DCT_energies; i++)
     DCT_energies[i] = 0;
 
@@ -276,14 +278,14 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
       for(int power_data = 0; power_data < frame_size; power_data++)
       {
         filterbank_energies[FFT_frame][filterbank] += input_data[power_data + (FFT_frame * frame_size)] * filters[filterbank][power_data];
-        if(FFT_frame == 0 && filterbank == 7)
-          cout << "Power data " << power_data << ": " << input_data[power_data] << endl;
-        // if(input_data[power_data] > 1 && FFT_frame == 0){
-        // 	cout << "Very large number:" << endl;
-        // 	cout << "Input: " << input_data[power_data] << endl;
-        // 	cout << "Filter value: " << filters[filterbank][power_data] << endl;
-        // 	cout << "Output energy: " << filterbank_energies[0][7] << endl;
-        // }
+      //   if(FFT_frame == 0 && filterbank == 7)
+      //     cout << "Power data " << power_data << ": " << input_data[power_data] << endl;
+      //   // if(input_data[power_data] > 1 && FFT_frame == 0){
+      //   // 	cout << "Very large number:" << endl;
+      //   // 	cout << "Input: " << input_data[power_data] << endl;
+      //   // 	cout << "Filter value: " << filters[filterbank][power_data] << endl;
+      //   // 	cout << "Output energy: " << filterbank_energies[0][7] << endl;
+      //   // }
       }
     }
     if(FFT_frame == 0){
@@ -292,6 +294,8 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
         cout << input_data[i] << endl;
       }
     }
+    for(int i = 0; i < num_DCT_energies; i++)
+      DCT_energies[i] = 0;
     // Create DCT input array
     int j = 0;
     for(int i = 0; i < num_DCT_energies; i++)
@@ -299,21 +303,26 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
         if(i < num_DCT_energies/2)
           {
             if((i % 2 != 0)){
-              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = (log(filterbank_energies[FFT_frame][j]) / 2048);
+              // DCT_energies[i] = DCT_energies[num_DCT_energies - i] = (log(filterbank_energies[FFT_frame][j]) / (1024));
+              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = test_input[j];
               if(FFT_frame == 0){
                 //cout << "Energy " << j << " pre-scaling: " << filterbank_energies[0][j] << endl;
-                //cout << "Filterbank energy log" << j << ": " << (log(filterbank_energies[FFT_frame][j])) << endl;
-                cout << "Filterbank log energy " << j << ": " << (log(filterbank_energies[FFT_frame][j]) / 1024) << endl;
+                cout << "Filterbank energy log" << j << ": " << (log(filterbank_energies[FFT_frame][j])) << endl;
+                //cout << "Filterbank log energy " << j << ": " << (log(filterbank_energies[FFT_frame][j]) / 1024) << endl;
               }
               j++;
             }
           }
+        if(FFT_frame == 0)
+          cout << "DCT " << i << ": " << DCT_energies[i] << endl;
       }
     
     // Perform DCT for the current frame and copy the result back to filterbank_energies
-    FFT(DCT_energies, 128);
+    FFT(DCT_energies, 64);
     for(int MFCC_value = 0; MFCC_value < num_filterbanks; MFCC_value++){
-      filterbank_energies[FFT_frame][MFCC_value] = DCT_energies[MFCC_value].real() * 2048; //-554, -1.6, 22, -6, -56, -8, -20
+      filterbank_energies[FFT_frame][MFCC_value] = DCT_energies[MFCC_value].real(); //-554, -1.6, 22, -6, -56, -8, -20
+      if((MFCC_value > 0 && MFCC_value < 8) && FFT_frame < 4)
+        cout << filterbank_energies[FFT_frame][MFCC_value] << ", ";
     }
   }
   cout << "Done performing MFCC" << endl;

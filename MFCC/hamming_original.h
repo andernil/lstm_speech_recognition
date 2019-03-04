@@ -14,6 +14,11 @@
 #define FFT_LENGTH 1024
 #define DCT_LENGTH 	128
 
+#define MEL_LOWEST_FREQUENCY 300
+#define MEL_HIGHEST_FREQUENCY 8000
+#define MEL_NUM_FILTERBANKS 16
+#define NUM_MFCC_COEFFICIENTS MEL_NUM_FILTERBANKS/2 - 1
+
 struct FFT_params : hls::ip_fft::params_t {
 	static const unsigned ordering_opt = hls::ip_fft::natural_order;
 	static const unsigned input_width = FFT_INPUT_WIDTH;
@@ -34,4 +39,4 @@ typedef hls::ip_fft::status_t<FFT_params> status_t;
 
 using namespace std;
 
-void MFCC_main(cmpxDataIn wav_data[NUM_SAMPLES], data_out_t output_data[NUM_SAMPLES_POST_FRAMING], int sampling_frequency);
+void MFCC_main(cmpxDataIn wav_data[NUM_SAMPLES], data_out_t energies[NUM_FRAMES][NUM_MFCC_COEFFICIENTS], int sampling_frequency);
