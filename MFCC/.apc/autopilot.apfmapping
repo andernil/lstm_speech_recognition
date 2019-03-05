@@ -6,5 +6,7 @@
   </source>
   <testbench>
     <originFiles name="fft_tb.cpp" path="/home/anders/master/MFCC/solution1/fft_tb.cpp"/>
+    <originFiles name="goldenMFCC.dat" path="/home/anders/master/MFCC/solution1/csim/build/goldenMFCC.dat"/>
+    <originFiles name="wavData.dat" path="/home/anders/master/MFCC/solution1/csim/build/wavData.dat"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

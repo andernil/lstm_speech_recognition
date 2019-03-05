@@ -10,6 +10,7 @@
     </clockList>
     <config>
         <config_compile blackbox=""/>
+        <schedule model="MFCC_main"/>
     </config>
     <UIConfigurations>
         <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">

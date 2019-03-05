@@ -2,7 +2,7 @@
 #include <hls_fft.h>
 #include <ap_fixed.h>
 
-#define NUM_SAMPLES 2048
+#define NUM_SAMPLES 48128
 #define NUM_SAMPLES_PER_FFT 1024
 #define NUM_SAMPLES_PER_FFT_FRAME_STEP 512
 #define NUM_SAMPLES_PER_FRAME NUM_SAMPLES_PER_FFT / 2

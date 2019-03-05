@@ -2,12 +2,13 @@
 #include <complex>
 #include <cstdint>
 #include <cmath>
+#include <fstream>
 
 #define PI 3.1415926535
 #define NUM_SAMPLES 48128
 #define NUM_SAMPLES_PER_FFT 1024
 #define NUM_SAMPLES_PER_FFT_FRAME_STEP 512
-#define NUM_FRAMES NUM_SAMPLES/NUM_SAMPLES_PER_FFT_FRAME_STEP
+#define NUM_FRAMES NUM_SAMPLES/NUM_SAMPLES_PER_FFT_FRAME_STEP - 1
 #define MEL_LOWEST_FREQUENCY 300
 #define MEL_HIGHEST_FREQUENCY 8000
 #define MEL_NUM_FILTERBANKS 16
@@ -43,19 +44,36 @@ double mel_to_freq(double mel);
 
 int main()
 {
+  // Store the .wav-data for testing
+  ofstream wavData;
+  wavData.open("wavData.dat");
+
+  // Store the MFCC-data for testing
+  ofstream goldenMFCC;
+  goldenMFCC.open("goldenMFCC.dat");
+
+
   complex<double> wav_data[NUM_SAMPLES];
   int sampling_frequency = read_wav(wav_data, "2k_test.wav");
+
+  for(int i = 0; i < NUM_SAMPLES; i++){
+    wavData << wav_data[i].real() << "\n";
+    if(i == 1)
+      cout << wav_data[i].real() << endl;
+  }
+
   if(sampling_frequency == 0)
     cout << "Error reading .wav-file" << endl;
   double* power_data = window_FFT(wav_data, NUM_SAMPLES, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_FRAMES);
-  // for(int i = 0; i < 1024; i++)
-  //   cout << power_data[i] << ", ";
   double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
   double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_SAMPLES_PER_FFT);
 
-  for(int i = 1; i < MEL_NUM_FILTERBANKS/2; i++)
+  for(int i = 0; i < NUM_FRAMES; i++)
   {
-    cout << "MFCC " << i << ": " << filterbank_energies[0][i] << endl;
+    for(int j = 1; j < MEL_NUM_FILTERBANKS/2; j++)
+    {
+      goldenMFCC << filterbank_energies[i][j] << "\n";
+    }
   }
 
   for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
@@ -69,6 +87,9 @@ int main()
   filterbank_energies = nullptr;
   filters = nullptr;
   power_data = nullptr;
+
+  wavData.close();
+  goldenMFCC.close();
 
   cout << "Program exited normally" << endl;
   return(0);
@@ -150,7 +171,6 @@ int read_wav(complex<double>* data_array, const char* filename)
         delete[] audiobuf;
         audiobuf = nullptr;
       }
-      //cout << "Done reading .wav-file" << endl;
       fclose(wavFile);
       return(wavHeader.sampleRate);
     }
@@ -165,6 +185,8 @@ double* window_FFT(complex<double>* input_data, int num_samples, int frame_size,
   complex<double>* data_frame = new complex<double>[frame_size];
   double* FFT_ABS = new double[num_samples_post_framing];
   double hamming_window [frame_size];
+  double to_FFT[frame_size] = {0};
+  double scaling = (1 << 23) - 1;
   // Slide the frame along the array of samples, frame=1024, frame_step = 512
   // Calculate Hamming-window coefficients
   for(int i = 0; i < frame_size; i++){
@@ -176,7 +198,8 @@ double* window_FFT(complex<double>* input_data, int num_samples, int frame_size,
     for(int i = 0; i < frame_size; i++)
     {
       // Perform Hamming-windowing while copying sample. Voice-data is only real, so ignore the imaginary part
-      data_frame[i] = input_data[i + frame].real() * hamming_window[i] / ((1 << 23 ) - 1);
+      data_frame[i] = input_data[i + frame].real() * hamming_window[i] / ((1 << 23 ) - 1); //23 for match
+      to_FFT[i] = data_frame[i].real();
       // TODO: Find Signal-to-noise ratio
     }
     // if(frame == 0){
@@ -192,6 +215,12 @@ double* window_FFT(complex<double>* input_data, int num_samples, int frame_size,
       FFT_ABS[j + frame] = pow(abs(data_frame[j]),2) / frame_size;
       if(FFT_ABS[j] > 1)
         cout << "Large number: " << FFT_ABS[j] << ". Real: " << data_frame[j].real() << ". Imag: " << data_frame[j].imag() << endl;
+      if(frame == 13824){
+        //cout << "Pre hamming: " << input_data[j + frame]/scaling << endl;
+        // cout << "To FFT: " << to_FFT[j] << " and " << to_FFT[j + frame_step] << endl;
+        cout << "From FFT: " << data_frame[j] << endl;
+    		 cout << "Abs: " << FFT_ABS[j + frame] << endl;
+      }
       //      cout << FFT_ABS[j + frame] << endl;
     }
   }
@@ -252,8 +281,6 @@ void generate_filterbank(double* filterbank, double prev_filterbank, double curr
 }
 double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_size, int FFT_size)
 {
-  double test_input[16] = {-0.0185573, -0.0183895, -0.0180832, -0.0177421, -0.017284, -0.0164301, -0.00861491, -0.00720071, -0.0160034, -0.0172989, -0.0183525, -0.0199111, 0, 0, 0, 0};
-
   int num_samples = num_frames * FFT_size / 2;
   // Allocate memory for the filterbanks
   double** filterbank_energies = new double*[num_frames];
@@ -303,18 +330,16 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
         if(i < num_DCT_energies/2)
           {
             if((i % 2 != 0)){
-              // DCT_energies[i] = DCT_energies[num_DCT_energies - i] = (log(filterbank_energies[FFT_frame][j]) / (1024));
-              DCT_energies[i] = DCT_energies[num_DCT_energies - i] = test_input[j];
-              if(FFT_frame == 0){
+               DCT_energies[i] = DCT_energies[num_DCT_energies - i] = (log(filterbank_energies[FFT_frame][j]) / (1024));
+              //DCT_energies[i] = DCT_energies[num_DCT_energies - i] = test_input[j];
+              //if(FFT_frame == 0){
                 //cout << "Energy " << j << " pre-scaling: " << filterbank_energies[0][j] << endl;
-                cout << "Filterbank energy log" << j << ": " << (log(filterbank_energies[FFT_frame][j])) << endl;
+                //cout << "Filterbank energy log" << j << ": " << (log(filterbank_energies[FFT_frame][j])) << endl;
                 //cout << "Filterbank log energy " << j << ": " << (log(filterbank_energies[FFT_frame][j]) / 1024) << endl;
-              }
+                //}
               j++;
             }
           }
-        if(FFT_frame == 0)
-          cout << "DCT " << i << ": " << DCT_energies[i] << endl;
       }
     
     // Perform DCT for the current frame and copy the result back to filterbank_energies
