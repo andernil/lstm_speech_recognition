@@ -15,6 +15,7 @@ void calculate_filterbank_energies(double input_data[NUM_SAMPLES_POST_FRAMING], 
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
 
+
 void MFCC_main(cmpxDataIn wav_data[NUM_SAMPLES], data_out_t energies[NUM_FRAMES][NUM_MFCC_COEFFICIENTS], int sampling_frequency)
 {
 	double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME];
@@ -27,8 +28,6 @@ void MFCC_main(cmpxDataIn wav_data[NUM_SAMPLES], data_out_t energies[NUM_FRAMES]
 void write_FFT_data(bool direction, config_t* fft_config, cmpxDataIn in[FFT_LENGTH], cmpxDataIn to_FFT[FFT_LENGTH], bool DCT)
 {
 	fft_config->setDir(direction);
-	//fft_config->setSch(0x2AB); // For pipelined
-	//fft_config->setSch(0x55556); //for Radix2
 	if(DCT){
 		fft_config->setNfft(6);
 		fft_config->setSch(0x0);
@@ -37,6 +36,7 @@ void write_FFT_data(bool direction, config_t* fft_config, cmpxDataIn in[FFT_LENG
 		fft_config->setNfft(10);
 		fft_config->setSch(0x55556);
 	}
+
 	int i;
 	for(i = 0; i < FFT_LENGTH; i++)
 		to_FFT[i] = in[i];
@@ -53,24 +53,21 @@ void read_FFT_data(status_t* status_in, bool* ovflo, cmpxDataOut out[FFT_LENGTH]
 void FFT(complex<data_in_t> in[FFT_LENGTH], complex<data_out_t> out[FFT_LENGTH], bool direction, bool* ovflo, bool DCT)
 {
 #pragma HLS interface ap_hs port=direction
+#pragma HLS interface ap_hs port=DCT
 #pragma HLS interface ap_fifo depth=1 port=ovflo
-#pragma HLS interface ap_fifo depth=1024 port=in, out
-//#pragma HLS interface ap_fifo depth=1024 port=in
-//#pragma HLS interface ap_fifo depth=1024 port=out
+#pragma HLS interface ap_fifo depth=1024 port=in
+#pragma HLS interface ap_fifo depth=1024 port=out
 #pragma HLS data_pack variable=in
 #pragma HLS data_pack variable=out
 #pragma HLS dataflow
-	config_t FFT_config1;
-	status_t FFT_status1;
-	//config_t* FFT_config1;
-	//status_t* FFT_status1;
-
 	complex<data_in_t> x_in[FFT_LENGTH];
 	complex<data_out_t> x_out[FFT_LENGTH];
+	config_t FFT_config;
+	status_t FFT_status;
 
-	write_FFT_data(direction, &FFT_config1, in, x_in, DCT);
-	hls::fft<FFT_params>(x_in, x_out, &FFT_status1, &FFT_config1);
-	read_FFT_data(&FFT_status1, ovflo, out, x_out);
+	write_FFT_data(direction, &FFT_config, in, x_in, DCT);
+	hls::fft<FFT_params>(x_in, x_out, &FFT_status, &FFT_config);
+	read_FFT_data(&FFT_status, ovflo, out, x_out);
 }
 
 void window_FFT(cmpxDataIn input_data[NUM_SAMPLES], double output_data[NUM_SAMPLES_POST_FRAMING])
