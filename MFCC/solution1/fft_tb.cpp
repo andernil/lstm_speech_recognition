@@ -23,10 +23,11 @@ string read_buffer;
 
 int main()
 {
+	int ret = 1;
 	cout << "Current working directory " << endl;
 	cout << system("pwd") << endl;
 	// Load test data
-	ifstream testData ("wavData.dat");
+	ifstream testData ("wavData_yes.dat");
 	if(testData.is_open())
 	{
 		for(num_wav_samples_read = 0; num_wav_samples_read < NUM_SAMPLES; num_wav_samples_read++)
@@ -43,7 +44,7 @@ int main()
 		cout << "Failed to open wav-data file" << endl;
 
 	// Load golden MFCC reference
-	ifstream goldenMFCC ("goldenMFCC.dat");
+	ifstream goldenMFCC ("goldenMFCC_yes.dat");
 
 	if(goldenMFCC.is_open())
 	{
@@ -69,7 +70,7 @@ int main()
 		test_data[i] = wav_data[i].real() / ((1 << 23) - 1); //2 << 14, 23 for correct peaks
 	data_out_t energies[NUM_FRAMES][NUM_MFCC_COEFFICIENTS];
 	cout << "Running MFCC" << endl;
-	MFCC_main(test_data, energies, 48000);
+	MFCC_main(test_data, energies);
 	cout << "Done MFCC" << endl;
 
 	for(int i = 0; i < NUM_FRAMES; i++)
@@ -89,8 +90,13 @@ int main()
 		}
 	}
 	avg_accuracy = 100 * avg_accuracy / (NUM_FRAMES * NUM_MFCC_COEFFICIENTS);
-	cout << "Average accuracy: " << avg_accuracy << "%" << endl;
+	//cout << "Average accuracy: " << avg_accuracy << "%" << endl;
 	cout << "Minimum accuracy: " << 100 * min_accuracy << "% at " << accuracy_place[0] << ", " << accuracy_place[1] << endl;
-
-	return(0);
+	if(avg_accuracy > 95){
+		ret = 0;
+		cout << "Test passed, accuracy: " << avg_accuracy << "%" << endl;
+	}
+	else
+		cout << "Test failed, accuracy: " << avg_accuracy << "%" << endl;
+	return(ret);
 }

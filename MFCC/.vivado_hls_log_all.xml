@@ -1,23 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
-  <errorLogs>
-    <logs>
-      <synLog/>
-    </logs>
-  </errorLogs>
-  <warningLogs>
-    <logs>
-      <synLog>
-        <logs message="WARNING: [RTGEN 206-101] Port 'MFCC_main/sampling_frequency' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.973+0100" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] Port 'MFCC_main/energies_V_q1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.970+0100" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'MFCC_main/energies_V_d1' to 0." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.967+0100" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] Port 'MFCC_main/energies_V_d1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.965+0100" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'MFCC_main/energies_V_we1' to 0." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.963+0100" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] Port 'MFCC_main/energies_V_we1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.960+0100" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'MFCC_main/energies_V_ce1' to 0." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.957+0100" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] Port 'MFCC_main/energies_V_ce1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.954+0100" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'MFCC_main/energies_V_address1' to 0." projectName="MFCC" solutionName="solution1" date="2019-03-05T20:12:39.952+0100" type="Warning"/>
-      </synLog>
-    </logs>
-  </warningLogs>
-</vivadoHLSLog:LogRoot>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog"/>

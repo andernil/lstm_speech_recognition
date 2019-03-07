@@ -37,6 +37,11 @@
 			<location>/home/anders/master/MFCC/.apc/.tb</location>
 		</link>
 		<link>
+			<name>.reference/hls_fft.h</name>
+			<type>1</type>
+			<location>/tools/Xilinx/Vivado/2018.3/include/hls_fft.h</location>
+		</link>
+		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
 			<location>/home/anders/master/MFCC/solution1/.tcls</location>
@@ -57,14 +62,14 @@
 			<location>/home/anders/master/MFCC/solution1/fft_tb.cpp</location>
 		</link>
 		<link>
-			<name>testbench/goldenMFCC.dat</name>
+			<name>testbench/goldenMFCC_yes.dat</name>
 			<type>1</type>
-			<location>/home/anders/master/MFCC/solution1/csim/build/goldenMFCC.dat</location>
+			<location>/home/anders/master/MFCC/solution1/csim/build/goldenMFCC_yes.dat</location>
 		</link>
 		<link>
-			<name>testbench/wavData.dat</name>
+			<name>testbench/wavData_yes.dat</name>
 			<type>1</type>
-			<location>/home/anders/master/MFCC/solution1/csim/build/wavData.dat</location>
+			<location>/home/anders/master/MFCC/solution1/csim/build/wavData_yes.dat</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>

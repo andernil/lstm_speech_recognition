@@ -10,3 +10,4 @@ LSTM_test/char_sequences.txt
 MFCC/solution1
 MFCC/Debug
 vivado_hls.log
+MFCC/MFCC_HLS.zip

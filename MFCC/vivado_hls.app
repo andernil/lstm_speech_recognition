@@ -3,8 +3,8 @@
         <file name="MFCC/hamming_original.cpp" sc="0" tb="false" cflags=""/>
         <file name="MFCC/hamming_original.h" sc="0" tb="false" cflags=""/>
         <file name="../solution1/fft_tb.cpp" sc="0" tb="1" cflags=" -Wno-unknown-pragmas"/>
-        <file name="../solution1/csim/build/goldenMFCC.dat" sc="0" tb="1" cflags=""/>
-        <file name="../solution1/csim/build/wavData.dat" sc="0" tb="1" cflags=""/>
+        <file name="../solution1/csim/build/goldenMFCC_yes.dat" sc="0" tb="1" cflags=""/>
+        <file name="../solution1/csim/build/wavData_yes.dat" sc="0" tb="1" cflags=""/>
     </files>
     <includePaths/>
     <libraryPaths/>
