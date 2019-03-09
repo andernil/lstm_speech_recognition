@@ -191,6 +191,10 @@
                         					
                     </fileInfo>
                     					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.556707444.1825468549" name="goldenMFCC_yes.dat" rcbsApplicability="disable" resourcePath="testbench/goldenMFCC_yes.dat" toolsToInvoke=""/>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.556707444.887159062" name="wavData_yes.dat" rcbsApplicability="disable" resourcePath="testbench/wavData_yes.dat" toolsToInvoke=""/>
+                    					
                     <sourceEntries>
                         						
                         <entry excluding="solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
@@ -372,6 +376,10 @@
                         </tool>
                         					
                     </fileInfo>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1430008506.2060523125" name="goldenMFCC_yes.dat" rcbsApplicability="disable" resourcePath="testbench/goldenMFCC_yes.dat" toolsToInvoke=""/>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1430008506.896354952" name="wavData_yes.dat" rcbsApplicability="disable" resourcePath="testbench/wavData_yes.dat" toolsToInvoke=""/>
                     					
                     <sourceEntries>
                         						

@@ -5,17 +5,16 @@
     <downStreamTool>
         <DownStreamTool name="vivado"/>
     </downStreamTool>
-    <clockList>
-        <clock default="false" name="default" period="10"/>
-    </clockList>
     <config>
-        <schedule model="MFCC_main"/>
+        <schedule model="FFT"/>
         <config_compile blackbox="" no_signed_zeros="0" unsafe_math_optimizations="0"/>
+        <config_sdx optimization_level="none" profile="0" target="none"/>
         <config_schedule effort="medium" enable_dsp_full_reg="0" relax_ii_for_timing="0" verbose="0"/>
         <config_dataflow default_channel="fifo" fifo_depth="1" strict_mode="warning"/>
+        <config_bind effort="medium"/>
     </config>
     <UIConfigurations>
-        <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">
+        <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
             <Platform>xilinx/zynquplus/zynquplus</Platform>
             <Platform>xilinx/zynquplus/zynquplus_fpv7</Platform>
             <customLibs/>
@@ -53,8 +52,8 @@
         <Format formatName="syn_dcp"/>
         <Format formatName="pcore" use_netlist="none"/>
     </ExportDesign>
-    <Simulation>
-        <SimFlow askAgain="true" clangSanitizer="false" compile="false" compileChoice="gcc" disableDeadlockDetect="false" dumpTrace="port" name="cosim" optimizeCompile="false" reduce_diskspace="false" setup="true" toolName="Auto" waveDebug="false">
+    <Simulation argv="">
+        <SimFlow askAgain="true" clangSanitizer="false" compile="false" compileChoice="gcc" compiledLibrary="/home/anders/master/MFCC/solution1/sim/verilog" disableDeadlockDetect="false" dumpTrace="none" name="cosim" optimizeCompile="false" reduce_diskspace="false" setup="true" toolName="auto" waveDebug="false" ldflags="" mflags="">
             <Rtl active="false" name="systemc"/>
             <Rtl active="true" name="verilog"/>
             <Rtl active="false" name="vhdl"/>
@@ -73,5 +72,8 @@
         <library name="DefaultPlatform" value="xilinx/zynquplus/zynquplus"/>
         <library name="DefaultPlatform" value="xilinx/zynquplus/zynquplus_fpv7"/>
     </libraryList>
+    <clockList>
+        <clock name="default" default="false" uncertainty="12.5%" period="10"/>
+    </clockList>
 </solution>
 

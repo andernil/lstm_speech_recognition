@@ -1,2 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog"/>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [SYN 201-107] Renaming port name 'FFT/out' to 'FFT/out_r' to avoid the conflict with HDL keywords or other object names." projectName="MFCC" solutionName="solution1" date="2019-03-09T12:22:45.451+0100" type="Warning"/>
+        <logs message="WARNING: [SYN 201-107] Renaming port name 'FFT/in' to 'FFT/in_r' to avoid the conflict with HDL keywords or other object names." projectName="MFCC" solutionName="solution1" date="2019-03-09T12:22:45.440+0100" type="Warning"/>
+        <logs message="WARNING: [SYN 201-103] Legalizing function name 'fft&lt;FFT_params>' to 'fft_FFT_params_s'." projectName="MFCC" solutionName="solution1" date="2019-03-09T12:22:45.431+0100" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-631] Renaming function 'hls::fft&lt;FFT_params>' to 'fft&lt;FFT_params>' (/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:1384)" projectName="MFCC" solutionName="solution1" date="2019-03-09T12:22:45.420+0100" type="Warning"/>
+      </synLog>
+      <simLog>
+        <logs message="WARNING: [COSIM 212-75] Fifo port 'ovflo' has a default depth of 1. Insufficient depth may cause simulation mismatch or freeze. Please specify the depth in 'set_directive_interface' using the option '-depth'.&#xA;   Build using &quot;/tools/Xilinx/Vivado/2018.3/tps/lnx64/gcc-6.2.0/bin/g++&quot;&#xA;   Compiling apatb_FFT.cpp&#xA;   Compiling fft_tb.cpp_pre.cpp.tb.cpp&#xA;   Compiling hamming_original.cpp_pre.cpp.tb.cpp&#xA;   Compiling FFT_top.cpp_pre.cpp.tb.cpp&#xA;   Generating cosim.tv.exe" projectName="MFCC" solutionName="solution1" date="2019-03-09T12:24:25.773+0100" type="Warning"/>
+      </simLog>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
