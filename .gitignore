@@ -11,3 +11,6 @@ MFCC/solution1
 MFCC/Debug
 vivado_hls.log
 MFCC/MFCC_HLS.zip
+LSTM_test/input_data
+LSTM_test/voice_recognition/input_data
+LSTM_test/voice_recognition/SpeechCmdRecognition

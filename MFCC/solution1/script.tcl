@@ -5,13 +5,13 @@
 ############################################################
 open_project MFCC
 set_top FFT
-add_files MFCC/FFT_top.cpp
-add_files MFCC/FFT_top.h
-add_files MFCC/hamming_original.cpp
 add_files MFCC/hamming_original.h
-add_files -tb MFCC/solution1/fft_tb.cpp -cflags "-Wno-unknown-pragmas"
-add_files -tb MFCC/goldenMFCC_yes.dat -cflags "-Wno-unknown-pragmas"
+add_files MFCC/hamming_original.cpp
+add_files MFCC/FFT_top.h
+add_files MFCC/FFT_top.cpp
 add_files -tb MFCC/wavData_yes.dat -cflags "-Wno-unknown-pragmas"
+add_files -tb MFCC/goldenMFCC_yes.dat -cflags "-Wno-unknown-pragmas"
+add_files -tb MFCC/solution1/fft_tb.cpp -cflags "-Wno-unknown-pragmas"
 open_solution "solution1"
 set_part {xczu3eg-sbva484-1-e} -tool vivado
 create_clock -period 10 -name default

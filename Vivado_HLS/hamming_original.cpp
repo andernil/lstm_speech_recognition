@@ -40,7 +40,7 @@ int read_wav(complex<double>* data_array, const char* filename);
 double* window_FFT(complex<double>* input_data, int num_samples, int frame_size, int frame_step, int num_frames);
 double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate);
 void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size);
-double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbankas, int num_frames, int frame_sizefrom, int FFT_size);
+double** calculate_filterbank_energies(double* input_data, double** filters, int num_filfiles = terbankas, int num_frames, int frame_sizefrom, int FFT_size);
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
 

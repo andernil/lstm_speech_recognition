@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="FFT_top.cpp" path="/home/anders/master/MFCC/FFT_top.cpp"/>
-    <originFiles name="FFT_top.h" path="/home/anders/master/MFCC/FFT_top.h"/>
-    <originFiles name="hamming_original.cpp" path="/home/anders/master/MFCC/hamming_original.cpp"/>
     <originFiles name="hamming_original.h" path="/home/anders/master/MFCC/hamming_original.h"/>
+    <originFiles name="hamming_original.cpp" path="/home/anders/master/MFCC/hamming_original.cpp"/>
+    <originFiles name="FFT_top.h" path="/home/anders/master/MFCC/FFT_top.h"/>
+    <originFiles name="FFT_top.cpp" path="/home/anders/master/MFCC/FFT_top.cpp"/>
   </source>
   <testbench>
-    <originFiles name="fft_tb.cpp" path="/home/anders/master/MFCC/solution1/fft_tb.cpp"/>
-    <originFiles name="goldenMFCC_yes.dat" path="/home/anders/master/MFCC/goldenMFCC_yes.dat"/>
     <originFiles name="wavData_yes.dat" path="/home/anders/master/MFCC/wavData_yes.dat"/>
+    <originFiles name="goldenMFCC_yes.dat" path="/home/anders/master/MFCC/goldenMFCC_yes.dat"/>
+    <originFiles name="fft_tb.cpp" path="/home/anders/master/MFCC/solution1/fft_tb.cpp"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>
