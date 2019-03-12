@@ -14,3 +14,4 @@ MFCC/MFCC_HLS.zip
 LSTM_test/input_data
 LSTM_test/voice_recognition/input_data
 LSTM_test/voice_recognition/SpeechCmdRecognition
+LSTM_test/speech_commands_v0.01
