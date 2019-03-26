@@ -4,13 +4,13 @@
 ## Copyright (C) 1986-2018 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project MFCC
-set_top FFT
+set_top window_FFT
 add_files MFCC/hamming_original.h
 add_files MFCC/hamming_original.cpp
 add_files MFCC/FFT_top.h
 add_files MFCC/FFT_top.cpp
-add_files -tb MFCC/wavData_yes.dat -cflags "-Wno-unknown-pragmas"
-add_files -tb MFCC/goldenMFCC_yes.dat -cflags "-Wno-unknown-pragmas"
+add_files -tb ../speech_commands_v0.01/wav_data.dat -cflags "-Wno-unknown-pragmas"
+add_files -tb ../speech_commands_v0.01/golden_mel.dat -cflags "-Wno-unknown-pragmas"
 add_files -tb MFCC/solution1/fft_tb.cpp -cflags "-Wno-unknown-pragmas"
 open_solution "solution1"
 set_part {xczu3eg-sbva484-1-e} -tool vivado
@@ -22,7 +22,7 @@ config_dataflow -default_channel fifo -fifo_depth 1 -strict_mode warning
 config_bind -effort medium
 set_clock_uncertainty 12.5%
 #source "./MFCC/solution1/directives.tcl"
-csim_design
+csim_design -clean
 csynth_design
-cosim_design -setup -compiled_library_dir "/home/anders/master/MFCC/solution1/sim/verilog"
+cosim_design -compiled_library_dir "/home/anders/master/MFCC/solution1/sim/verilog" -tool xsim
 export_design -format ip_catalog

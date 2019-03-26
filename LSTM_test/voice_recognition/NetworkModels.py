@@ -21,7 +21,7 @@ def ConvSpeechModel(nCategories, data_in_dims):
     #note that Melspectrogram puts the sequence in shape (batch_size, melDim, timeSteps, 1)
     #we would rather have it the other way around for LSTMs
 
-    x = Permute((2,1,3)) (x)
+    #x = Permute((2,1,3)) (x)
     #x = Reshape((94,80)) (x) #this is strange - but now we have (batch_size, sequence, vec_dim)
 
     c1 = Conv2D(20, (5,1) , activation='relu', padding='same') (x)
@@ -60,7 +60,7 @@ def RNNSpeechModel(nCategories, data_in_dims):
     #note that Melspectrogram puts the sequence in shape (batch_size, melDim, timeSteps, 1)
     #we would rather have it the other way around for LSTMs
 
-    x = Permute((2,1,3)) (x)
+    #x = Permute((2,1,3)) (x)
 
     x = Conv2D(10, (5,1) , activation='relu', padding='same') (x)
     x = BatchNormalization() (x)
@@ -89,11 +89,11 @@ def AttRNNSpeechModel(nCategories, data_in_dims):
     inputs = Input(data_in_dims)
 
     x = inputs
-
+    x = Normalization2D(int_axis=0)(x)
     #note that Melspectrogram puts the sequence in shape (batch_size, melDim, timeSteps, 1)
     #we would rather have it the other way around for LSTMs
 
-    x = Permute((2,1,3)) (x)
+    #x = Permute((2,1,3)) (x)
 
     x = Conv2D(10, (5,1) , activation='relu', padding='same') (x)
     x = BatchNormalization() (x)

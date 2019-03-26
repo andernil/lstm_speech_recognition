@@ -18,25 +18,26 @@ from tensorflow.keras import backend as K
 from keras.utils import to_categorical
 from keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler
 
+import h5py
+
 import random
 import copy
 
 import math
 
-# Original
-#num_frames_per_sample = 63
-#num_MFCC_per_sample = 7;
+num_frames_per_sample = 118
+num_melbanks_per_sample = 80
+NN_batch_size = 30
+NN_num_epochs = 40
+NN_num_training_samples = 0
+NN_num_validation_samples = 0
 
-# Modified
-num_frames_per_sample = 124
-num_MFCC_per_sample = 39
-
-split_ratio = 0.6
+split_ratio = 0.8
 
 train_audio_path = 'input_data'
 subfolder = '/MFCC/'
 
-def split_dataset(data, all_labels, label_counts, ratio=split_ratio) :
+def split_dataset(data, all_labels, label_counts, ratio=split_ratio):
     X_train = []
     X_test = []
     y_train = []
@@ -85,9 +86,9 @@ def main():
         i = i + 1
         print(str(i)+":" + str(direct) + " ", end="")
         for MFCC in MFCCs:
-            if(label_count < 70):
+            if(label_count < 100):
                 MFCC_values = np.loadtxt(os.path.join(train_audio_path, direct + subfolder + MFCC), delimiter='\n')
-                if(MFCC_values[0] != num_MFCC_per_sample):
+                if(MFCC_values[0] != num_melbanks_per_sample):
                     print("Incorrect number of MFCC values per sample for file " + MFCC + " for word " + direct)
                 else:
                     MFCC_values = MFCC_values[1:]
@@ -104,27 +105,51 @@ def main():
     MFCC_vals = np.array([x for x in MFCC_all])
     label_vals = [x for x in label_all]
 
-    X_train, X_test, y_train, y_test = split_dataset(MFCC_vals, label_vals, label_counts, 0.6)
+    X_train, X_test, y_train, y_test = split_dataset(MFCC_vals, label_vals, label_counts, split_ratio)
 
-    X_train = X_train.reshape(X_train.shape[0], num_MFCC_per_sample, num_frames_per_sample, 1)
-    X_test = X_test.reshape(X_test.shape[0], num_MFCC_per_sample, num_frames_per_sample, 1)
+    NN_num_training_samples = X_train.shape[0]
+    NN_num_validation_samples = X_test.shape[0]
+
+    #X_train = X_train.reshape(X_train.shape[0], num_melbanks_per_sample, num_frames_per_sample, 1)
+    #X_test = X_test.reshape(X_test.shape[0], num_melbanks_per_sample, num_frames_per_sample, 1)
+    X_train = X_train.reshape(X_train.shape[0], num_frames_per_sample, num_melbanks_per_sample,1)
+    X_test = X_test.reshape(X_test.shape[0], num_frames_per_sample, num_melbanks_per_sample,1)
     y_train_enum =[label_value[label[0]] for label in y_train]
     y_test_enum = [label_value[label[0]] for label in y_test]
 
     y_train_hot = to_categorical(y_train_enum)
     y_test_hot = to_categorical(y_test_enum)
 
-    #model_orig = network_models_original.ConvSpeechModel(nCategories = 2, samplingrate = 16000, inputLength = 16000)
-    #model = NetworkModels.ConvSpeechModel(nCategories = len(target_list), data_in_dims = X_train.shape[1:])
+    print((NN_num_training_samples // NN_batch_size))
     print(X_train.shape)
-    model = NetworkModels.RNNSpeechModel(nCategories = len(target_list), data_in_dims = X_train.shape[1:])
+    #model = NetworkModels.RNNSpeechModel(nCategories = len(target_list), data_in_dims = X_train.shape[1:])
+    model = NetworkModels.ConvSpeechModel(nCategories = len(target_list), data_in_dims = X_train.shape[1:])
+    print(X_train.shape[1:])
     model.compile(optimizer='adam', loss=['sparse_categorical_crossentropy'], metrics=['sparse_categorical_accuracy'])
     model.summary()
 
     lrate = LearningRateScheduler(step_decay)
-    earlystopper = EarlyStopping(monitor='sparse_categorical_accuracy', patience=10, verbose=1)
-    checkpointer = ModelCheckpoint('model-RNN.h5', monitor='sparse_categorical_accuracy', verbose=1, save_best_only=True)
-    results = model.fit(x=X_train, y=y_train_enum, batch_size=None, epochs=40, verbose=1, callbacks=[earlystopper, checkpointer, lrate], shuffle=True, steps_per_epoch = 10)
+    earlystopper = EarlyStopping(monitor='val_sparse_categorical_accuracy', patience=10, verbose=1)
+    checkpointer = ModelCheckpoint('weights.{epoch:02d}-{val_loss:.2f}.hdf5', monitor='val_sparse_categorical_accuracy', verbose=1, save_best_only=True)
+    #checkpointer = ModelCheckpoint('model-CNN.h5py', monitor='val_sparse_categorical_accuracy', verbose=1, save_best_only=True)
+    results = model.fit(x=X_train, y=y_train_enum, validation_data=[X_test, y_test_enum], batch_size=None, epochs=NN_num_epochs, steps_per_epoch=(NN_num_training_samples // NN_batch_size) //2, validation_steps = 1, verbose=1, callbacks=[earlystopper, checkpointer, lrate], shuffle=True)
+
+    # summarize history for categorical accuracy
+    plt.plot(results.history['sparse_categorical_accuracy'])
+    plt.plot(results.history['val_sparse_categorical_accuracy'])
+    plt.title('Categorical accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
+    # summarize history for loss
+    plt.plot(results.history['loss'])
+    plt.plot(results.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
 
 # Run the program
 main()

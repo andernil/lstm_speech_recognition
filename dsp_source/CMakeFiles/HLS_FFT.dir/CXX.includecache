@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/anders/master/dsp_source/hamming_original.cpp
+iostream
+-
+complex
+-
+cstdint
+-
+cmath
+-
+fstream
+-
+bitset
+-
+
