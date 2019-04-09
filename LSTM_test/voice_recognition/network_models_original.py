@@ -26,7 +26,7 @@ def ConvSpeechModel(nCategories, samplingrate = 16000, inputLength = 16000):
                              return_decibel_melgram=True, trainable_fb=False,
                              trainable_kernel=False,
                              name='mel_stft') (x)
-    print(x.shape)
+
     x = Normalization2D(int_axis=0)(x)
     #note that Melspectrogram puts the sequence in shape (batch_size, melDim, timeSteps, 1)
     #we would rather have it the other way around for LSTMs

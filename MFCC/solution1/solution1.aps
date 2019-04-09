@@ -6,7 +6,7 @@
         <DownStreamTool name="vivado"/>
     </downStreamTool>
     <config>
-        <schedule model="FFT"/>
+        <schedule model="window_FFT"/>
         <config_compile blackbox="" no_signed_zeros="0" unsafe_math_optimizations="0"/>
         <config_sdx optimization_level="none" profile="0" target="none"/>
         <config_schedule effort="medium" enable_dsp_full_reg="0" relax_ii_for_timing="0" verbose="0"/>
@@ -53,7 +53,7 @@
         <Format formatName="pcore" use_netlist="none"/>
     </ExportDesign>
     <Simulation argv="">
-        <SimFlow askAgain="true" clangSanitizer="false" compile="false" compileChoice="gcc" compiledLibrary="/home/anders/master/MFCC/solution1/sim/verilog" disableDeadlockDetect="false" dumpTrace="none" name="cosim" optimizeCompile="false" reduce_diskspace="false" setup="true" toolName="auto" waveDebug="false" ldflags="" mflags="">
+        <SimFlow askAgain="true" clangSanitizer="false" compile="false" compileChoice="gcc" compiledLibrary="/home/anders/master/MFCC/solution1/sim/verilog" disableDeadlockDetect="false" dumpTrace="none" name="cosim" optimizeCompile="false" reduce_diskspace="false" setup="false" toolName="xsim" waveDebug="false" ldflags="" mflags="">
             <Rtl active="false" name="systemc"/>
             <Rtl active="true" name="verilog"/>
             <Rtl active="false" name="vhdl"/>

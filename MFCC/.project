@@ -67,14 +67,14 @@
 			<location>/home/anders/master/MFCC/solution1/fft_tb.cpp</location>
 		</link>
 		<link>
-			<name>testbench/goldenMFCC_yes.dat</name>
+			<name>testbench/golden_mel.dat</name>
 			<type>1</type>
-			<location>/home/anders/master/MFCC/goldenMFCC_yes.dat</location>
+			<location>/home/anders/speech_commands_v0.01/golden_mel.dat</location>
 		</link>
 		<link>
-			<name>testbench/wavData_yes.dat</name>
+			<name>testbench/wav_data.dat</name>
 			<type>1</type>
-			<location>/home/anders/master/MFCC/wavData_yes.dat</location>
+			<location>/home/anders/speech_commands_v0.01/wav_data.dat</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>
