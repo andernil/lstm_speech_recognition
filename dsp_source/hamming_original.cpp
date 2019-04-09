@@ -4,17 +4,21 @@
 #include <cmath>
 #include <fstream>
 #include <bitset>
+#include <chrono>
 
 #define PI 3.1415926535
-#define NUM_SAMPLES 16384 // Must be a log2-number
-#define NUM_SAMPLES_PER_FFT 512 // 32 ms per frame
-#define NUM_SAMPLES_PER_FFT_FRAME_STEP 256 // 16 ms step length
-#define NUM_SAMPLES_PER_FFT_FRAME NUM_SAMPLES_PER_FFT/2
-#define NUM_FRAMES NUM_SAMPLES/NUM_SAMPLES_PER_FFT_FRAME_STEP - 1
+#define NUM_SAMPLES_PER_FFT 1024 // 32 ms per frame old: 512
+#define FRAME_STEP_LENGTH 128 // 16 ms step length old:256
+#define NUM_SAMPLES_PER_FRAME NUM_SAMPLES_PER_FFT / 2
+#define NUM_FRAMES (NUM_SAMPLES - NUM_SAMPLES_PER_FFT) / FRAME_STEP_LENGTH + 1
+#define NUM_SAMPLES 16000
+#define NUM_SAMPLES_POST_FFT NUM_SAMPLES_PER_FFT / 2
 #define MEL_LOWEST_FREQUENCY 300
 #define MEL_HIGHEST_FREQUENCY 8000
-#define MEL_NUM_FILTERBANKS 16
+#define MEL_NUM_FILTERBANKS 80 //old: 16
 #define SAMPLING_FREQUENCY 16000
+#define NUM_MFCC_VALUES (MEL_NUM_FILTERBANKS / 2) - 1
+#define LOW_VALUE_BOUND 1e-10//1e-20
 
 using namespace std;
 
@@ -37,42 +41,61 @@ typedef struct WAV_HEADER{
 void separate(complex<double>* input_data, int num_samples);
 void FFT(complex<double>* input_data, int num_samples);
 int read_wav(complex<double>* data_array, const char* filename);
-double* window_FFT(complex<double>* input_data, int num_samples, int frame_size, int frame_step, int num_frames);
+double* window_FFT(complex<double>* input_data, int num_samples, int frame_size, int frame_step, int num_frames, int peak_value);
 double** init_mel(double min_frequency, double max_frequency, int num_filterbanks, int FFT_size, int samplerate);
 void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size);
-double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_sizefrom, int FFT_size);
+double** calculate_filterbank_energies(double* input_data, double** filters, int num_filterbanks, int num_frames, int frame_size, int FFT_size);
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
 
 int main()
 {
-  // Store the .wav-data for testing
-  ofstream wavData;
-  wavData.open("wavData.dat");
+  // Store the .FFT-data for plotting
+  ofstream FFT_data;
+  FFT_data.open("FFT_data.dat");
 
-  // Store the MFCC-data for testing
+  // Store the MFCC-data for plotting
   ofstream goldenMFCC;
-  goldenMFCC.open("goldenMFCC.dat");
+  goldenMFCC.open("MFCC_data.dat");
 
-  double max = 0;
   complex<double> wav_data[NUM_SAMPLES];
-  int sampling_frequency = read_wav(wav_data, "yes.wav");
-  for(int i = 0; i < NUM_SAMPLES; i++){
-    wavData << wav_data[i].real() << "\n";
-  }
-  if(sampling_frequency == 0)
+
+  auto wav_start = chrono::high_resolution_clock::now();
+
+  int peak_value = read_wav(wav_data, "yes.wav");
+  if(peak_value  == 0)
     cout << "Error reading .wav-file" << endl;
-  double* power_data = window_FFT(wav_data, NUM_SAMPLES, NUM_SAMPLES_PER_FFT, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_FRAMES);
+  auto wav_stop = chrono::high_resolution_clock::now();
+
+  double* power_data = window_FFT(wav_data, NUM_SAMPLES, NUM_SAMPLES_PER_FFT, FRAME_STEP_LENGTH, NUM_FRAMES, peak_value);
+
+  auto window_FFT_stop = chrono::high_resolution_clock::now();
+
   double** filters = init_mel(MEL_LOWEST_FREQUENCY, MEL_HIGHEST_FREQUENCY, MEL_NUM_FILTERBANKS, NUM_SAMPLES_PER_FFT, SAMPLING_FREQUENCY);
-  double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, NUM_SAMPLES_PER_FFT_FRAME_STEP, NUM_SAMPLES_PER_FFT);
+
+  auto generate_filters_stop = chrono::high_resolution_clock::now();
+
+  double** filterbank_energies = calculate_filterbank_energies(power_data, filters, MEL_NUM_FILTERBANKS, NUM_FRAMES, FRAME_STEP_LENGTH, NUM_SAMPLES_PER_FFT);
+
+  auto calculate_energies_stop = chrono::high_resolution_clock::now();
 
   for(int i = 0; i < NUM_FRAMES; i++)
-  {
-    for(int j = 1; j < MEL_NUM_FILTERBANKS/2; j++)
+  { 
+    for(int j = 0; j < NUM_MFCC_VALUES; j++)
     {
       goldenMFCC << filterbank_energies[i][j] << "\n";
     }
   }
+
+  auto wav_read_duration = chrono::duration_cast<chrono::microseconds>(wav_stop - wav_start);
+  auto window_FFT_duration = chrono::duration_cast<chrono::microseconds>(window_FFT_stop - wav_stop);
+  auto generate_filterbanks_duration = chrono::duration_cast<chrono::microseconds>(generate_filters_stop - window_FFT_stop);
+  auto calculate_energies_duration = chrono::duration_cast<chrono::microseconds>(calculate_energies_stop - generate_filters_stop);
+
+  cout << "Time spent reading .wav-file: " << wav_read_duration.count() << "us" << endl;
+  cout << "Time spent calculating window FFT: " << window_FFT_duration.count() << "us" << endl;
+  cout << "Time spent generating mel-filterbanks: " << generate_filterbanks_duration.count() << "us" << endl;
+  cout << "Time spent calculating filterbank energies: " << calculate_energies_duration.count() << "us" << endl;
 
   for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
     delete[] filters[i];
@@ -86,7 +109,7 @@ int main()
   filters = nullptr;
   power_data = nullptr;
 
-  wavData.close();
+  FFT_data.close();
   goldenMFCC.close();
 
   cout << "Program exited normally" << endl;
@@ -137,6 +160,7 @@ int read_wav(complex<double>* data_array, const char* filename)
 {
   wav_hdr wavHeader;
   int headerSize = sizeof(wav_hdr);
+  int temp_peak = 0;
   FILE* wavFile = fopen(filename, "r");
   if(wavFile == nullptr)
   {
@@ -148,17 +172,17 @@ int read_wav(complex<double>* data_array, const char* filename)
     size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
     if(bytesRead > 0)
     {
-      //cout << "Sample rate: " << wavHeader.sampleRate << endl;
-      //cout << "Bits per sample: " << wavHeader.bitsPerSample << endl;
-      //cout << "Num samples: " << wavHeader.subchunk2Size/(wavHeader.numChannels * wavHeader.bitsPerSample/8) << endl;
       long bytes = wavHeader.bitsPerSample/8;
       long buffsize= wavHeader.subchunk2Size/bytes;
       if(wavHeader.bitsPerSample == 32)
       {
         int32_t* audiobuf = new int32_t[buffsize];
         fread(audiobuf,bytes,buffsize,wavFile);
-        for(int i = 0; i < buffsize; i++)
+        for(int i = 0; i < buffsize; i++){
           data_array[i] = audiobuf[i];
+          if(abs(audiobuf[i]) > temp_peak)
+            temp_peak = abs(audiobuf[i]);
+        }
         delete[] audiobuf;
         audiobuf = nullptr;
       }
@@ -168,58 +192,53 @@ int read_wav(complex<double>* data_array, const char* filename)
         fread(audiobuf,bytes,buffsize,wavFile);
         for(int i = 0; i < buffsize; i++){
           data_array[i] = audiobuf[i];
+          if(abs(audiobuf[i]) > temp_peak)
+            temp_peak = abs(audiobuf[i]);
         }
         delete[] audiobuf;
         audiobuf = nullptr;
       }
       fclose(wavFile);
-      return(wavHeader.sampleRate);
+      return(temp_peak);
     }
-    else
+    else{
       cout << "Unable to read wav data" << endl;
       return(0);
+    }
   }
-} 
-double* window_FFT(complex<double>* input_data, int num_samples, int frame_size, int frame_step, int num_frames)
+}
+double* window_FFT(complex<double>* input_data, int num_samples, int frame_size, int frame_step, int num_frames, int peak_value)
 {
   int num_samples_post_framing = frame_size * num_frames / 2;
   complex<double>* data_frame = new complex<double>[frame_size];
   double* FFT_ABS = new double[num_samples_post_framing];
   double hamming_window [frame_size];
   double to_FFT[frame_size] = {0};
-  double scaling = (1 << 23) - 1;
-
+  // Scale the input data within the range +/- 1 and shift 8 bits to avoid overflow
+  double scaling = peak_value * (1 << 9); //8
+  cout << "Peak value: " << peak_value << endl;
   // Slide the frame along the array of samples, frame=1024, frame_step = 512
   // Calculate Hamming-window coefficients
   for(int i = 0; i < frame_size; i++){
     hamming_window[i] = 0.54 - 0.46 * cos(2*PI*i/(frame_size-1));
   }
-  for(int frame = 0; frame < (num_samples - frame_step); frame += frame_step)
-    {
+  for(int frame = 0; frame < num_frames; frame++)
+  {
     // Fill the window array with windowed FFT samples
     for(int i = 0; i < frame_size; i++)
     {
       // Perform Hamming-windowing while copying sample. Voice-data is only real, so ignore the imaginary part
-      data_frame[i] = input_data[i + frame].real() * hamming_window[i] / ((1 << 23 ) - 1); //23 for match
+      data_frame[i] = input_data[i + (frame * frame_step)].real() * hamming_window[i] / scaling; //23 for match
       to_FFT[i] = data_frame[i].real();
-      // TODO: Find Signal-to-noise ratio
     }
-    // if(frame == 0)
-    //   cout << endl;
     FFT(data_frame, frame_size);
-    
     // Calculate the periodogram-based power spectral estimate of the first half of the signal
     for(int j = 0; j < frame_size/2; j++){
-      FFT_ABS[j + frame] = pow(abs(data_frame[j]),2) / frame_size;
-      if(FFT_ABS[j] > 1)
-        cout << "Large number: " << FFT_ABS[j] << ". Real: " << data_frame[j].real() << ". Imag: " << data_frame[j].imag() << endl;
-      //if(frame == 58*NUM_SAMPLES_PER_FFT_FRAME){
-        //cout << "Pre hamming: " << input_data[j + frame]/scaling << endl;
-        //cout << "To FFT: " << to_FFT[j] << " and " << to_FFT[j + frame_step] << endl;
-        //cout << "From FFT: " << data_frame[j] << endl;
-    		//cout << j << ": " << "Abs: " << FFT_ABS[j + frame] << endl;
-        // }
-      //      cout << FFT_ABS[j + frame] << endl;
+      FFT_ABS[j + (frame * frame_size/2)] = pow(abs(data_frame[j]),2) / frame_size;
+      //        if(FFT_ABS[j + (frame * frame_size/2)] > 1)
+      //cout << "Large number: " << FFT_ABS[j + (frame * frame_size/2)] << ". Real: " << data_frame[j].real() << ". Imag: " << data_frame[j].imag() << endl;
+      if(abs(data_frame[j].real()) >= 2 || abs(data_frame[j].imag()) >= 2)
+        cout << "Large number: " << FFT_ABS[j + (frame * frame_size/2)] << ". Real: " << data_frame[j].real() << ". Imag: " << data_frame[j].imag() << endl;
     }
   }
   delete[] data_frame;
@@ -237,14 +256,14 @@ double** init_mel(double min_frequency, double max_frequency, int num_filterbank
     filterbank_filters[i] = new double[FFT_size/2];
   for(int i = 0; i < num_filterbanks + 2; i++){
     filterbanks[i] = min_mel + filterbank_step * i;
-    cout << "Filterbank " << i << ": ";
-    cout << "Mel: " << filterbanks[i] << ", ";
+    //cout << "Filterbank " << i << ": ";
+    //cout << "Mel: " << filterbanks[i] << ", ";
     // Convert back to frequency
     filterbanks[i] = mel_to_freq(filterbanks[i]);
-    cout << "Freq: " << filterbanks[i] << ", ";
+    //cout << "Freq: " << filterbanks[i] << ", ";
     // Round frequencies to a precision we have
     filterbanks[i] = floor((FFT_size + 1) * filterbanks[i] / samplerate);
-    cout << "Rounded: " << filterbanks[i] << endl;
+    //cout << "Rounded: " << filterbanks[i] << endl;
     // Create filterbank filters
     if((i > 1) && (i < (num_filterbanks + 2)))
     {
@@ -254,8 +273,6 @@ double** init_mel(double min_frequency, double max_frequency, int num_filterbank
   delete[] filterbanks;
   filterbanks = nullptr;
   return(filterbank_filters);
-
-  cout << "Program exited successfully" << endl;
 }
 void generate_filterbank(double* filterbank, double prev_filterbank, double curr_filterbank, double next_filterbank, int FFT_size){
   // Use i to cycle through the arrays, use j to increment the step value
@@ -287,6 +304,11 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
     for(int filterbank = 0; filterbank < num_filterbanks; filterbank++)
       filterbank_energies[frame][filterbank] = 0;
   }
+  // Create two timestamps for clock initialisation
+  auto clock_init = chrono::high_resolution_clock::now();
+  // Declare clock sums
+  auto calculate_energies_duration = chrono::duration_cast<chrono::microseconds>(clock_init - clock_init);
+  auto calculate_MFCC_duration = chrono::duration_cast<chrono::microseconds>(clock_init - clock_init);
 
   // Allocate memory for DCT buffer. Re-use FFT for calculating DCT
   int num_DCT_energies = 4 * num_filterbanks;
@@ -297,77 +319,49 @@ double** calculate_filterbank_energies(double* input_data, double** filters, int
   // Run filters over each frame. Frames are 512, as are the filters.
   for(int FFT_frame = 0; FFT_frame < num_frames; FFT_frame++)
   {
+    auto calculate_energies_start = chrono::high_resolution_clock::now();
     // Calculate sum for each filterbank for each frame
     for(int filterbank = 0; filterbank < num_filterbanks; filterbank++)
     {
       for(int power_data = 0; power_data < frame_size; power_data++)
       {
         filterbank_energies[FFT_frame][filterbank] += input_data[power_data + (FFT_frame * frame_size)] * filters[filterbank][power_data];
-        //if(FFT_frame == 58)
-        //cout << "Filterbank: " << filterbank << ": " << filterbank_energies[58][filterbank] << endl;
-      //   if(FFT_frame == 0 && filterbank == 7)
-      //     cout << "Power data " << power_data << ": " << input_data[power_data] << endl;
-      //   // if(input_data[power_data] > 1 && FFT_frame == 0){
-      //   // 	cout << "Very large number:" << endl;
-      //   // 	cout << "Input: " << input_data[power_data] << endl;
-      //   // 	cout << "Filter value: " << filters[filterbank][power_data] << endl;
-      //   // 	cout << "Output energy: " << filterbank_energies[0][7] << endl;
-      //   // }
-      }
-      //if(FFT_frame == 58)
-      //cout << "Filterbank: " << filterbank << ": " << filterbank_energies[58][filterbank] << endl;
-    }
-    if(FFT_frame == 0){
-      for(int i = 0; i < MEL_NUM_FILTERBANKS; i++){
-        //cout << filterbank_energies[0][i] << endl;
-        cout << input_data[i] << endl;
       }
     }
+    auto calculate_energies_stop = chrono::high_resolution_clock::now();
     for(int i = 0; i < num_DCT_energies; i++)
       DCT_energies[i] = 0;
     // Create DCT input array
     int j = 0;
     for(int i = 0; i < num_DCT_energies; i++)
+    {
+      if(i < num_DCT_energies/2)
       {
-        if(i < num_DCT_energies/2)
-          {
-            if((i % 2 != 0)){
-               DCT_energies[i] = DCT_energies[num_DCT_energies - i] = (log(filterbank_energies[FFT_frame][j]) / (1024));
-              //DCT_energies[i] = DCT_energies[num_DCT_energies - i] = test_input[j];
-              if(FFT_frame == 58){
-                //cout << "Energy " << j << " pre-scaling: " << filterbank_energies[FFT_frame][j] << endl;
-                //           cout << "Filterbank energy log" << j << ": " << (log(filterbank_energies[FFT_frame][j])) << endl;
-                cout << "Filterbank log energy " << j << ": " << (log(filterbank_energies[FFT_frame][j]) / 1024) << endl;
-                }
-              j++;
-            }
-          }
+        if((i % 2 != 0)){
+          DCT_energies[i] = DCT_energies[num_DCT_energies - i] = (log(filterbank_energies[FFT_frame][j]) / (1024));
+          //DCT_energies[i] = DCT_energies[num_DCT_energies - i] = test_input[j];
+          j++;
+        }
       }
-    if(FFT_frame == 58){
-      for(int i = 0; i < 64; i++)
-        cout << DCT_energies[i].real() << endl;
-      cout << endl;
-      for(int i = 0; i < 64; i++)
-        cout << DCT_energies[i].imag() << endl;
-      cout << endl;
-
     }
-    
     // Perform DCT for the current frame and copy the result back to filterbank_energies
     FFT(DCT_energies, 64);
-    for(int MFCC_value = 0; MFCC_value < num_filterbanks; MFCC_value++){
-      if((MFCC_value > 0 && MFCC_value < 8))
-        filterbank_energies[FFT_frame][MFCC_value] = DCT_energies[MFCC_value].real();
-      if(FFT_frame == 58)
-        cout << "MFCC " << MFCC_value << ": " << DCT_energies[MFCC_value] << endl;
+    for(int MFCC_value = 1; MFCC_value < NUM_MFCC_VALUES; MFCC_value++){
+      filterbank_energies[FFT_frame][MFCC_value] = DCT_energies[MFCC_value].real();
     }
+    auto DCT_stop = chrono::high_resolution_clock::now();
+
+    calculate_energies_duration += chrono::duration_cast<chrono::microseconds>(calculate_energies_stop - calculate_energies_start);
+    calculate_MFCC_duration += chrono::duration_cast<chrono::microseconds>(DCT_stop - calculate_energies_stop);
   }
-  cout << "Done performing MFCC" << endl;
+
+  cout << "Time spent calculating filterbanks: " << calculate_energies_duration.count() << "us" << endl;
+  cout << "Time spent calculating MFCC: " << calculate_MFCC_duration.count() << "us" << endl;
+
   delete[] DCT_energies;
   DCT_energies = nullptr;
   return(filterbank_energies);
 }
-
 double freq_to_mel(double freq){
   return(1125 * log(1 + freq/700));
 

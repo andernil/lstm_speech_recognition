@@ -26,3 +26,5 @@ echo "Converting to Caffemodel"
 echo "mmtomodel -f caffe -in "${Caffe_filename}.py" -iw "${Caffe_filename}.npy" -o $original_filename"
 mmtomodel -f caffe -in "${Caffe_filename}.py" -iw "${Caffe_filename}.npy" -o $original_filename
 
+# Delete intermediate files
+rm "${IR_filename}.npy" "${IR_filename}.json"

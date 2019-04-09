@@ -17,3 +17,9 @@ LSTM_test/voice_recognition/SpeechCmdRecognition
 LSTM_test/speech_commands_v0.01
 LSTM_test/voice_recognition/keras_to_tensorflow
 LSTM_test/voice_recognition/keras2caffe
+LSTM_test/DNNDK
+LSTM_test/__pycache__
+LSTM_test/voice_recognition/*.hdf5
+LSTM_test/voice_recognition/*.pb
+
+

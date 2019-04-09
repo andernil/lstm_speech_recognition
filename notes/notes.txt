@@ -1,3 +1,18 @@
 -Use LSTM
 -Use spectrograms or sliding window fft (same thing?)
 -Train the network for unknown words and silence
+
+// Notater fra 2019-03-29
+- DNNDK støtter bare en viss type lag (ikke Crop, virker det som)
+- Virker veldig bilde-orientert (ingen måte å verifisere quantization uten å bruke bilde eller datalagringsformater (hdf5 etc)
+- Ingen åpenbar måte å kjøre egen RTL sammen med DNNDK
+- Konvertering fra Keras til Caffe har sine begrensninger mtp. lag-størrelse (ref Webex-chat ned Håkon Sandmark)
+- Lite info fra DNNDK-delene om ting er støttet eller ikke (burde ikke DECENT reagert på at jeg brukte Crop-lag?)
+- Konvertering mellom nettverk er litt pain, men går greit vha. Microsoft sin MDNNN (eller hva enn den heter)
+- Satser på at Tensorflow-versjonen av DNNDK er litt mer brukervennlig
+- DNNDK støtter ikke LSTM
+
+- Virker som begrensningene til DNNDK er ganske like Intel Movidius sine?
+- Splitte CNN'et for så å optimalisere og kompilere de delene som funker i DNNDK? Syr sammen outputsene i C++-programmet (kan utføre Crop manuelt i C++)
+
+
