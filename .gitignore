@@ -17,3 +17,5 @@ LSTM_test/voice_recognition/SpeechCmdRecognition
 LSTM_test/speech_commands_v0.01
 LSTM_test/voice_recognition/.vscode
 LSTM_test/voice_recognition/__pycache__
+LSTM_test/voice_recognition/logs
+LSTM_test/voice_recognition/model
