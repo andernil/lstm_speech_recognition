@@ -121,7 +121,7 @@ def main():
         i = i + 1
         print(str(i)+":" + str(direct) + " ", end="")
         for MFCC in MFCCs:
-            if(label_count < 1000):
+            if(label_count < 4000):
                 #MFCC_values is the name of the file
                 MFCC_values = os.path.join(direct + subfolder + MFCC)
                 if(direct in unknown_list):
@@ -155,6 +155,7 @@ def main():
     # Get timestamp for use in model names and verification data register
     date = datetime.now()
     postfix = str(date.year) + str(date.month) + str(date.day) + str(date.hour) + str(date.minute)
+
     # Save verification files. Format: Filename,label
     ver_text_filename = str("verification_data-" + postfix + ".txt")
     ver_text_file = open(ver_text_filename, "w")
@@ -167,8 +168,8 @@ def main():
 
 
     # Channel last
-    #model = NetworkModels.AttRNNSpeechModel(nCategories = len(target_list), data_in_dims = (118,80,1))
-    model = NetworkModels.ConvSpeechModel(nCategories = len(target_list), data_in_dims = (118,80,1))
+    model = NetworkModels.AttRNNSpeechModel(nCategories = len(target_list), data_in_dims = (118,80,1))
+    #model = NetworkModels.ConvSpeechModel(nCategories = len(target_list), data_in_dims = (118,80,1))
     #model = NetworkModels.RNNSpeechModel(nCategories = len(target_list), data_in_dims = (118,80,1))
 
     # Channel first
@@ -181,7 +182,7 @@ def main():
                   #context=["gpu(0)"]
                   )
     model.summary()
-    model_filename = "speech_CNN"
+    model_filename = "speech_attLSTM"
     model_filename = model_filename + "-" + postfix + ".h5"
 
     lrate = LearningRateScheduler(step_decay)

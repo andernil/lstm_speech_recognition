@@ -76,25 +76,25 @@ def RNNSpeechModel(nCategories, data_in_dims):
     x = Conv2D(1, (5,1) , activation='relu', padding='same') (x)
     x = BatchNormalization() (x)
 
-    x = Reshape((118, 80)) (x)
-    #x = Lambda(lambda q: K.squeeze(q, -1), name='squeeze_last_dim') (x) #keras.backend.squeeze(x, axis)
+    #x = Reshape((118, 80)) (x)
+    x = Lambda(lambda q: K.squeeze(q, -1), name='squeeze_last_dim') (x) #keras.backend.squeeze(x, axis)
 
     # Original
-    #x = Bidirectional(CuDNNLSTM(64, return_sequences = True)) (x) # [b_s, seq_len, vec_dim]
+    x = Bidirectional(CuDNNLSTM(64, return_sequences = True)) (x) # [b_s, seq_len, vec_dim]
     # Remove cycle attempt 1
     #x = CuDNNLSTM(64, return_sequences = True) (x) # [b_s, seq_len, vec_dim]
     # Remove cycle attempt 2
     #x = Bidirectional(CuDNNLSTM(64, return_sequences = True)) (x) # [b_s, seq_len, vec_dim]
     # Original
-    #x = Bidirectional(CuDNNLSTM(64)) (x)
+    x = Bidirectional(CuDNNLSTM(64)) (x)
     # Remove cycle attempt 1
     #x = CuDNNLSTM(64) (x)
     # Remove cycle attempt 2
      #x = Bidirectional(CuDNNLSTM(64, return_sequences = False)) (x) # [b_s, seq_len, vec_dim]
      
-    x = Bidirectional(LSTM(64, return_sequences=True, activation = 'tanh', recurrent_activation = 'sigmoid')) (x)
+    #x = Bidirectional(LSTM(64, return_sequences=True, activation = 'tanh', recurrent_activation = 'sigmoid')) (x)
     
-    x = Bidirectional(LSTM(64, activation = 'tanh', recurrent_activation = 'sigmoid')) (x)
+    #x = Bidirectional(LSTM(64, activation = 'tanh', recurrent_activation = 'sigmoid')) (x)
 
 
     x = Dense(64, activation = 'relu')(x)
@@ -124,8 +124,8 @@ def AttRNNSpeechModel(nCategories, data_in_dims):
     x = Conv2D(1, (5,1) , activation='relu', padding='same') (x)
     x = BatchNormalization() (x)
 
-    x = Reshape((125, 80)) (x)
-    #x = Lambda(lambda q: K.squeeze(q, -1), name='squeeze_last_dim') (x) #keras.backend.squeeze(x, axis)
+    #x = Reshape((125, 80)) (x)
+    x = Lambda(lambda q: K.squeeze(q, -1), name='squeeze_last_dim') (x) #keras.backend.squeeze(x, axis)
 
     x = Bidirectional(CuDNNLSTM(64, return_sequences = True)) (x) # [b_s, seq_len, vec_dim]
     x = Bidirectional(CuDNNLSTM(64, return_sequences = True)) (x) # [b_s, seq_len, vec_dim]
