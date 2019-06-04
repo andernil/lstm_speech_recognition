@@ -21,28 +21,19 @@ def ConvSpeechModel(nCategories, data_in_dims):
     #note that Melspectrogram puts the sequence in shape (batch_size, melDim, timeSteps, 1)
     #we would rather have it the other way around for LSTMs
 
-    #x = Permute((2,1,3)) (x)
-    #x = Reshape((94,80)) (x) #this is strange - but now we have (batch_size, sequence, vec_dim)
-
     c1 = Conv2D(20, (5,1) , activation='relu', padding='same') (x)
-    #c1 = Conv2D(20, (3,3) , activation='relu', padding='same') (x)
     
     c1 = BatchNormalization() (c1)
-    #p1 = MaxPooling2D((3, 3)) (c1)
     p1 = MaxPooling2D((2, 2)) (c1)
     p1 = Dropout(0.03) (p1)
 
-    #c2 = Conv2D(40, (3,3) , activation='relu', padding='same') (p1)
     c2 = Conv2D(40, (3,3) , activation='relu', padding='same') (p1)
     c2 = BatchNormalization() (c2)
-    #p2 = MaxPooling2D((3, 3)) (c2)
     p2 = MaxPooling2D((1, 2)) (c2)
     p2 = Dropout(0.01) (p2)
 
     c3 = Conv2D(80, (3,3) , activation='relu', padding='same') (p2)
-    #c3 = Conv2D(40, (3,3) , activation='relu', padding='same') (p2)
     c3 = BatchNormalization() (c3)
-    #p3 = MaxPooling2D((3, 3)) (c3)
     p3 = MaxPooling2D((1, 2)) (c3)
 
     p3 = Flatten()(p3)
@@ -67,35 +58,16 @@ def RNNSpeechModel(nCategories, data_in_dims):
     #note that Melspectrogram puts the sequence in shape (batch_size, melDim, timeSteps, 1)
     #we would rather have it the other way around for LSTMs
 
-    #x = Permute((2,1,3)) (x)
 
-    #x = Conv2D(10, (5,1) , activation='relu', padding='same') (x)
     x = Conv2D(10, (5,1) , activation='relu', padding='same') (x)
     x = BatchNormalization() (x)
-    #x = Conv2D(1, (5,1) , activation='relu', padding='same') (x)
     x = Conv2D(1, (5,1) , activation='relu', padding='same') (x)
     x = BatchNormalization() (x)
 
-    #x = Reshape((118, 80)) (x)
     x = Lambda(lambda q: K.squeeze(q, -1), name='squeeze_last_dim') (x) #keras.backend.squeeze(x, axis)
 
-    # Original
     x = Bidirectional(CuDNNLSTM(64, return_sequences = True)) (x) # [b_s, seq_len, vec_dim]
-    # Remove cycle attempt 1
-    #x = CuDNNLSTM(64, return_sequences = True) (x) # [b_s, seq_len, vec_dim]
-    # Remove cycle attempt 2
-    #x = Bidirectional(CuDNNLSTM(64, return_sequences = True)) (x) # [b_s, seq_len, vec_dim]
-    # Original
     x = Bidirectional(CuDNNLSTM(64)) (x)
-    # Remove cycle attempt 1
-    #x = CuDNNLSTM(64) (x)
-    # Remove cycle attempt 2
-     #x = Bidirectional(CuDNNLSTM(64, return_sequences = False)) (x) # [b_s, seq_len, vec_dim]
-     
-    #x = Bidirectional(LSTM(64, return_sequences=True, activation = 'tanh', recurrent_activation = 'sigmoid')) (x)
-    
-    #x = Bidirectional(LSTM(64, activation = 'tanh', recurrent_activation = 'sigmoid')) (x)
-
 
     x = Dense(64, activation = 'relu')(x)
     x = Dense(32, activation = 'relu')(x)
@@ -113,18 +85,14 @@ def AttRNNSpeechModel(nCategories, data_in_dims):
     inputs = Input(data_in_dims)
 
     x = inputs
-    #x = Normalization2D(int_axis=0)(x)
     #note that Melspectrogram puts the sequence in shape (batch_size, melDim, timeSteps, 1)
     #we would rather have it the other way around for LSTMs
-
-    #x = Permute((2,1,3)) (x)
 
     x = Conv2D(10, (5,1) , activation='relu', padding='same') (x)
     x = BatchNormalization() (x)
     x = Conv2D(1, (5,1) , activation='relu', padding='same') (x)
     x = BatchNormalization() (x)
 
-    #x = Reshape((125, 80)) (x)
     x = Lambda(lambda q: K.squeeze(q, -1), name='squeeze_last_dim') (x) #keras.backend.squeeze(x, axis)
 
     x = Bidirectional(CuDNNLSTM(64, return_sequences = True)) (x) # [b_s, seq_len, vec_dim]

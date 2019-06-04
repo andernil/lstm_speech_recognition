@@ -25,17 +25,12 @@ class DataGenerator(keras.utils.Sequence):
         # Initialization
         # Channel last
         X = np.empty((self.batch_size, *self.dim, self.num_channels))
-        # Channel first
-        #X = np.empty((self.batch_size, self.num_channels, *self.dim))
         y = np.empty((self.batch_size), dtype=int)
 
         #Generate data
         for i, ID in enumerate(list_IDs_temp):
             # Store sample
-            # Channel last
             X[i,] = np.reshape(np.loadtxt('input_data/' + ID)[1:], (*self.dim, self.num_channels))
-            # Channel first
-            #X[i,] = np.reshape(np.loadtxt('input_data/' + ID)[1:], (self.num_channels,*self.dim))
             # Store class
             y[i] = self.labels[ID]
 

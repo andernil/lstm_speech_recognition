@@ -4,21 +4,17 @@ import os
 import numpy as np
 
 import matplotlib.pyplot as plt
-#import tensorflow as tf
 import plotly.offline as py
 import plotly.graph_objs as go
 
 # Include the network model functions
 import NetworkModels
-#import network_models_original
 
 import keras
 from keras import Input, layers
 from keras import backend as K
 from keras.utils import to_categorical
-from keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler #, MXNetModelCheckpoint
-
-#from keras.models import save_mxnet_model
+from keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler
 from datetime import datetime
 
 from data_classes import DataGenerator
@@ -28,11 +24,6 @@ import copy
 
 import math
 
-# Original
-#num_frames_per_sample = 63
-#num_MFCC_per_sample = 7;
-
-# Modified
 num_frames_per_sample = 118
 num_MFCC_per_sample = 80
 NN_batch_size = 10
@@ -44,7 +35,7 @@ train_val_split_ratio = 0.6
 val_ver_split_ratio = 0.75
 
 train_audio_path = 'input_data'
-subfolder = '/MFCC/'
+subfolder = '/Mels/'
 
 # Split the data set into three bins: Training (60%), validation (30%) and testing (10%)
 #
@@ -74,8 +65,6 @@ def split_dataset(data, all_labels, label_values, label_counts, ratio=0.6, verif
         X_train.extend(data[element_count:split_point])
         X_val.extend(data[split_point: test_val_split_point])
         X_ver.extend(data[test_val_split_point: element_count + num_elements])
-        #y_train.extend(all_labels[element_count:split_point])
-        #y_test.extend(all_labels[split_point:num_elements])
         element_count = num_elements + element_count
 
     output_data = {
@@ -102,40 +91,37 @@ def main():
     dirs = [f for f in os.listdir(train_audio_path) if os.path.isdir(os.path.join(train_audio_path, f))]
     dirs.sort()
 
-    all_MFCC = []
-    unknown_MFCC = []
+    all_Mels = []
+    unknown_Mels = []
     label_all = []
     label_value = {}
     label_counts = []
     target_list = ['yes', 'no', 'up', 'down', 'left', 'right', 'on', 'off', 'stop', 'go', 'silence', 'unknown']
     dirs_filtered = [dir for dir in dirs and target_list]
     print(dirs_filtered)
-    #unknown_list = [word for word in dirs if word not in target_list and word != 'background_noise_']
-    unknown_list = ['marvin']
     # Look through folders and add file IDs 
     i = 0
-    for direct in dirs_filtered or unknown_list:
+    for direct in dirs_filtered:
         label_count = 0
-        MFCCs = [file for file in os.listdir(os.path.join(train_audio_path, direct + subfolder)) if file.endswith('.dat')]
+        Melss = [file for file in os.listdir(os.path.join(train_audio_path, direct + subfolder)) if file.endswith('.dat')]
         label_value[direct] = i
         i = i + 1
         print(str(i)+":" + str(direct) + " ", end="")
-        for MFCC in MFCCs:
+        for Mel in Mels:
             if(label_count < 4000):
-                #MFCC_values is the name of the file
-                MFCC_values = os.path.join(direct + subfolder + MFCC)
+                Mel_values = os.path.join(direct + subfolder + Mel)
                 if(direct in unknown_list):
-                    unknown_MFCC.append(MFCC_values)
+                    unknown_Mels.append(Mel_values)
                 else:
                     label_all.append(direct)
-                    all_MFCC.append([MFCC_values, direct])
+                    all_Mels.append([Mel_values, direct])
                     label_count = label_count + 1
         if(direct in target_list):
             label_counts.append([direct, label_count])
     
-    MFCC_all = np.reshape(np.delete(all_MFCC,1,1), len(all_MFCC))
-    label_all = [i for i in np.delete(all_MFCC,0,1).tolist()]
-    MFCC_vals = np.array([x for x in MFCC_all])
+    Mels_all = np.reshape(np.delete(all_Mels,1,1), len(all_Mels))
+    label_all = [i for i in np.delete(all_Mels,0,1).tolist()]
+    Mels_vals = np.array([x for x in Mels_all])
     label_vals = [x for x in label_all]
 
     # Split dataset into training and validation sets
@@ -166,20 +152,11 @@ def main():
         ver_text_file.write(output_string)
     ver_text_file.close()
 
-
-    # Channel last
     model = NetworkModels.AttRNNSpeechModel(nCategories = len(target_list), data_in_dims = (118,80,1))
-    #model = NetworkModels.ConvSpeechModel(nCategories = len(target_list), data_in_dims = (118,80,1))
-    #model = NetworkModels.RNNSpeechModel(nCategories = len(target_list), data_in_dims = (118,80,1))
 
-    # Channel first
-    #model = NetworkModels.RNNSpeechModel(nCategories = len(target_list), data_in_dims = (1,118,80))
-    #model = NetworkModels.ConvSpeechModel(nCategories = len(target_list), data_in_dims = (1,118,80))
-    #model.compile(optimizer='adam', loss=['sparse_categorical_crossentropy'], metrics=['sparse_categorical_accuracy'])
     model.compile(optimizer='adam', 
                   loss=['sparse_categorical_crossentropy'], 
-                  metrics=['sparse_categorical_accuracy'],
-                  #context=["gpu(0)"]
+                  metrics=['sparse_categorical_accuracy']
                   )
     model.summary()
     model_filename = "speech_attLSTM"
@@ -188,27 +165,17 @@ def main():
     lrate = LearningRateScheduler(step_decay)
     earlystopper = EarlyStopping(monitor='val_sparse_categorical_accuracy', patience=5, verbose=1)
     checkpointer = ModelCheckpoint(model_filename, monitor='val_sparse_categorical_accuracy', verbose=1, save_best_only=True)
-    #checkpointer = MXNetModelCheckpoint('MXNET_CNN', monitor = 'val_sparse_categorical_accuracy', verbose = 1, save_best_only = True, mode = 'min')
-#   results = model.fit(x=X_train, y=y_train_enum, validation_data = [X_test, y_test_enum], batch_size = None, epochs=NN_num_epochs, steps_per_epoch=(NN_num_training_samples // NN_batch_size) // 2, validation_steps=1, verbose=1, callbacks=[earlystopper, checkpointer, lrate], shuffle=True)
     results = model.fit_generator(generator=training_generator,
                          validation_data=validation_generator,
-                         #use_multiprocessing=True,
-                         #workers=6,
                          epochs=40,
                          verbose=1,
                          callbacks=[earlystopper, checkpointer, lrate]
     )
-    # Save finalized model
-    #save_mxnet_model(model=model, prefix='CNN')
-
     # Plot the accuracy history
     plt.plot(results.history['sparse_categorical_accuracy'])
     plt.plot(results.history['val_sparse_categorical_accuracy'])
     plt.title('Categorical accuracy')
     plt.ylabel('accuracy')  
-<<<<<<< HEAD:neural_networks/test.py
-    plt.xlabel('e
-=======
     plt.xlabel('epoch')
     plt.legend(['train', 'test'], loc='upper left')
     plt.show()
@@ -225,4 +192,3 @@ def main():
 # Run the program
 if __name__ == "__main__":
     main()
->>>>>>> bcb16c9023e3316904c2abc7bb222e0e60cc343e:LSTM_test/voice_recognition/test.py
