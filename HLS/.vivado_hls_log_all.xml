@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_q1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.221+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_d1' to 0." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.213+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_d1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.211+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_we1' to 0." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.209+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_we1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.206+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_ce1' to 0." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.204+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_ce1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.202+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_address1' to 0." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.188+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_address1' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.186+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_q0' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.184+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_d0' to 0." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.182+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_d0' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.172+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_we0' to 0." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.170+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_we0' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.168+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_ce0' to 0." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.166+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_ce0' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.164+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_address0' to 0." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.080+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_address0' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:49.076+0200" type="Warning"/>
+        <logs message="WARNING: [SYN 201-103] Legalizing function name 'read_FFT_data.1201' to 'read_FFT_data_1201'." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:46.506+0200" type="Warning"/>
+        <logs message="WARNING: [SYN 201-103] Legalizing function name 'fft&lt;FFT_params>' to 'fft_FFT_params_s'." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:46.497+0200" type="Warning"/>
+        <logs message="WARNING: [SYN 201-103] Legalizing function name 'write_FFT_data.1200' to 'write_FFT_data_1200'." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:46.496+0200" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-631] Renaming function 'hls::fft&lt;FFT_params>' to 'fft&lt;FFT_params>' (/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:1384)" projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:46.107+0200" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-631] Renaming function 'scaled_fixed2ieee&lt;63, 1>' to 'scaled_fixed2ieee' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:109:37)" projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:45.969+0200" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-803] Cannot specify interface mode 'axis' on argument 'in._M_imag.V' (HLS/FFT_top.cpp:7). This interface directive will be discarded. Please apply it on an argument of top module." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:44.178+0200" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-803] Cannot specify interface mode 'axis' on argument 'in._M_real.V' (HLS/FFT_top.cpp:7). This interface directive will be discarded. Please apply it on an argument of top module." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:44.078+0200" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-803] Cannot specify interface mode 'axis' on argument 'out._M_imag.V' (HLS/FFT_top.cpp:20). This interface directive will be discarded. Please apply it on an argument of top module." projectName="HLS" solutionName="solution1" date="2019-06-04T15:01:44.077+0200" type="Warning"/>
+      </synLog>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
