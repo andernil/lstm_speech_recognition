@@ -1,0 +1,47 @@
+digraph G {
+ordering = out
+node [shape = box3d, fontcolor = black, style = filled];
+9[label = "conv2d_3(Conv)",fillcolor = wheat]
+10[label = "conv2d_3_activation(ReLU)",fillcolor = ghostwhite]
+11[label = "batch_normalization_3(Scale)",fillcolor = red]
+12[label = "max_pooling2d_3(Pool)",fillcolor = beige]
+13[label = "flatten_1(Flatten)",fillcolor = greenyellow]
+14[label = "dense_1(InnerProduct)",fillcolor = wheat]
+15[label = "dense_1_activation(ReLU)",fillcolor = ghostwhite]
+16[label = "dense_2(InnerProduct)",fillcolor = wheat]
+17[label = "dense_2_activation(ReLU)",fillcolor = ghostwhite]
+18[label = "dense_3(InnerProduct)",fillcolor = wheat]
+19[label = "dense_3_activation(Softmax)",fillcolor = red]
+20[label = "_tmp_0_(Entry)",fillcolor = yellow]
+21[label = "_tmp_1_(Exit)",fillcolor = yellow]
+0[label = "data(Input)",fillcolor = green]
+1[label = "conv2d(Conv)",fillcolor = wheat]
+2[label = "conv2d_1_activation(ReLU)",fillcolor = ghostwhite]
+3[label = "batch_normalization_1(Scale)",fillcolor = red]
+4[label = "max_pooling2d_1(Pool)",fillcolor = beige]
+5[label = "conv2d_2(Conv)",fillcolor = wheat]
+6[label = "conv2d_2_activation(ReLU)",fillcolor = ghostwhite]
+7[label = "batch_normalization_2(Scale)",fillcolor = red]
+8[label = "max_pooling2d_2(Pool)",fillcolor = beige]
+9->10[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+10->11[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+11->12[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+12->13[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+13->14[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+14->15[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+15->16[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+16->17[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+17->18[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+18->19[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+19->21[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+20->0
+0->1[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+1->2[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+2->3[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+3->4[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+4->5[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+5->6[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+6->7[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+7->8[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+8->9[label ="[c, h, w] = [0, 0, 0], fixinfo = [null]."];
+}
