@@ -1,4 +1,3 @@
-
 Vivado/
 Vivado_HLS/ug871-design-files.zip
 Vivado_HLS/
@@ -19,3 +18,5 @@ LSTM_test/voice_recognition/.vscode
 LSTM_test/voice_recognition/__pycache__
 LSTM_test/voice_recognition/logs
 LSTM_test/voice_recognition/model
+notes/
+dsp_source/CMakeFiles/

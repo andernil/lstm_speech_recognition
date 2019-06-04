@@ -15,4 +15,17 @@
 - Virker som begrensningene til DNNDK er ganske like Intel Movidius sine?
 - Splitte CNN'et for så å optimalisere og kompilere de delene som funker i DNNDK? Syr sammen outputsene i C++-programmet (kan utføre Crop manuelt i C++)
 
+- For å få terminal på Xilinx SDK må man legge seg til i gruppa dialout i Linux
 
+- Intel Media SDK med OpenVINO skaper problemer med oppdatering av CentOS, måtte fjernes
+
+- KJØRETIDER HLS:
+16-bit FFT - Klokkesykluser: 758566, tid: 3792.73us, 118 frames med 1024 samples
+
+- Kjøretid hamming_original.cpp på Ultra96:
+Calculating filterbanks: 83314us
+Calculating MFCC: 26967us
+reading .wav-file: 1125us
+calculating window-FFT: 633104us
+Generating filterbanks: 1067us
+Calculating filterbank energies (DCT): 110891us
