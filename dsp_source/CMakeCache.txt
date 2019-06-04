@@ -114,7 +114,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=HLS_FFT
+CMAKE_PROJECT_NAME:STATIC=generate_log_mel_filterbank_energies
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -170,6 +170,12 @@ HLS_FFT_BINARY_DIR:STATIC=/home/anders/master/dsp_source
 
 //Value Computed by CMake
 HLS_FFT_SOURCE_DIR:STATIC=/home/anders/master/dsp_source
+
+//Value Computed by CMake
+generate_log_mel_filterbank_energies_BINARY_DIR:STATIC=/home/anders/master/dsp_source
+
+//Value Computed by CMake
+generate_log_mel_filterbank_energies_SOURCE_DIR:STATIC=/home/anders/master/dsp_source
 
 
 ########################

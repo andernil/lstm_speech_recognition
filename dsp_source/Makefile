@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named HLS_FFT
+# Target rules for targets named generate_log_mel_filterbank_energies
 
 # Build rule for target.
-HLS_FFT: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 HLS_FFT
-.PHONY : HLS_FFT
+generate_log_mel_filterbank_energies: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 generate_log_mel_filterbank_energies
+.PHONY : generate_log_mel_filterbank_energies
 
 # fast build rule for target.
-HLS_FFT/fast:
-	$(MAKE) -f CMakeFiles/HLS_FFT.dir/build.make CMakeFiles/HLS_FFT.dir/build
-.PHONY : HLS_FFT/fast
+generate_log_mel_filterbank_energies/fast:
+	$(MAKE) -f CMakeFiles/generate_log_mel_filterbank_energies.dir/build.make CMakeFiles/generate_log_mel_filterbank_energies.dir/build
+.PHONY : generate_log_mel_filterbank_energies/fast
 
-hamming_original.o: hamming_original.cpp.o
+dsp_source.o: dsp_source.cpp.o
 
-.PHONY : hamming_original.o
+.PHONY : dsp_source.o
 
 # target to build an object file
-hamming_original.cpp.o:
-	$(MAKE) -f CMakeFiles/HLS_FFT.dir/build.make CMakeFiles/HLS_FFT.dir/hamming_original.cpp.o
-.PHONY : hamming_original.cpp.o
+dsp_source.cpp.o:
+	$(MAKE) -f CMakeFiles/generate_log_mel_filterbank_energies.dir/build.make CMakeFiles/generate_log_mel_filterbank_energies.dir/dsp_source.cpp.o
+.PHONY : dsp_source.cpp.o
 
-hamming_original.i: hamming_original.cpp.i
+dsp_source.i: dsp_source.cpp.i
 
-.PHONY : hamming_original.i
+.PHONY : dsp_source.i
 
 # target to preprocess a source file
-hamming_original.cpp.i:
-	$(MAKE) -f CMakeFiles/HLS_FFT.dir/build.make CMakeFiles/HLS_FFT.dir/hamming_original.cpp.i
-.PHONY : hamming_original.cpp.i
+dsp_source.cpp.i:
+	$(MAKE) -f CMakeFiles/generate_log_mel_filterbank_energies.dir/build.make CMakeFiles/generate_log_mel_filterbank_energies.dir/dsp_source.cpp.i
+.PHONY : dsp_source.cpp.i
 
-hamming_original.s: hamming_original.cpp.s
+dsp_source.s: dsp_source.cpp.s
 
-.PHONY : hamming_original.s
+.PHONY : dsp_source.s
 
 # target to generate assembly for a file
-hamming_original.cpp.s:
-	$(MAKE) -f CMakeFiles/HLS_FFT.dir/build.make CMakeFiles/HLS_FFT.dir/hamming_original.cpp.s
-.PHONY : hamming_original.cpp.s
+dsp_source.cpp.s:
+	$(MAKE) -f CMakeFiles/generate_log_mel_filterbank_energies.dir/build.make CMakeFiles/generate_log_mel_filterbank_energies.dir/dsp_source.cpp.s
+.PHONY : dsp_source.cpp.s
 
 # Help Target
 help:
@@ -158,10 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... HLS_FFT"
-	@echo "... hamming_original.o"
-	@echo "... hamming_original.i"
-	@echo "... hamming_original.s"
+	@echo "... generate_log_mel_filterbank_energies"
+	@echo "... dsp_source.o"
+	@echo "... dsp_source.i"
+	@echo "... dsp_source.s"
 .PHONY : help
 
 
