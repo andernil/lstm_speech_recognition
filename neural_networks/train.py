@@ -103,7 +103,7 @@ def main():
     i = 0
     for direct in dirs_filtered:
         label_count = 0
-        Melss = [file for file in os.listdir(os.path.join(train_audio_path, direct + subfolder)) if file.endswith('.dat')]
+        Mels = [file for file in os.listdir(os.path.join(train_audio_path, direct + subfolder)) if file.endswith('.dat')]
         label_value[direct] = i
         i = i + 1
         print(str(i)+":" + str(direct) + " ", end="")
