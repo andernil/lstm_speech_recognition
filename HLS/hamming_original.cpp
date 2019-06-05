@@ -6,33 +6,38 @@
 
 using namespace std;
 
-void window_FFT(complex<double> input_data[NUM_SAMPLES],
-				double output_data[NUM_SAMPLES_POST_FFT],
-				int peak_value);
+void window_FFT(
+		complex<double> input_data[NUM_SAMPLES],
+		double output_data[NUM_SAMPLES_POST_FFT],
+		int peak_value);
 
-void init_mel(double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
-			  double min_frequency,
-			  double max_frequency,
-			  int num_filterbanks,
-			  int FFT_size,
-			  int samplerate);
+void init_mel(
+		double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
+		double min_frequency,
+		double max_frequency,
+		int num_filterbanks,
+		int FFT_size,
+		int samplerate);
 
-void generate_filterbank(double* filterbank,
-						 double prev_filterbank,
-						 double curr_filterbank,
-						 double next_filterbank,
-						 int FFT_size);
+void generate_filterbank(
+		double* filterbank,
+		double prev_filterbank,
+		double curr_filterbank,
+		double next_filterbank,
+		int FFT_size);
 
-void calculate_filterbank_energies(double input_data[NUM_SAMPLES_POST_FFT],
-								   double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
-								   double filterbank_energies[NUM_FRAMES][MEL_NUM_FILTERBANKS]);
+void calculate_filterbank_energies(
+		double input_data[NUM_SAMPLES_POST_FFT],
+		double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
+		double filterbank_energies[NUM_FRAMES][MEL_NUM_FILTERBANKS]);
 
 double freq_to_mel(double freq);
 double mel_to_freq(double mel);
 
-void dut_main(complex<double> wav_data[NUM_SAMPLES],
-			  double energies[NUM_FRAMES][MEL_NUM_FILTERBANKS],
-			  int peak_value)
+void dut_main(
+		complex<double> wav_data[NUM_SAMPLES],
+		double energies[NUM_FRAMES][MEL_NUM_FILTERBANKS],
+		int peak_value)
 {
   double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME];
   static double power_data[NUM_SAMPLES_POST_FFT];
@@ -45,9 +50,10 @@ void dut_main(complex<double> wav_data[NUM_SAMPLES],
   calculate_filterbank_energies(power_data, filters, energies);
 }
 
-void window_FFT(complex<double> input_data[NUM_SAMPLES],
-			    double output_data[NUM_SAMPLES_POST_FFT],
-			    int peak_value)
+void window_FFT(
+		complex<double> input_data[NUM_SAMPLES],
+		double output_data[NUM_SAMPLES_POST_FFT],
+		int peak_value)
 {
   int frame_size = NUM_SAMPLES_PER_FFT;
   int frame_step = FRAME_STEP_LENGTH;
@@ -96,12 +102,13 @@ void window_FFT(complex<double> input_data[NUM_SAMPLES],
   }
 }
 
-void init_mel(double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
-			  double min_frequency,
-			  double max_frequency,
-			  int num_filterbanks,
-			  int FFT_size,
-			  int samplerate)
+void init_mel(
+		double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
+		double min_frequency,
+		double max_frequency,
+		int num_filterbanks,
+		int FFT_size,
+		int samplerate)
 {
   double min_mel = freq_to_mel(min_frequency);
   double max_mel = freq_to_mel(max_frequency);
@@ -123,11 +130,12 @@ void init_mel(double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
   }
 }
 
-void generate_filterbank(double* filterbank,
-						 double prev_filterbank,
-						 double curr_filterbank,
-						 double next_filterbank,
-						 int FFT_size)
+void generate_filterbank(
+		double* filterbank,
+		double prev_filterbank,
+		double curr_filterbank,
+		double next_filterbank,
+		int FFT_size)
 {
   // Use i to cycle through the arrays, use j to increment the step value
   int i = 0;
@@ -149,9 +157,10 @@ void generate_filterbank(double* filterbank,
       filterbank[i] = 0;
 }
 
-void calculate_filterbank_energies(double input_data[NUM_SAMPLES_POST_FFT],
-								   double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
-								   double filterbank_energies[NUM_FRAMES][MEL_NUM_FILTERBANKS])
+void calculate_filterbank_energies(
+		double input_data[NUM_SAMPLES_POST_FFT],
+		double filters[MEL_NUM_FILTERBANKS][NUM_SAMPLES_PER_FRAME],
+		double filterbank_energies[NUM_FRAMES][MEL_NUM_FILTERBANKS])
 {
   double filter_avgs = 0;
   double num_filter_values = double(NUM_FRAMES) * double(MEL_NUM_FILTERBANKS);

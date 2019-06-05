@@ -8,11 +8,11 @@ input_directory = sys.argv[1]
 print(input_directory)
 target_dir = current_dir + '/' + input_directory + '/'
 print(target_dir)
-Mel_dir = target_dir + "Mels"
+Mel_dir = target_dir + "mels"
 try:
 	os.mkdir(Mel_dir)
 except:
-	print("Mels directory already exists")
+	print("mels-directory already exists")
 
 count = 0
 files = [f for f in os.listdir(target_dir) if os.path.isfile(os.path.join(target_dir, f))]

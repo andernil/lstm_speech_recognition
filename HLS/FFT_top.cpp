@@ -15,7 +15,8 @@ void write_FFT_data(
 		to_FFT[i] = in[i];
 }
 
-void read_FFT_data(status_t* status_in,
+void read_FFT_data(
+		status_t* status_in,
 		bool* ovflo,
 		cmpxDataOut out[FFT_LENGTH],
 		cmpxDataOut from_FFT[FFT_LENGTH])
@@ -27,7 +28,8 @@ void read_FFT_data(status_t* status_in,
 	*ovflo = status_in->getOvflo() & 0x1;
 }
 
-void FFT(complex<data_in_t> in[FFT_LENGTH],
+void FFT(
+		complex<data_in_t> in[FFT_LENGTH],
 		complex<data_out_t> out[FFT_LENGTH],
 		bool* ovflo)
 {
