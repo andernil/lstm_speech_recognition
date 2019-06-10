@@ -1,0 +1,52 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'window_FFT'" level="0">
+<item name = "Date">Wed Jun  5 21:03:50 2019
+</item>
+<item name = "Version">2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)</item>
+<item name = "Project">HLS</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynquplus</item>
+<item name = "Target device">xczu3eg-sbva484-1-i</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00, 8.750, 1.25</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">2529653, 2537845, 2529653, 2537845, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_FFT_fu_568">FFT, 7331, 7331, 7332, 7332, dataflow</column>
+<column name="grp_scaled_fixed2ieee_fu_576">scaled_fixed2ieee, 19, 27, 19, 27, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop 1">93184, 101376, 91 ~ 99, -, -, 1024, no</column>
+<column name="- Loop 2">2436464, 2436464, 20648, -, -, 118, no</column>
+<column name=" + Loop 2.1">8192, 8192, 8, -, -, 1024, no</column>
+<column name=" + Loop 2.2">3072, 3072, 3, -, -, 1024, no</column>
+<column name=" + Loop 2.3">2048, 2048, 4, -, -, 512, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

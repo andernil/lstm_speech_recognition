@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="window_FFT.wdb" id="1">
+         <top_modules>
+            <top_module name="apa_window_FFT_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0ns"></ZoomStartTime>
+      <ZoomEndTime time="2000ns"></ZoomEndTime>
+      <Cursor1Time time="0ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="257"></NameColumnWidth>
+      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="2" />
+   <wvobject type="group" fp_name="AESL_inst_window_FFT_group">
+      <obj_property name="label">AESL_inst_window_FFT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="group" fp_name="grp_FFT_fu_568_group">
+         <obj_property name="label">grp_FFT_fu_568</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/write_FFT_data_1200_U0_activity">
+            <obj_property name="ElementShortName">write_FFT_data_1200_U0_activity</obj_property>
+            <obj_property name="ObjectShortName">write_FFT_data_1200_U0_activity</obj_property>
+         </wvobject>
+         <wvobject type="protoinst" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/fft_FFT_params_U0_activity">
+            <obj_property name="ElementShortName">fft_FFT_params_U0_activity</obj_property>
+            <obj_property name="ObjectShortName">fft_FFT_params_U0_activity</obj_property>
+         </wvobject>
+         <wvobject type="protoinst" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/read_FFT_data_1201_U0_activity">
+            <obj_property name="ElementShortName">read_FFT_data_1201_U0_activity</obj_property>
+            <obj_property name="ObjectShortName">read_FFT_data_1201_U0_activity</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="write_FFT_data_1200_U0_group">
+            <obj_property name="label">write_FFT_data_1200_U0</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="write_FFT_data_1200_U0_Input_group">
+               <obj_property name="label">Input Channels</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="group" fp_name="to_FFT_group">
+                  <obj_property name="label">to_FFT(FIFO)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/to_FFT_blk_n">
+                     <obj_property name="ElementShortName">to_FFT_blk_n</obj_property>
+                     <obj_property name="ObjectShortName">to_FFT_blk_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/to_FFT_dout">
+                     <obj_property name="ElementShortName">to_FFT_dout[63:0]</obj_property>
+                     <obj_property name="ObjectShortName">to_FFT_dout[63:0]</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/to_FFT_empty_n">
+                     <obj_property name="ElementShortName">to_FFT_empty_n</obj_property>
+                     <obj_property name="ObjectShortName">to_FFT_empty_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/to_FFT_read">
+                     <obj_property name="ElementShortName">to_FFT_read</obj_property>
+                     <obj_property name="ObjectShortName">to_FFT_read</obj_property>
+                  </wvobject>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="write_FFT_data_1200_U0_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/ap_continue">
+                  <obj_property name="ElementShortName">ap_continue</obj_property>
+                  <obj_property name="ObjectShortName">ap_continue</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="write_FFT_data_1200_U0_Output_group">
+               <obj_property name="label">Output Channels</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="group" fp_name="to_FFT_2_group">
+                  <obj_property name="label">to_FFT_2(x_in_channel_U, FIFO)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/to_FFT_2_blk_n">
+                     <obj_property name="ElementShortName">to_FFT_2_blk_n</obj_property>
+                     <obj_property name="ObjectShortName">to_FFT_2_blk_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/to_FFT_2_din">
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/to_FFT_2_full_n">
+                     <obj_property name="ElementShortName">to_FFT_2_full_n</obj_property>
+                     <obj_property name="ObjectShortName">to_FFT_2_full_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/write_FFT_data_1200_U0/to_FFT_2_write">
+                     <obj_property name="ElementShortName">to_FFT_2_write</obj_property>
+                     <obj_property name="ObjectShortName">to_FFT_2_write</obj_property>
+                  </wvobject>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="fft_FFT_params_U0_group">
+            <obj_property name="label">fft_FFT_params_U0</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="fft_FFT_params_U0_Input_group">
+               <obj_property name="label">Input Channels</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="group" fp_name="xn_group">
+                  <obj_property name="label">xn(x_in_channel_U, FIFO)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/xn_dout">
+                     <obj_property name="ElementShortName">xn_dout[63:0]</obj_property>
+                     <obj_property name="ObjectShortName">xn_dout[63:0]</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/xn_empty_n">
+                     <obj_property name="ElementShortName">xn_empty_n</obj_property>
+                     <obj_property name="ObjectShortName">xn_empty_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/xn_read">
+                     <obj_property name="ElementShortName">xn_read</obj_property>
+                     <obj_property name="ObjectShortName">xn_read</obj_property>
+                  </wvobject>
+               </wvobject>
+               <wvobject type="group" fp_name="config_ch_data_V_group">
+                  <obj_property name="label">config_ch_data_V(FFT_config_data_V_U, FIFO)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/config_ch_data_V_dout">
+                     <obj_property name="ElementShortName">config_ch_data_V_dout[23:0]</obj_property>
+                     <obj_property name="ObjectShortName">config_ch_data_V_dout[23:0]</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/config_ch_data_V_empty_n">
+                     <obj_property name="ElementShortName">config_ch_data_V_empty_n</obj_property>
+                     <obj_property name="ObjectShortName">config_ch_data_V_empty_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/config_ch_data_V_read">
+                     <obj_property name="ElementShortName">config_ch_data_V_read</obj_property>
+                     <obj_property name="ObjectShortName">config_ch_data_V_read</obj_property>
+                  </wvobject>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="fft_FFT_params_U0_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/ap_continue">
+                  <obj_property name="ElementShortName">ap_continue</obj_property>
+                  <obj_property name="ObjectShortName">ap_continue</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="fft_FFT_params_U0_Output_group">
+               <obj_property name="label">Output Channels</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="group" fp_name="xk_group">
+                  <obj_property name="label">xk(x_out_channel_U, FIFO)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/xk_din">
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/xk_full_n">
+                     <obj_property name="ElementShortName">xk_full_n</obj_property>
+                     <obj_property name="ObjectShortName">xk_full_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/xk_write">
+                     <obj_property name="ElementShortName">xk_write</obj_property>
+                     <obj_property name="ObjectShortName">xk_write</obj_property>
+                  </wvobject>
+               </wvobject>
+               <wvobject type="group" fp_name="status_data_V_group">
+                  <obj_property name="label">status_data_V(FIFO)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/status_data_V_din">
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/status_data_V_full_n">
+                     <obj_property name="ElementShortName">status_data_V_full_n</obj_property>
+                     <obj_property name="ObjectShortName">status_data_V_full_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/fft_FFT_params_U0/status_data_V_write">
+                     <obj_property name="ElementShortName">status_data_V_write</obj_property>
+                     <obj_property name="ObjectShortName">status_data_V_write</obj_property>
+                  </wvobject>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="read_FFT_data_1201_U0_group">
+            <obj_property name="label">read_FFT_data_1201_U0</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="read_FFT_data_1201_U0_Input_group">
+               <obj_property name="label">Input Channels</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="group" fp_name="from_FFT_2_group">
+                  <obj_property name="label">from_FFT_2(x_out_channel_U, FIFO)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/from_FFT_2_blk_n">
+                     <obj_property name="ElementShortName">from_FFT_2_blk_n</obj_property>
+                     <obj_property name="ObjectShortName">from_FFT_2_blk_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/from_FFT_2_dout">
+                     <obj_property name="ElementShortName">from_FFT_2_dout[63:0]</obj_property>
+                     <obj_property name="ObjectShortName">from_FFT_2_dout[63:0]</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/from_FFT_2_empty_n">
+                     <obj_property name="ElementShortName">from_FFT_2_empty_n</obj_property>
+                     <obj_property name="ObjectShortName">from_FFT_2_empty_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/from_FFT_2_read">
+                     <obj_property name="ElementShortName">from_FFT_2_read</obj_property>
+                     <obj_property name="ObjectShortName">from_FFT_2_read</obj_property>
+                  </wvobject>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="read_FFT_data_1201_U0_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/ap_continue">
+                  <obj_property name="ElementShortName">ap_continue</obj_property>
+                  <obj_property name="ObjectShortName">ap_continue</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="read_FFT_data_1201_U0_Output_group">
+               <obj_property name="label">Output Channels</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="group" fp_name="from_FFT_group">
+                  <obj_property name="label">from_FFT(FIFO)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/from_FFT_blk_n">
+                     <obj_property name="ElementShortName">from_FFT_blk_n</obj_property>
+                     <obj_property name="ObjectShortName">from_FFT_blk_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/from_FFT_din">
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/from_FFT_full_n">
+                     <obj_property name="ElementShortName">from_FFT_full_n</obj_property>
+                     <obj_property name="ObjectShortName">from_FFT_full_n</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_window_FFT_top/AESL_inst_window_FFT/grp_FFT_fu_568/read_FFT_data_1201_U0/from_FFT_write">
+                     <obj_property name="ElementShortName">from_FFT_write</obj_property>
+                     <obj_property name="ObjectShortName">from_FFT_write</obj_property>
+                  </wvobject>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,510 @@
+==============================================================
+File generated on Wed Jun 05 20:53:05 CEST 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Wed Jun 05 20:56:10 CEST 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Wed Jun 05 20:57:57 CEST 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Wed Jun 05 20:58:42 CEST 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Wed Jun 05 21:01:17 CEST 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 2ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.25ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_sdx -optimization_level=none
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 2ns.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [HLS 200-10] Analyzing design file 'HLS/hamming_original.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'HLS/FFT_top.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 436.609 ; gain = 0.156 ; free physical = 818 ; free virtual = 12344
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 436.609 ; gain = 0.156 ; free physical = 818 ; free virtual = 12344
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 770.062 ; gain = 333.609 ; free physical = 500 ; free virtual = 12078
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:469) automatically.
+INFO: [XFORM 203-602] Inlining function 'table_lookup_4oPi_hotbm<52, 61>' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:495) automatically.
+INFO: [XFORM 203-602] Inlining function 'clz<61, 124, 0>' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:523) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'clz' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:435) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::set_mantissa' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:463) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:466) automatically.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::value_list<double>::sin_or_cos_approximation<63, 63>' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:278) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:315) automatically.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::cos' into 'hls::hotbm::cos' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:14) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::hotbm::cos' into 'hls::cos' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:28) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::cos' into 'window_FFT' (HLS/hamming_original.cpp:70) automatically.
+WARNING: [SYNCHK 200-23] HLS/hamming_original.cpp:94: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:52 ; elapsed = 00:00:54 . Memory (MB): peak = 895.574 ; gain = 459.121 ; free physical = 368 ; free virtual = 11957
+INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-2.3.1' (HLS/hamming_original.cpp:94) in function 'window_FFT' automatically.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.3.1' (HLS/hamming_original.cpp:94) in function 'window_FFT' completely with a factor of 1.
+INFO: [XFORM 203-101] Partitioning array 'swap_table.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'swap_table'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'neg_sin_table'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'neg_cos_table'  in dimension 1 completely.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:469) automatically.
+INFO: [XFORM 203-602] Inlining function 'table_lookup_4oPi_hotbm<52, 61>' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:495) automatically.
+INFO: [XFORM 203-602] Inlining function 'clz<61, 124, 0>' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:523) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'clz' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:435) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::set_mantissa' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:463) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:466) automatically.
+INFO: [XFORM 203-602] Inlining function 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:267) automatically.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::value_list<double>::sin_or_cos_approximation<63, 63>' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:278) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:315) automatically.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::cos' into 'hls::hotbm::cos' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:14) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::hotbm::cos' into 'hls::cos' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:28) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::cos' into 'window_FFT' (HLS/hamming_original.cpp:70) automatically.
+INFO: [XFORM 203-712] Applying dataflow to function 'FFT', detected/extracted 3 process function(s): 
+	 'write_FFT_data.1'
+	 'hls::fft<FFT_params>'
+	 'read_FFT_data.1'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (HLS/hamming_original.cpp:83:7) to (HLS/hamming_original.cpp:81:36) in function 'window_FFT'... converting 10 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (HLS/hamming_original.cpp:91:41) to (HLS/hamming_original.cpp:89:34) in function 'window_FFT'... converting 12 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:443:20) to (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:467:1) in function 'scaled_fixed2ieee<63, 1>'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:237:18) to (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:315:12) in function 'hotbm_::sin_or_cos<double>'... converting 10 basic blocks.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::sin_or_cos<double>' into 'window_FFT' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/common/hls_hotbm_double.cpp:143->/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:14->/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:28->HLS/hamming_original.cpp:70) automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'window_FFT' (HLS/hamming_original.cpp:48)...4 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:54 ; elapsed = 00:00:56 . Memory (MB): peak = 1108.457 ; gain = 672.004 ; free physical = 166 ; free virtual = 11776
+WARNING: [XFORM 203-631] Renaming function 'scaled_fixed2ieee<63, 1>' to 'scaled_fixed2ieee' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:109:37)
+WARNING: [XFORM 203-631] Renaming function 'hls::fft<FFT_params>' to 'fft<FFT_params>' (/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:1384)
+INFO: [HLS 200-472] Inferring partial write operation for 'out_bits.V' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:430:5)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:55 ; elapsed = 00:00:57 . Memory (MB): peak = 1108.457 ; gain = 672.004 ; free physical = 1488 ; free virtual = 11748
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'window_FFT' ...
+WARNING: [SYN 201-103] Legalizing function name 'write_FFT_data.1200' to 'write_FFT_data_1200'.
+WARNING: [SYN 201-103] Legalizing function name 'fft<FFT_params>' to 'fft_FFT_params_s'.
+WARNING: [SYN 201-103] Legalizing function name 'read_FFT_data.1201' to 'read_FFT_data_1201'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'scaled_fixed2ieee' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 57.5 seconds; current allocated memory: 650.885 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 3 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 651.303 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'write_FFT_data_1200' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 651.460 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 651.565 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fft_FFT_params_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Skip scheduling the IP block.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 651.590 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.02 seconds; current allocated memory: 651.608 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'read_FFT_data_1201' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 651.692 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.02 seconds; current allocated memory: 651.774 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'FFT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 651.828 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 652.102 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'window_FFT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+WARNING: [SCHED 204-21] Estimated delay (3.86ns) of 'sitodp' operation ('scaling', HLS/hamming_original.cpp:58) exceeds the target cycle time (target cycle time: 2ns, clock uncertainty: 0.25ns, effective cycle time: 1.75ns).
+WARNING: [SCHED 204-21] Estimated clock period (3.862ns) exceeds the target (target clock period: 2ns, clock uncertainty: 0.25ns, effective delay budget: 1.75ns).
+WARNING: [SCHED 204-21] The critical path in module 'window_FFT' consists of the following:
+	wire read on port 'peak_value' [22]  (0 ns)
+	'shl' operation ('tmp', HLS/hamming_original.cpp:58) [25]  (0 ns)
+	'sitodp' operation ('scaling', HLS/hamming_original.cpp:58) [26]  (3.86 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.66 seconds; current allocated memory: 654.288 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.74 seconds; current allocated memory: 657.162 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'scaled_fixed2ieee' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'scaled_fixed2ieee'.
+INFO: [HLS 200-111]  Elapsed time: 0.86 seconds; current allocated memory: 658.153 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'write_FFT_data_1200' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'write_FFT_data_1200'.
+INFO: [HLS 200-111]  Elapsed time: 0.26 seconds; current allocated memory: 660.078 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fft_FFT_params_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fft_FFT_params_s'.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 660.480 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'read_FFT_data_1201' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'read_FFT_data_1201'.
+INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 660.749 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'FFT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'FFT'.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 661.374 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'window_FFT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'window_FFT/input_data_M_real' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'window_FFT/input_data_M_imag' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'window_FFT/output_data' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'window_FFT/peak_value' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'window_FFT' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] RTL name 'fifo_w64_d1024_A' is changed to 'fifo_w64_d1024_A_x' due to conflict.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_address0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_address0' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_ce0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_ce0' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_we0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_we0' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_d0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_d0' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_q0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_address1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_address1' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_ce1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_ce1' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_we1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_we1' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_d1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_d1' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_q1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_ddiv_64ns_64ns_64_59_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_dmul_64ns_64ns_64_14_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_dsub_64ns_64ns_64_14_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_170ns_53ns_223_19_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_32s_32s_64_7_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_35ns_25ns_60_7_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_42ns_33ns_75_7_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_49ns_44s_93_12_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_49ns_49ns_98_12_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_56ns_52s_108_6_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_64s_63ns_126_19_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mux_164_1_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mux_83_1_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_sitodp_32ns_64_8_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'window_FFT'.
+INFO: [HLS 200-111]  Elapsed time: 0.36 seconds; current allocated memory: 666.952 MB.
+INFO: [RTMG 210-278] Implementing memory 'scaled_fixed2ieee_out_bits_V_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'scaled_fixed2ieee_c_ram (RAM)' using distributed RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'FFT_config_data_V_U(fifo_w24_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'x_in_channel_U(fifo_w64_d1024_A)' using Block RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'x_out_channel_U(fifo_w64_d1024_A)' using Block RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_fft_FFT_params_U0_U(start_for_fft_FFT_params_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_read_FFT_data_1201_U0_U(start_for_read_FFT_data_1201_U0)' using Shift Registers.
+==============================================================
+File generated on Wed Jun 05 21:02:52 CEST 2019
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_sdx -optimization_level=none
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [HLS 200-10] Analyzing design file 'HLS/hamming_original.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'HLS/FFT_top.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 436.609 ; gain = 0.156 ; free physical = 2202 ; free virtual = 12378
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 436.609 ; gain = 0.156 ; free physical = 2202 ; free virtual = 12378
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 770.062 ; gain = 333.609 ; free physical = 1883 ; free virtual = 12111
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:469) automatically.
+INFO: [XFORM 203-602] Inlining function 'table_lookup_4oPi_hotbm<52, 61>' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:495) automatically.
+INFO: [XFORM 203-602] Inlining function 'clz<61, 124, 0>' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:523) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'clz' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:435) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::set_mantissa' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:463) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:466) automatically.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::value_list<double>::sin_or_cos_approximation<63, 63>' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:278) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:315) automatically.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::cos' into 'hls::hotbm::cos' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:14) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::hotbm::cos' into 'hls::cos' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:28) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::cos' into 'window_FFT' (HLS/hamming_original.cpp:70) automatically.
+WARNING: [SYNCHK 200-23] HLS/hamming_original.cpp:94: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:52 ; elapsed = 00:00:54 . Memory (MB): peak = 895.574 ; gain = 459.121 ; free physical = 1751 ; free virtual = 11990
+INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-2.3.1' (HLS/hamming_original.cpp:94) in function 'window_FFT' automatically.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.3.1' (HLS/hamming_original.cpp:94) in function 'window_FFT' completely with a factor of 1.
+INFO: [XFORM 203-101] Partitioning array 'swap_table.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'swap_table'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'neg_sin_table'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'neg_cos_table'  in dimension 1 completely.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:469) automatically.
+INFO: [XFORM 203-602] Inlining function 'table_lookup_4oPi_hotbm<52, 61>' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:495) automatically.
+INFO: [XFORM 203-602] Inlining function 'clz<61, 124, 0>' into 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_range_redux.h:523) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'clz' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:435) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::set_mantissa' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:463) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'scaled_fixed2ieee<63, 1>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:466) automatically.
+INFO: [XFORM 203-602] Inlining function 'range_redux_payne_hanek_hotbm<61, double, 63, 63>' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:267) automatically.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::value_list<double>::sin_or_cos_approximation<63, 63>' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:278) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'hotbm_::sin_or_cos<double>' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:315) automatically.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::cos' into 'hls::hotbm::cos' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:14) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::hotbm::cos' into 'hls::cos' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:28) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::cos' into 'window_FFT' (HLS/hamming_original.cpp:70) automatically.
+INFO: [XFORM 203-712] Applying dataflow to function 'FFT', detected/extracted 3 process function(s): 
+	 'write_FFT_data.1'
+	 'hls::fft<FFT_params>'
+	 'read_FFT_data.1'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (HLS/hamming_original.cpp:83:7) to (HLS/hamming_original.cpp:81:36) in function 'window_FFT'... converting 10 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (HLS/hamming_original.cpp:91:41) to (HLS/hamming_original.cpp:89:34) in function 'window_FFT'... converting 12 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:443:20) to (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:467:1) in function 'scaled_fixed2ieee<63, 1>'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:237:18) to (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_hotbm.h:315:12) in function 'hotbm_::sin_or_cos<double>'... converting 10 basic blocks.
+INFO: [XFORM 203-602] Inlining function 'hotbm_::sin_or_cos<double>' into 'window_FFT' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/common/hls_hotbm_double.cpp:143->/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:14->/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c++/sincoshotbmdouble.cpp:28->HLS/hamming_original.cpp:70) automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'window_FFT' (HLS/hamming_original.cpp:48)...4 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:54 ; elapsed = 00:00:56 . Memory (MB): peak = 1108.457 ; gain = 672.004 ; free physical = 1547 ; free virtual = 11808
+WARNING: [XFORM 203-631] Renaming function 'scaled_fixed2ieee<63, 1>' to 'scaled_fixed2ieee' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:109:37)
+WARNING: [XFORM 203-631] Renaming function 'hls::fft<FFT_params>' to 'fft<FFT_params>' (/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:1384)
+INFO: [HLS 200-472] Inferring partial write operation for 'out_bits.V' (/wrk/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls/utils/x_hls_float_utils.h:430:5)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:55 ; elapsed = 00:00:57 . Memory (MB): peak = 1108.457 ; gain = 672.004 ; free physical = 1462 ; free virtual = 11727
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'window_FFT' ...
+WARNING: [SYN 201-103] Legalizing function name 'write_FFT_data.1200' to 'write_FFT_data_1200'.
+WARNING: [SYN 201-103] Legalizing function name 'fft<FFT_params>' to 'fft_FFT_params_s'.
+WARNING: [SYN 201-103] Legalizing function name 'read_FFT_data.1201' to 'read_FFT_data_1201'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'scaled_fixed2ieee' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 57.56 seconds; current allocated memory: 651.145 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 3 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 651.510 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'write_FFT_data_1200' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 651.668 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.02 seconds; current allocated memory: 651.772 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fft_FFT_params_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Skip scheduling the IP block.
+INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 651.797 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.01 seconds; current allocated memory: 651.815 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'read_FFT_data_1201' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.05 seconds; current allocated memory: 651.870 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.02 seconds; current allocated memory: 651.952 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'FFT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 652.036 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 652.326 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'window_FFT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.34 seconds; current allocated memory: 653.933 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.45 seconds; current allocated memory: 655.696 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'scaled_fixed2ieee' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'scaled_fixed2ieee'.
+INFO: [HLS 200-111]  Elapsed time: 0.66 seconds; current allocated memory: 656.604 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'write_FFT_data_1200' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'write_FFT_data_1200'.
+INFO: [HLS 200-111]  Elapsed time: 0.26 seconds; current allocated memory: 658.434 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fft_FFT_params_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fft_FFT_params_s'.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 658.852 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'read_FFT_data_1201' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'read_FFT_data_1201'.
+INFO: [HLS 200-111]  Elapsed time: 0.05 seconds; current allocated memory: 659.092 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'FFT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'FFT'.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 659.717 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'window_FFT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'window_FFT/input_data_M_real' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'window_FFT/input_data_M_imag' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'window_FFT/output_data' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'window_FFT/peak_value' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'window_FFT' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] RTL name 'fifo_w64_d1024_A' is changed to 'fifo_w64_d1024_A_x' due to conflict.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_address0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_address0' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_ce0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_ce0' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_we0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_we0' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_d0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_d0' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_q0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_address1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_address1' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_ce1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_ce1' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_we1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_we1' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_d1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'window_FFT/input_data_M_imag_d1' to 0.
+WARNING: [RTGEN 206-101] Port 'window_FFT/input_data_M_imag_q1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_ddiv_64ns_64ns_64_22_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_dmul_64ns_64ns_64_5_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_dsub_64ns_64ns_64_5_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mul_170ns_53ns_223_2_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mux_164_1_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_mux_83_1_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'window_FFT_sitodp_32ns_64_4_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'window_FFT'.
+INFO: [HLS 200-111]  Elapsed time: 0.31 seconds; current allocated memory: 663.204 MB.
+INFO: [RTMG 210-278] Implementing memory 'scaled_fixed2ieee_out_bits_V_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'scaled_fixed2ieee_c_ram (RAM)' using distributed RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'FFT_config_data_V_U(fifo_w24_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'x_in_channel_U(fifo_w64_d1024_A)' using Block RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'x_out_channel_U(fifo_w64_d1024_A)' using Block RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_fft_FFT_params_U0_U(start_for_fft_FFT_params_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_read_FFT_data_1201_U0_U(start_for_read_FFT_data_1201_U0)' using Shift Registers.
+INFO: [RTMG 210-282] Generating pipelined core: 'window_FFT_mul_170ns_53ns_223_2_1_MulnS_0'
+INFO: [RTMG 210-279] Implementing memory 'window_FFT_ref_4oPi_table_256_V_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'window_FFT_fourth_order_double_4_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'window_FFT_fourth_order_double_5_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'window_FFT_fourth_order_double_6_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'window_FFT_fourth_order_double_7_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'window_FFT_fourth_order_double_s_rom' using distributed ROMs.
+INFO: [RTMG 210-278] Implementing memory 'window_FFT_data_frame_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'to_FFT_U(fifo_w64_d1024_A_x)' using Block RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'from_FFT_U(fifo_w64_d1024_A_x)' using Block RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:01:00 ; elapsed = 00:01:03 . Memory (MB): peak = 1108.457 ; gain = 672.004 ; free physical = 1439 ; free virtual = 11713

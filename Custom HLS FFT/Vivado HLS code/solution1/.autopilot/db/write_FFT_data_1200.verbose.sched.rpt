@@ -1,0 +1,138 @@
+
+
+================================================================
+== Vivado HLS Report for 'write_FFT_data_1200'
+================================================================
+* Date:           Wed Jun  5 21:03:49 2019
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        HLS
+* Solution:       solution1
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     4.334|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+------+------+------+---------+
+    |   Latency   |   Interval  | Pipeline|
+    |  min |  max |  min |  max |   Type  |
+    +------+------+------+------+---------+
+    |  1025|  1025|  1025|  1025|   none  |
+    +------+------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+        |             |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name  |  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+        |- WRITE_FOR  |  1024|  1024|         1|          -|          -|  1024|    no    |
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	2  / (!exitcond)
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 4.33>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i24* %fft_config_data_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 3 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* @to_FFT, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 4 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %to_FFT_2, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 5 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (2.16ns)   --->   "%p_Val2_s = call i24 @_ssdm_op_Read.ap_fifo.i24P(i24* %fft_config_data_V)" [/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:302->HLS/FFT_top.cpp:10]   --->   Operation 6 'read' 'p_Val2_s' <Predicate = true> <Delay = 2.16> <Core = "FIFO_SRL">   --->   Core 36 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 0> <FIFO>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%p_Result_s = call i24 @_ssdm_op_PartSet.i24.i24.i21.i32.i32(i24 %p_Val2_s, i21 699053, i32 0, i32 20)" [/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:268->HLS/FFT_top.cpp:11]   --->   Operation 7 'partset' 'p_Result_s' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (2.16ns)   --->   "call void @_ssdm_op_Write.ap_fifo.i24P(i24* %fft_config_data_V, i24 %p_Result_s)" [/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:268->HLS/FFT_top.cpp:11]   --->   Operation 8 'write' <Predicate = true> <Delay = 2.16> <Core = "FIFO_SRL">   --->   Core 36 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 0> <FIFO>
+ST_1 : Operation 9 [1/1] (0.75ns)   --->   "br label %0" [HLS/FFT_top.cpp:14]   --->   Operation 9 'br' <Predicate = true> <Delay = 0.75>
+
+State 2 <SV = 1> <Delay = 4.33>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%i = phi i11 [ 0, %_ZN3hls6ip_fft8config_tI10FFT_paramsE6setSchEjj.exit ], [ %i_1, %1 ]"   --->   Operation 10 'phi' 'i' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [1/1] (0.85ns)   --->   "%exitcond = icmp eq i11 %i, -1024" [HLS/FFT_top.cpp:14]   --->   Operation 11 'icmp' 'exitcond' <Predicate = true> <Delay = 0.85> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1024, i64 1024, i64 1024)"   --->   Operation 12 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.94ns)   --->   "%i_1 = add i11 %i, 1" [HLS/FFT_top.cpp:14]   --->   Operation 13 'add' 'i_1' <Predicate = true> <Delay = 0.94> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "br i1 %exitcond, label %2, label %1" [HLS/FFT_top.cpp:14]   --->   Operation 14 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str1) nounwind" [HLS/FFT_top.cpp:15]   --->   Operation 15 'specloopname' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (2.16ns)   --->   "%to_FFT_read = call i64 @_ssdm_op_Read.ap_fifo.volatile.i64P(i64* @to_FFT)" [HLS/FFT_top.cpp:15]   --->   Operation 16 'read' 'to_FFT_read' <Predicate = (!exitcond)> <Delay = 2.16> <Core = "FIFO_SRL">   --->   Core 36 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 0> <FIFO>
+ST_2 : Operation 17 [1/1] (2.16ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* %to_FFT_2, i64 %to_FFT_read)" [HLS/FFT_top.cpp:15]   --->   Operation 17 'write' <Predicate = (!exitcond)> <Delay = 2.16> <Core = "FIFO_SRL">   --->   Core 36 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 0> <FIFO>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "br label %0" [HLS/FFT_top.cpp:14]   --->   Operation 18 'br' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "ret void" [HLS/FFT_top.cpp:16]   --->   Operation 19 'ret' <Predicate = (exitcond)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 4.33ns
+The critical path consists of the following:
+	fifo read on port 'fft_config_data_V' (/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:302->HLS/FFT_top.cpp:10) [7]  (2.17 ns)
+	fifo write on port 'fft_config_data_V' (/tools/Xilinx/Vivado/2018.3/common/technology/autopilot/hls_fft.h:268->HLS/FFT_top.cpp:11) [9]  (2.17 ns)
+
+ <State 2>: 4.33ns
+The critical path consists of the following:
+	fifo read on port 'to_FFT' (HLS/FFT_top.cpp:15) [19]  (2.17 ns)
+	fifo write on port 'to_FFT_2' (HLS/FFT_top.cpp:15) [20]  (2.17 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="FFT_top.cpp" path="/home/anders/master/HLS/FFT_top.cpp"/>
+    <originFiles name="FFT_top.h" path="/home/anders/master/HLS/FFT_top.h"/>
+    <originFiles name="hamming_original.cpp" path="/home/anders/master/HLS/hamming_original.cpp"/>
+    <originFiles name="hamming_original.h" path="/home/anders/master/HLS/hamming_original.h"/>
+  </source>
+  <testbench>
+    <originFiles name="golden_mel.dat" path="/home/anders/speech_commands_v0.01/golden_mel.dat"/>
+    <originFiles name="wav_data.dat" path="/home/anders/master/HLS/wav_data.dat"/>
+    <originFiles name="fft_tb.cpp" path="/home/anders/master/HLS/fft_tb.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>
