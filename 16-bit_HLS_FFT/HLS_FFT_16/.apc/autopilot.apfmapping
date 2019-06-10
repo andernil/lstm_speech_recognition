@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="sliding_win.h" path="/home/anders/master/16-bit_HLS_FFT/HLS_FFT_16/sliding_win.h"/>
+    <originFiles name="hls_realfft.h" path="/home/anders/master/16-bit_HLS_FFT/HLS_FFT_16/hls_realfft.h"/>
+    <originFiles name="xfft2real.h" path="/home/anders/master/16-bit_HLS_FFT/HLS_FFT_16/xfft2real.h"/>
+    <originFiles name="xfft2real.cpp" path="/home/anders/master/16-bit_HLS_FFT/HLS_FFT_16/xfft2real.cpp"/>
+    <originFiles name="real2xfft.cpp" path="/home/anders/master/16-bit_HLS_FFT/HLS_FFT_16/real2xfft.cpp"/>
+    <originFiles name="window_fn.h" path="/home/anders/master/16-bit_HLS_FFT/HLS_FFT_16/window_fn.h"/>
+  </source>
+  <testbench>
+    <originFiles name="hls_realfft_test.cpp" path="/home/anders/master/16-bit_HLS_FFT/HLS_FFT_16/hls_realfft_test.cpp"/>
+    <originFiles name="reference_fft.h" path="/home/anders/master/16-bit_HLS_FFT/HLS_FFT_16/reference_fft.h"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

@@ -5,4 +5,7 @@ notes/
 dsp_source/CMakeFiles/
 neural_networks/__pycache__/
 vivado_hls.log
-.gitignore.swo
+.gitignore.swp
+16-bit_HLS_FFT/HLS_FFT_16/solution1/
+16-bit_HLS_FFT/HLS_FFT_16/solution2/
+16-bit_HLS_FFT/HLS_FFT_16/Debug/
